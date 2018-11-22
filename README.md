@@ -8,7 +8,7 @@
 hexo new "Blog Post Hello World!!!"
 또는
 hexo n  "Blog Post Hello World!!!"
-vim source/_posts/Blog-Post-Hello-World!!!
+vim source/_posts/Blog-Post-Hello-World!!!.md
 ```
 
 # 확인
