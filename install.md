@@ -8,7 +8,9 @@ hexo의 기능을 사용 하기 위해 설치
 npm i hexo-cli -g
 ```
 
-# project git clone
+# project git clone 과 npm pages install
 ```bash
 git clone https://github.com/devahea/devahea.github.io.git -b hexo-dev
+cd devahea.github.io
+npm i
 ```
