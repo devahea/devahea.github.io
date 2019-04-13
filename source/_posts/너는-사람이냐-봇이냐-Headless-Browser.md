@@ -16,10 +16,10 @@ Web을 통해 다양한 정보를 소비하며 쉽게 접근 할 수 있는 환�
 curl https://news.google.com/?tab=wn&hl=ko&gl=KR&ceid=KR:ko > google_news.html
 ```
 
-Web Trend의 고도화가 진행됨고 동시에 Web 개발에도 엄청난 발전이 있었는데요. `SPA(Single Page Application)`이라는 형식의 개발이 유행을 타면서 부터 많은 Site들이 SPA방식으로 제공 하고 있습니다. 
+Web Trend의 고도화가 진행됨과 동시에 Web 개발에도 엄청난 발전이 있었는데요. `SPA(Single Page Application)`이라는 형식의 개발이 유행을 타면서 부터 많은 Site들이 SPA방식으로 제공 하고 있습니다. 
 
-문제는 HTTP Client로 SPA를 접근할때 원하는 데이터를 가져올수 있는 상황이 생깁니다. 
-그리고 로그인을 해야만 접근 가능한 Site에 로그인 인증을 어떻게 처리해야 할지 막막한 상황에 부딫히게 됩니다. 
+문제는 HTTP Client로 SPA에 접근할때 원하는 데이터를 가져올수 있는 상황이 생깁니다. 
+그리고 로그인을 해야만 접근 가능한 Site에 로그인 인증을 어떻게 처리해야 할지 막막한 상황에도 부딫힐 수도 있고 HTTP Client로는 한계가 있어 제대로 Scraping 하기 힘들어 집니다. 
 
 ![image](https://user-images.githubusercontent.com/6037055/56078497-c09ea700-5e23-11e9-97e7-b37f6ae199e7.png)
 그래서 나오게 된게 `Headless Browser`이며, 실제 사람이 Browser를 통해 접속하는 방식으로 Scraping을 할 수 있게 되었습니다. 
