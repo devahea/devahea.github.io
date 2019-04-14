@@ -55,8 +55,9 @@ Client | 속도 | 인증처리 | Jascript실행여부 | 종류
 Http Client | 빠름 | 어려움 | X | curl, wget, 그외 라이브러리들
 Headless Browser | 느림 | 쉬움 | O | Puppeteer, Selenium, PhantomJS 등
 
-## Headless Browser를 통해 인증과 Scraping(네이버 카페)
+> Http Client를 사용가능한곳은 Http Client가 더 나은 선택 일 수 있습니다.
 
+## Headless Browser를 통해 인증과 Scraping(네이버 카페)
 실제 네이버 카페를 개설 한 후 비공개 카페의 글을 Scraping 하는 예제를 보여 드리겠습니다.
 총 5단계의 거쳐 스크래핑을 할 예정 입니다.
 
