@@ -15,6 +15,7 @@ Web을 통해 다양한 정보를 소비하며 쉽게 접근 할 수 있는 환�
 이 다양한 정보를 가지고 애플리케이션을 만들어 사용하고 싶은데 `Open API`를 제공하지 않아 곤란해 하는 경우가 많고 제대로 제공하지 않는 경우도 부지기수 입니다. 
 그래서 사용하던것이 `HTTP Client`를 사용하여 Scraping을 하고 원하는 데이터를 처리하여 사용하고 있습니다.
 
+![구글 뉴스 헤드라인](https://user-images.githubusercontent.com/6037055/56088150-d78dd980-5eb5-11e9-9570-2ac8b5a3987e.png)
 ```bash
 # 구글 뉴스 스크래핑
 curl https://news.google.com/?tab=wn&hl=ko&gl=KR&ceid=KR:ko > google_news.html
@@ -27,7 +28,6 @@ curl https://news.google.com/?tab=wn&hl=ko&gl=KR&ceid=KR:ko > google_news.html
     </a>
 </h3>
 ```
-![스크린샷 2019-04-14 오후 1 01 44](https://user-images.githubusercontent.com/6037055/56088150-d78dd980-5eb5-11e9-9570-2ac8b5a3987e.png)
 
 Web Trend의 고도화가 진행됨과 동시에 Web 개발에도 엄청난 발전이 있었는데요. `SPA(Single Page Application)`이라는 형식의 개발이 유행을 타면서 부터 많은 Site들이 SPA방식으로 제공 하고 있습니다. 
 문제는 HTTP Client로 SPA에 접근할때 Javascript를 실행 하지 못해 원하는 데이터를 가져올수 없는 상황이 생깁니다. 
