@@ -28,7 +28,8 @@ SPA이전엔 HTTP Client(Jsoup, OKHttp)를 활용하여 Web Scraping(또는 Craw
 Headless Browser의 등장으로 복잡한 인증 및 Javascript 실행으로 인해 실제 사람이 접속 하듯이 Scraping 할 수 있게 되었습니다.
 
 ## Http Client와 Headless Browser
-HTTP Client는 URL입력과 동시에 Html Content를 바로 불러와 속도가 빠릅니다. 그에 비해 Headless Browser는 백그라운드상에서 실제 Browser가 돌기에 상대적으로 속도가 느립니다. 그래도 SPA접근과 복잡한 인증을 쉽게 해결 가능 한데요 Airbnb 페이지에서 비교해보겠습니다.
+HTTP Client는 URL입력과 동시에 Html Content를 바로 불러와 속도가 빠릅니다. 그에 비해 `Headless Browser는 백그라운드상에서 실제 Browser가 돌기에 상대적으로 속도가 느립`니다. 그래도 `SPA접근`과 `복잡한 인증`을 `쉽게 해결` 가능 한데요. 
+Javascript 구동 여부는 Airbnb 페이지에서 확인 해보겠습니다.
 
 CLI환경에서 에서 둘의 차이점을 확인 할 수 있습니다.
 ```bash
@@ -99,7 +100,7 @@ const puppeteer = require('puppeteer');
 ```
 
 ### 2. 네이버 로그인
-jQuery를 사용할때 쓰던 CSS Selector를 통해 Element에 접근을 하여 원하는 작업을 진행 합니다.
+jQuery를 사용할때 쓰던 `CSS Selector`를 통해 `Element에 접근`을 하여 원하는 작업을 진행 합니다.
 ```javascript
     // 네이버 로그인 페이지 접근
     await page.goto('https://nid.naver.com/nidlogin.login?svctype=262144&url=http://m.naver.com/aside/')
