@@ -58,8 +58,11 @@ Headless Browser | 느림 | 쉬움 | O | Puppeteer, Selenium, PhantomJS 등
 > Http Client를 사용가능한곳은 Http Client가 더 나은 선택 일 수 있습니다.
 
 ## Headless Browser를 통해 인증과 Scraping(네이버 카페)
-실제 네이버 카페를 개설 한 후 비공개 카페의 글을 Scraping 하는 예제를 보여 드리겠습니다.
-총 5단계의 거쳐 스크래핑을 할 예정 입니다.
+개인적으로 좋아하는 Node.js 기반 Headless Browser인 [Puppeteer](https://pptr.dev)를 활용한 예제를 구성 하였습니다. 
+
+실제 네이버 카페를 개설 한 후 비공개 카페의 글을 Scraping 하는 예제 입니다.
+
+이 에제는 총 5단계의 거쳐 스크래핑을 할 예정 입니다.
 
 1. Headless Browser 실행
 2. 네이버 로그인
