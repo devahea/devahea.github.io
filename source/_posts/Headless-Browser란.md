@@ -115,8 +115,8 @@ Scraping을 하고 싶은 네이버 게시판의 URL로 이동 합니다.
 ```
  
 ### 4. 게시판의 게시글들의 URL 추출
-Chrome devtools를 이용하여 Scraping 대상을 분석 하여 코드로 작성 하여야 합니다.
-puppeteer에서 제공하는 `Page`클래스의 `evaluate`함수를 이용하면 Chrome devtools console에서 작업하는거와 동일하게 작업이 가능 해집니다.
+`Chrome devtools`를 이용하여 Scraping 대상을 분석 하고 코드로 작성 하여야 합니다.
+`Puppeteer`에서 제공하는 `Page`클래스의 `evaluate`함수를 이용하면 `Chrome devtools console`에서 작업하는거와 동일하게 작업이 가능 해집니다.
 ```javascript
     // 자유게시판 글 Scraping
     const articles = await page.evaluate(args => {
