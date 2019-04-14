@@ -179,5 +179,11 @@ Scraping을 하고 싶은 네이버 게시판의 URL로 이동 합니다.
 ```
 
 ## 마무리
-소개한 예제는 Github에 공유 하겠습니다. 다음 순서엔 다른 Headless Browser와의 비교를 소개 하겠습니다.
+Headless Browser란 Http Client에 비해 Javascript를 구동하여 추가 데이터를 가져 온다고 이해 하시면 좋습니다.
+
+Node.js기반 Headless Browser인 Puppeteer를 사용한 네이버 카페 Scrping하였고, 이를 활용하면 네이버 로그인 인증도 쉽게 할 수 있고, 게시글을 사람이 직접 가져오는 방법처럼 예제를 구성 하였습니다.
+
+소개한 예제는 Github에 공유 하겠습니다. 
+다음 순서엔 다른 Headless Browser와의 비교를 소개 하겠습니다.
 [https://github.com/kji6252/study-puppeteer](https://github.com/kji6252/study-puppeteer)
+[https://pptr.dev](https://pptr.dev)
