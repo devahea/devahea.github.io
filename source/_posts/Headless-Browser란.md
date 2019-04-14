@@ -19,7 +19,7 @@ tags:
 
 `CLI(Command Line Interface)`에서 동작하는걸 뜻하며, 프로그래밍하기에 용이 해집니다.
 
-2000년대 까지만 하더라도 Javascript는 Web Page에서 동적으로 보이기 위해 사용 되어졌지만 Web의 성장함으로써 Frontend진영에서 Javascript Framework의 가 생기고, 최근엔 SPA(Single Page Application)개발이 활발하게 되었습니다. 
+2000년대 까지만 하더라도 Javascript는 Web Page에서 동적으로 보이기 위해 사용 되어졌지만 Web의 성장함으로써 Frontend진영에서 Javascript Framework가 생기고, 이를 활용하여 개발한 SPA(Single Page Application)이 활발하게 되었습니다.
 
 ![react-angular-vue](https://user-images.githubusercontent.com/6037055/56088632-a0bcc100-5ebf-11e9-9ed2-db36b58c6a35.png)
 
