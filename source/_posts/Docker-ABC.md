@@ -2,6 +2,7 @@
 title: Docker ABC
 date: 2019-04-14 23:26:52
 img: https://i0.wp.com/blog.docker.com/wp-content/uploads/2013/08/KuDr42X_ITXghJhSInDZekNEF0jLt3NeVxtRye3tqco.png
+cover: true
 categories:
   - infra
 tags: 

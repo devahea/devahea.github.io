@@ -1,6 +1,7 @@
 ---
 title: 너는 사람이냐? 봇이냐?(Headless Browser)
 date: 2019-04-13 14:16:01
+img: https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png
 categories:
   - WEB
 tags: 

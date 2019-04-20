@@ -71,7 +71,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: matery
+theme: matery_1.0.3
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

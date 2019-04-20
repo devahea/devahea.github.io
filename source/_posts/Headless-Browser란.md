@@ -1,6 +1,8 @@
 ---
 title: Headless Browser란?
 date: 2019-04-13 20:46:29
+img: https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png
+cover: true
 categories:
   - WEB
 tags: 
