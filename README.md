@@ -13,7 +13,7 @@ vim source/_posts/Blog-Post-Hello-World!!!.md
 
 ## 그림 첨부
 2가지 방식으로 작성 할수 있으며 선택하시면 됩니다.
-* ![Hexo Asset Folders](https://hexo.io/ko/docs/asset-folders)
+* [Hexo Asset Folders](https://hexo.io/ko/docs/asset-folders)
 * Github Issue 이용하기
 
 ### Hexo Asset Folders
