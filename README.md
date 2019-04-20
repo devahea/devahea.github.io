@@ -11,6 +11,19 @@ hexo n  "Blog Post Hello World!!!"
 vim source/_posts/Blog-Post-Hello-World!!!.md
 ```
 
+## 그림 첨부
+2가지 방식으로 작성 할수 있으며 선택하시면 됩니다.
+* ![Hexo Asset Folders](https://hexo.io/ko/docs/asset-folders)
+* Github Issue 이용하기
+
+### Hexo Asset Folders
+`source/images` 경로에 이미지를 추가 하시고 작성하시는 글에서 `![](/images/image.jpg)`로 사용 하시면 됩니다.
+자세한 내용은 https://hexo.io/ko/docs/asset-folders 참조 하세요.
+
+### Github Issue 이용하기
+![스크린샷 2019-04-20 오후 5 30 10](https://user-images.githubusercontent.com/6037055/56454851-fac2f800-6391-11e9-828e-16d1173417bd.png)
+Github Issue 등록페이지의 이미지 호스팅을 이용하는 방법이며 사용방법은 `New issue`를 클릭 후 업로드를 원하는 그림파일을 드래그앤 드롭으로 놓으면 이미지가 업로드 되면 접근 가능한 URL과 함께 이미지 노출 마크다운이 나오며 이부분을 복사 해서 사용하시면 됩니다.
+
 # 확인
 로컬에 테스트 서버를 띄워 확인이 가능
 ```bash
