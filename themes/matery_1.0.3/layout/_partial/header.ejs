@@ -1,7 +1,13 @@
 <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
                 <a href="<%- url_for() %>" class="waves-effect waves-light">
                     <% if (theme.logo !== undefined && theme.logo.length > 0) { %>
                     <img src="<%= theme.logo %>" class="logo-img" alt="LOGO">
