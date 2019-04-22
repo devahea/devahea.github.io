@@ -5,6 +5,10 @@
   "hexo": {
     "version": "3.8.0"
   },
+  "scripts": {
+    "start": "hexo s -o",
+    "deploy": "hexo clean && hexo g -d"
+  },
   "dependencies": {
     "hexo": "^3.8.0",
     "hexo-deployer-git": "^0.3.1",
@@ -19,5 +23,8 @@
     "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.1"
+  },
+  "devDependencies": {
+    "hexo-cli": "^1.1.0"
   }
 }
