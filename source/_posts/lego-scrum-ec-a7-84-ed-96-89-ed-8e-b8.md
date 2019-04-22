@@ -3,9 +3,13 @@ title: Lego scrum-진행편
 url: 1787.html
 id: 1787
 categories:
-  - 미분류
+  - agile
 date: 2018-11-08 20:19:02
 tags:
+	- lego
+	- scrum
+	- agile
+img: http://www.plays-in-business.com/wp-content/uploads/2015/09/lego-scrum-city-2.jpg
 ---
 
 Lego Scrum Game(진행편)

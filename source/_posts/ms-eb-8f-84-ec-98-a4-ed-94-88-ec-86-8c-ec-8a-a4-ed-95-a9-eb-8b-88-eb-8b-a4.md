@@ -3,9 +3,10 @@ title: MS도 오픈소스 합니다
 url: 1791.html
 id: 1791
 categories:
-  - 미분류
+  - news
 date: 2018-11-08 20:19:46
-tags:
+tags: microsoft
+img: https://cdr.cz/sites/default/files/microsoft-open-source.jpg
 ---
 
 Microsoft의 Github인수
