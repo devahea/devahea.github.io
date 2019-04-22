@@ -1,5 +1,5 @@
 ---
-title: MQ와 amqp 프로토콜 원리에 대하여;
+title: MQ와 amqp 프로토콜 원리에 대하여
 date: 2019-04-22 17:24:47
 categories:
   - WEB
@@ -16,15 +16,15 @@ tags:
 
 일단 카카오 메시징 서버 직군에서 지원 자격중에 MQ에 대한 경험이 들어가 있다.
 
-![kakao1](/images\amqp\1.png)
+![](/images\amqp\1.png)
 
-![kakao2](/images\amqp\2.png)
+![](/images\amqp\2.png)
 
 엄청난 트레픽을 받는 네이버 웹툰에서도 웹 서비스 인프라 이해 쪽에
  
 `Message Queue`에 이해를 원하는 자격 요건도 볼 수 있다.
 
-![naver](/images\amqp\3.png)
+![](/images\amqp\3.png)
 
 두 기업에서 MQ에 대한 이해를 요구하는 사례만 봐도 Mq에 대한 이해는 선택이 아닌 필수로 이다.
 
@@ -37,13 +37,13 @@ tags:
  * 애플리케이션과 강하게 결합되어 있으면 db서버가 응답할 때 까지 기다려야 한다.
  * db 장애시 애플리케이션에도 장애가 발생한다. 
 
-![naver](/images\amqp\5.png)
+![](/images\amqp\5.png)
 
  mq 를 이용하면 애플리케이션의 의존성을 제거 할 수 있다. 
  * 느슨하게 결합된 설계
  * 애플리케이션 아키텍처는 더 이상 데이터 베이스 쓰기 성능에 영향을 받지 않는다.
 
-![naver](/images\amqp\6.png)
+![](/images\amqp\6.png)
 * 느슨하게 결합 구조의 애플리캐이션은 rabbitmq에 메시지를 발행한다.
 * 구독하고 있는 소비자에게 메세지를 전달한다. 
 * 소비자가 처리해야할 양이 많아지면 소비자 애플리케이션의 처리량을 제어하거나 중지한다. 
@@ -53,4 +53,4 @@ tags:
 - rabbitmq는 소비자를 추가해서 메세지를 전달한다. 
 - 새로 추가한 소비자에게 메시지를 발행하는 애플리케이션을 수정 할 필요가 없다.
 
-![naver](/images\amqp\7.png)
+![](/images\amqp\7.png)
