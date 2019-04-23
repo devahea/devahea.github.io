@@ -1,7 +1,10 @@
 ---
 title: Java8 빨대 사용법.
 date: 2019-04-20 16:42:01
-tags:
+tags: 
+    - java
+    - java8
+img: http://kadiremreozcan.com/wp-content/uploads/2019/01/Streams-01-1024x422.jpg
 ---
 
 ## Java 와 Stream API
