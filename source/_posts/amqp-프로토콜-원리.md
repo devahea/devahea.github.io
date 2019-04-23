@@ -8,6 +8,7 @@ tags:
   - AMQP
   - RabbitMQ
   - MQ
+img: https://paolopatierno.files.wordpress.com/2018/01/header-e1514835848967.png?w=665&h=300 
 ---
 
 프로젝트를 하면서 rabbitmq, activemq 등 뒤에 MQ라고 붙은 단어들을 많이 들었다.

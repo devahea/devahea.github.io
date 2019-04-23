@@ -1,7 +1,10 @@
 ---
 title: 2019 Java News
 date: 2019-04-23 03:07:13
-tags:
+tags: 
+    - java
+    - java12
+img: https://32jn1p2jfust2jm6d92xtg5d-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/Java-12logo.gif
 ---
 
 현재 많은 개발자가 Java 8 버전을 사용하여 개발을 하고 있습니다.
