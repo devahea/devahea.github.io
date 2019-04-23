@@ -1,6 +1,8 @@
 ---
 title: Headless Browser란?
 date: 2019-04-13 20:46:29
+img: https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png
+cover: true
 categories:
   - WEB
 tags: 
@@ -36,11 +38,13 @@ CLI환경에서 에서 둘의 차이점을 확인 할 수 있습니다.
 # curl HttpClient로 에어비앤비 Scraping
 curl https://www.airbnb.co.kr > curl-Airbnb.html
 ```
+![javascript-NoJavascript](https://user-images.githubusercontent.com/6037055/56453086-2e445900-6377-11e9-8727-dccd79463cf2.png)
 
 ```bash
 # Chrome 헤드리스 모드로 에어비앤비 Scraping
 chrome --headless --dump-dom --virtual-time-budget=3000 https://www.airbnb.co.kr > headless-Airbnb.html
 ```
+![javascript-Javascript](https://user-images.githubusercontent.com/6037055/56453083-297fa500-6377-11e9-9765-361264370b7f.png)
 
 ```bash
 ls -lh
