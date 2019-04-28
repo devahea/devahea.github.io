@@ -129,9 +129,7 @@ public final class Flow {
 }
 ```
 
-
-
-게시자 구현이 포함되어 `SubmissionPublisher`
+게시자 구현이 포함되어 있는 `SubmissionPublisher`
 
 - `submit(T item)`메서드를 사용하여 구독자에게 푸시 할 항목을 허용하는 단순한 게시자 역할
 - `submit`메서드를 실행하면 구독자에게 비동기적으로 푸시
@@ -187,72 +185,15 @@ PrintSubscriber is complete
 */
 ```
 
+구독자 내 `Subscription`에서 `onSubscribe`메소드 에 전달 된 객체를 캡처하여 `Subscription` 나중에 해당 객체와 상호작용 할 수 있습니다.( `subscription.request(1)`호출)
 
+`onNext`메소드 내에서 게시자가 항목 처리를 완료하자마자 다른 항목을 수락 할 준비가 되었음을 게시자에게 알립니다.
 
- 프로세서를 도입하여 게시자와 구독자를 프로세서와 연결
+ `SubmissionPublisher`와  `PrintSubscriber`를 인스턴스화하고 후자를 전자에 구독한다. 구독이 설정되면 게시자에게 0에서 9까지의 값을 제출하고 구독자에게 값을 비동기 적으로 푸시합니다. 그런 다음 구독자는 값을 표준 출력하여 각 항목을 처리하고 다른 값을 받아 들일 준비가되었음을 구독에 알립니다. 그런 다음 비동기 전송이 완료 될 수 있도록 1 초 동안 주 스레드를 일시 중지합니다. `submit` 메소드가 제출 된 항목을 비동기 적으로 구독자에게 푸시하기 때문에 이는 매우 중요한 단계입니다. 따라서 비동기 작업이 완료 될 때까지 상당한 시간을 제공해야합니다. 마지막으로 게시자를 닫고 구독자에게 가입이 완료되었음을 알립니다.
 
-- 수신 된 값을 10 씩 증가시키고 증가 된 값을 구독자에게 푸시 (push)하는 프로세서
+프로세서를 도입하고 원래의 게시자와 구독자를이 프로세서와 연결할 수 있습니다. 수신 된 값을 10 씩 증가시키고 증가 된 값을 구독자에게 푸시 (push)하는 프로세서를 생성합니다.
 
-```java
-public class PlusTenProcessor extends SubmissionPublisher<Integer> implements Subscriber<Integer> {
-    private Subscription subscription;
-    @Override
-    public void onSubscribe(Subscription subscription) {
-        this.subscription = subscription;
-        subscription.request(1);
-    }
-    @Override
-    public void onNext(Integer item) {
-        submit(item + 10);
-        subscription.request(1);
-    }
-    @Override
-    public void onError(Throwable error) {
-        error.printStackTrace();
-        closeExceptionally(error);
-    }
-    @Override
-    public void onComplete() {
-        System.out.println("PlusTenProcessor completed");
-        close();
-    }
-}
-public class SubmissionPublisherExample {
-    public static void main(String... args) throws InterruptedException {
-        SubmissionPublisher<Integer> publisher = new SubmissionPublisher<>();
-        PlusTenProcessor processor = new PlusTenProcessor();
-        PrintSubscriber subscriber = new PrintSubscriber();
-        publisher.subscribe(processor);
-        processor.subscribe(subscriber);
-        System.out.println("Submitting items...");
-        for (int i = 0; i < 10; i++) {
-            publisher.submit(i);
-        }
-        Thread.sleep(1000);
-        publisher.close();
-    }
-}
-
-/*
-Submitting items...
-Received item: 10
-Received item: 11
-Received item: 12
-Received item: 13
-Received item: 14
-Received item: 15
-Received item: 16
-Received item: 17
-Received item: 18
-Received item: 19
-PlusTenProcessor completed
-PrintSubscriber is complete
-*/
-```
-
-
-
-프로세서를 도입하고 원래의 게시자와 구독자를이 프로세서와 연결할 수 있습니다. 다음 예제에서는 수신 된 값을 10 씩 증가시키고 증가 된 값을 구독자에게 푸시 (push)하는 프로세서를 생성합니다.
+각각의 푸시된 값은 10씩 증가하며, 프로세서에 의해 수신된 이벤트(오류 수신 또는 완료 등)는 가입자에게 전달되며, 결과적으로 `PlusTenProcessor`와 `PrintSubscriber` 에 대해 완료된 메시지가 표시된다.
 
 ```java
 public class PlusTenProcessor extends SubmissionPublisher<Integer> implements Subscriber<Integer> {
@@ -310,6 +251,10 @@ PlusTenProcessor completed
 PrintSubscriber is complete
 */
 ```
+
+
+
+
 
 
 
