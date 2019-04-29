@@ -1,5 +1,5 @@
 ---
-jtitle: JAVA8말고 JAVA9를 사용해볼까
+title: JAVA8말고 JAVA9를 사용해볼까
 date: 2019-04-23 03:07:13
 tags: 
     - java
