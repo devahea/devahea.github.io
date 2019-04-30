@@ -37,14 +37,20 @@
 
  {
   "avatar": "http://image.luokangyuan.com/4027734.jpeg",
-  "name": "Blinkfox",
-  "introduction": "Hello, I'm blinkfox, I like programming.",
+  "name": "문겸",
+  "introduction": "",
   "url": "https://blinkfox.github.io/",
   "title": "Visit Blog"
 }, {
   "avatar": "http://image.luokangyuan.com/avatar.jpg",
-  "name": "ja_rome",
-  "introduction": "Ordinary steps can also go out of the great journey.",
+  "name": "김형진",
+  "introduction": "JAVA개발자로 일하고 있으며 새로운 기술을 배우는 것을 좋아하고 리팩토링과 개발자의 성장에 대해 관심이 많은 개발자입니다.",
+  "url": "ttps://me.csdn.net/jlh912008548",
+  "title": "Read More"
+}, {
+  "avatar": "http://image.luokangyuan.com/avatar.jpg",
+  "name": "김찬우",
+  "introduction": "",
   "url": "ttps://me.csdn.net/jlh912008548",
   "title": "Read More"
 }]
