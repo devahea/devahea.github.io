@@ -10,6 +10,7 @@ tags:
   - Chrome
   - headless
   - javascript
+author: 김종인
 ---
 
 ## Headless Browser란?
