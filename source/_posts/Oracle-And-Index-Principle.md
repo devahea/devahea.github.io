@@ -5,6 +5,7 @@ tags:
 	- oracle
 	- database
 img: https://docs.oracle.com/cd/E11882_01/server.112/e40540/img/cncpt239.gif
+author: 노성현
 ---
 # 개발자도 알아야 할 Oracle의 원리
 

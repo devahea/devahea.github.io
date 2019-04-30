@@ -5,6 +5,7 @@ tags:
     - java
     - java9
 img: /images/java9/java9.jpg
+author: 김형진
 ---
 
 ![](/images/java9/java9.jpg)
