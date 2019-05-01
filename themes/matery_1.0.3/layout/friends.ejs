@@ -5,7 +5,9 @@
     }
 
     .frind-ship img {
-        border-radius: 50%;
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
     }
 
     /* 一下是按钮样式 */
@@ -182,7 +184,7 @@
             <div class="row tags-posts friend-all">
                 <% for (var i = 0, len = friends.length; i < len; i++) { %>
                 <% var friend = friends[i]; %>
-                <div class=" col s12 m6 l4" data-aos="zoom-in-up">
+                <div class=" col s12 m6 l12" data-aos="zoom-in-up">
                     <div class="card frind-card<%- ((i % 10) +1) %>">
                         <div class="frind-ship">
                             <div class="title">
@@ -192,12 +194,12 @@
                                     <p><%- friend.introduction %></p>
                                 </div>
                             </div>
-                            <div class="friend-button">
+                            <!--<div class="friend-button">
                                 <a href="<%- friend.url %>" target="_blank" 
                                     class="button button-glow button-rounded button-caution">
                                     <%- friend.title %>
                                 </a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

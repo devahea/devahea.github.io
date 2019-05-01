@@ -9,6 +9,7 @@ tags:
   - Chrome
   - headless
   - javascript
+author: 김종인
 ---
 
 ![image](https://user-images.githubusercontent.com/6037055/56078088-da89bb00-5e1e-11e9-80f9-2f139d96e9a6.png)

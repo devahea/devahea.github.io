@@ -7,6 +7,9 @@ tags:
 - Spring WebFlux
 - Event Driven
 - Reactive Programming
+author: 김민수
+img: https://dvas0004.files.wordpress.com/2018/07/reactive_spring.png?w=648
+
 ---
 
 ![webflux-performance](https://3.bp.blogspot.com/-3i759KJap_U/We6baQQFc2I/AAAAAAAAfTs/0G7gLgD2BWsmVbPluFFoeGhViOafX1QqgCLcBGAs/s1600/Boot1VsBoot2.png)
