@@ -255,7 +255,202 @@ PrintSubscriber is complete
 
 
 
+## 269: Convenience Factory Methods for Collections
 
+불변 Collection 메소드가 생겼습니다.
+
+예전에는 아래와 같이 불편하게 사용해야 했습니다.
+
+```java
+List<String> band = new ArrayList<>();
+band.add("Bruce");
+band.add("Steve");
+band.add("Adrian");
+band.add("Janick");
+band.add("Nicko");
+band = Collections.unmodifiableList(band);
+
+//stream
+List<String> band = Collections
+  .unmodifiableList(Stream.of("Bruce","Steve","Adrian", "Dave", "Janick","Nicko")
+    .collect(toList()));
+```
+
+불변의 Collection이란 생성한 Collection을 수정할 수 없는 것을 말합니다.
+
+- `java.util` 패키지는 `package-private ImmutableCollections` 클래스로 구성되어 있으며 불변 기능을 제공하는 클래스가 있습니다.
+- 클래스의 인스턴스는 이미 존재하는 인터페이스의 정적 팩토리 메소드를 사용하여 만들어집니다.
+
+
+
+### List
+
+불변의리스트에는 추상 기본 클래스  `AbstractImmutableList<E>` 와 4 개의 구현이 있습니다.
+
+-  `List0<E> ` 
+-  `List1<E> ` 
+-  `List2<E> ` 
+-  `ListN<E> ` 
+
+이러한 각 유형은 작성하는 데 사용되는 요소의 수에 해당합니다. `java.util.List` 인터페이스에는 위의 구현을 사용하여 불변의 객체를 생성하는 12가지 정적 팩토리 메소드가 있습니다.
+
+```java
+static <E> List<E> of()
+
+static <E> List<E> of(E e1)
+
+static <E> List<E> of(E e1, E e2)
+  
+...
+
+static <E> List<E> of(E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10)
+
+static <E> List<E> of(E... elements)
+```
+
+아래의 메소드를 사용하면 `UnsupportedOperationException`가 발생합니다.
+
+```java
+boolean  add ( E  e );
+boolean  addAll ( Collection <?  extends  E >  c );
+부울  addAll ( int  index , Collection <?  extends  E >  c );
+void     clear ();
+부울  remove ( Object  o );
+부울  removeAll ( Collection <?>  c );
+부울  removeIf ( 술어 <?  super  E >  필터 );
+void     replaceAll ( UnaryOperator < E >  연산자 );
+boolean  retainAll ( Collection <?>  c );
+void     sort ( Comparator <?  super  E >  c );
+```
+
+내용을 불변하는것 외에도  `null` 값의 유효성도 체크합니다. 아래의 코드는 `NullPointerException`이 발생합니다.
+
+```java
+List<String> band = List.of("Bruce","Steve","Adrian", "Dave", "Janick", null);
+```
+
+아래는 불변 List를 만드는 예제입니다.
+
+```java
+List<String> band = List.of("Bruce","Steve","Adrian", "Dave", "Janick","Nicko");
+```
+
+
+
+### Set
+
+`ist` 인터페이스와 비슷하게 구현되며. 추상 기본 클래스  `AbstractImmutableSet<E>` 와 네 가지 구현이 있습니다.
+
+-  `Set0<E> ` 
+-  `Set1<E> ` 
+-  `Set2<E> ` 
+-  `SetN<E> ` 
+
+``java.util.List` 인터페이스에는 위의 구현을 사용하여 불변의 객체를 생성하는 12가지 정적 팩토리 메소드가 있습니다.
+
+내용을 불변하는것 외에도  `null` 값의 유효성도 체크합니다. 아래의 코드는 `NullPointerException`이 발생합니다.
+
+```java
+Set<String> band = Set.of("Bruce","Steve","Adrian", "Dave", "Janick", null);
+```
+
+List와 다른 점은 중복된 값을 넣으려고 하면 `IllegalArgumentException`이 발생합니다.
+
+```java
+Set<String> guitarists = Set.of("Adrian", "Dave", "Janick", "Janick");
+```
+
+아래는 불변 Set을 만드는 예제입니다.
+
+```java
+Set<String> band = Set.of("Bruce","Steve","Adrian", "Dave", "Janick","Nicko");
+```
+
+
+
+### Map
+
+불변의 객체를  `java.util.Map` 인터페이스의 static 팩토리 메소드를 사용하여 만들 수 있습니다. .
+
+```java
+static <K, V> Entry<K, V> entry(K k, V v)
+```
+
+불변의 `Map`에는 `AbstractImmutableMap<K, V> ` 3 개의 구현을 가지는 추상 기본 클래스가 있습니다   .
+
+-  `Map0<K, V>`
+-  `Map1<K, V>`
+-  `MapN<K, V> `
+
+`java.util.Map` 인터페이스 내부에는 다음과 같은 팩토리 메소드가  있습니다.
+
+```java
+static <K, V> Map<K, V> of()
+
+static <K, V> Map<K, V> of(K k1, V v1)
+
+static <K, V> Map<K, V> of(K k1, V v1, K k2, V v2)
+...
+
+static <K, V> Map<K, V> of(K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4,
+                           K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, 
+                           K k9, V v9, K k10, V v10)
+
+static <K, V> Map<K, V> ofEntries(Entry<? extends K, ? extends V>... entries)
+```
+
+`List`와 `Set`과는 다르게 최대 10개의 요소를 포함하는 불변 객체를 만들 수 있습니다.
+
+아래의 메소드를 사용하면 `UnsupportedOperationException`가 발생합니다.
+
+```java
+void clear()
+V compute(K key, BiFunction<? super K,? super V,? extends V> rf)
+V computeIfAbsent(K key, Function<? super K,? extends V> mf)
+V computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> rf)
+V merge(K key, V value, BiFunction<? super V,? super V,? extends V> rf)
+V put(K key, V value)
+void putAll(Map<? extends K,? extends V> m)
+V putIfAbsent(K key, V value)
+V remove(Object key)
+boolean remove(Object key, Object value)
+V replace(K key, V value)
+boolean replace(K key, V oldValue, V newValue)
+void replaceAll(BiFunction<? super K,? super V,? extends V> f)
+```
+
+불변의 `Map`을 만드는 것과 상관 없이 Key,Value또는 전체 요소가 null인 경우에는 인스턴스화 할 수 없습니다. 아래의 예제들은 `NullPointer`를 던지는 코드입니다.
+
+```java
+Map<String, Long> age = Map.of(null, 59L, "Steve", 61L);
+Map<String, Long> age = Map.of("Bruce", null, "Steve", 61L);
+Map<String, Long> age = Map.ofEntries(Map.entry("Bruce", 59L), null);
+```
+
+중복값을 가지는 Map을 생성하면 `IllegalArgumentException`가 발생합니다.
+
+```java
+Map<String, Long> age = Map.of("Bruce", 59L, "Bruce", 59L);
+Map<String, Long> age = Map.ofEntries(Map.entry("Bruce", 59L),
+                                      Map.entry("Bruce", 59L));
+```
+
+아래는 불변 Map을 만드는 예제입니다.
+
+```java
+Map<String, Long> age = Map.of("Bruce", 59L, "Steve", 61L, "Dave", 60L,
+                               "Adrian", 60L, "Janick", 60L, "Nicko", 65L);
+Map<String, Long> age = Map.ofEntries(Map.entry("Bruce", 59L),
+                                      Map.entry("Steve", 61L),
+                                      Map.entry("Dave", 60L),
+                                      Map.entry("Adrian", 60L),
+                                      Map.entry("Janick", 60L),
+                                      Map.entry("Nicko", 65L));
+```
+
+### 결론
+
+편리하게 불변의 객체를 만들 수 있고 Null과 중복 삽입을 사전에 방지할 수 있는 유용한 기능입니다.
 
 
 
