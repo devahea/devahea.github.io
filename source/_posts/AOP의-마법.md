@@ -72,4 +72,6 @@ Spring AOP와 AspectJ의 차이에 대해 명확히 인지하고 스프링에서
 
 ### 앞으로 다뤄질 내용
 
+- Spring AOP 방식
+- Weaving의 차이
 - Spring AOP와 AspectJ의 차이
