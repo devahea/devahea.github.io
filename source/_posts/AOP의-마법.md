@@ -1,5 +1,5 @@
 ---
-title: if(Spring AOP == AspectJ) → { Spring AOP 학습 }
+title: if(Spring AOP == AspectJ) → { Spring AOP에 대해 }
 date: 2019-04-22 05:35:15
 img: /images/aop/aop.png
 categories:
@@ -73,5 +73,5 @@ Spring AOP와 AspectJ의 차이에 대해 명확히 인지하고 스프링에서
 ### 앞으로 다뤄질 내용
 
 - Spring AOP 방식
-- Weaving의 차이
+- AOP Proxy에 대해
 - Spring AOP와 AspectJ의 차이
