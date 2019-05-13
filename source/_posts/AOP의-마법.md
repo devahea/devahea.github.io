@@ -22,7 +22,7 @@ _절차적 프로그래밍 → 객체 지향 프로그래밍(OOP) → 관점 지
 
 다음 그림처럼 함수에서 함수로 전달할 데이터가 중요했고, 무엇보다 이 함수들은 하나의 업무 프로세스에 구성되어 있어 데이터 흐름이 명확하므로 업무의 파악이 쉽다는 장점이 있습니다.
 
-![proedural-flow](/images/aop/spaghetti-code.png)
+![spaghetti-code](/images/aop/spaghetti-code.png)
 
 _중복된 함수 발생 → 유지보수 어려움 → 스파게티 코드 발생_
 
