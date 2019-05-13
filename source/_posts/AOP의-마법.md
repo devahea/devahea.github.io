@@ -17,9 +17,3 @@ author: 문겸
 하지만, 이러한 AspectJ의 어노테이션의 AOP 구현방식 때문인지는 몰라도 개발자들이 "Spring AOP와 AspectJ는 같은 거 아니었어?" 라는 오해를 하고 있습니다.
 
 Spring AOP와 AspectJ의 차이에 대해 명확히 인지하고 스프링에서 AOP 사용하는 것이 매우 중요합니다.
-
-### 앞으로 다뤄질 내용
-
-- Spring AOP 방식
-- AOP Proxy에 대해
-- Spring AOP와 AspectJ의 차이
