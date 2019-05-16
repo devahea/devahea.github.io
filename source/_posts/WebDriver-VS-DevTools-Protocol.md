@@ -9,14 +9,14 @@ tags:
   - Chrome
   - headless
   - javascript
-author: ±èÁ¾ÀÎ
+author: ê¹€ì¢…ì¸
 ---
 
 ## WebDriver
 ![WebDriver Flow](https://user-images.githubusercontent.com/6037055/57774314-29e04580-7755-11e9-8b1b-8f7be681c8ec.png)
-`Web Browser ÀÚµ¿È­`¸¦ À§ÇØ ÅÂ¾î ³µÀ¸¸ç, º¸Åë `Cross Browser Test`¿Í `UI Test`¿¡ È°¿ë ÇÕ´Ï´Ù. WebDriver´Â [W3¿¡¼­ Á¤ÀÇÇÑ WebDriver ½ºÆå](https://w3c.github.io/webdriver/)¿¡ ¸ÂÃç °¢ ºê¶ó¿ìÀú ¸¶´Ù ±¸ÇöµÈ WebDriver°¡ ÀÖÀ¸¸ç Selenium WebDriver¸¦ ÅëÇØ ÅëÇÕÀûÀ¸·Î ´Ù·ê ¼ö ÀÖ½À´Ï´Ù. ¾Æ·¡¿¡´Â °¢ ºê¶ó¿ìÀúº° Áö¿ø µå¶óÀÌ¹ö ÀÔ´Ï´Ù.
+`Web Browser ìë™í™”`ë¥¼ ìœ„í•´ íƒœì–´ ë‚¬ìœ¼ë©°, ë³´í†µ `Cross Browser Test`ì™€ `UI Test`ì— í™œìš© í•©ë‹ˆë‹¤. WebDriverëŠ” [W3ì—ì„œ ì •ì˜í•œ WebDriver ìŠ¤í™](https://w3c.github.io/webdriver/)ì— ë§ì¶° ê° ë¸Œë¼ìš°ì € ë§ˆë‹¤ êµ¬í˜„ëœ WebDriverê°€ ìˆìœ¼ë©° Selenium WebDriverë¥¼ í†µí•´ í†µí•©ì ìœ¼ë¡œ ë‹¤ë£° ìˆ˜ ìˆìŠµë‹ˆë‹¤. ì•„ë˜ì—ëŠ” ê° ë¸Œë¼ìš°ì €ë³„ ì§€ì› ë“œë¼ì´ë²„ ì…ë‹ˆë‹¤.
 
-### Áö¿øÇÏ´Â µå¶óÀÌ¹öµé (2019.04.28 ±âÁØ)
+### ì§€ì›í•˜ëŠ” ë“œë¼ì´ë²„ë“¤ (2019.04.28 ê¸°ì¤€)
 Browser | Maintainer | Versions Supported
 --- | --- | ---
 Chromium | [Chromium](https://sites.google.com/a/chromium.org/chromedriver/) | All versions
@@ -27,21 +27,21 @@ Safari | [Apple](https://webkit.org/blog/6900/webdriver-support-in-safari-10/) |
 
 ## DevTools Protocol(Debugging Protocol)
 ![Edge DevTools Protocol](https://46c4ts1tskv22sdav81j9c69-wpengine.netdna-ssl.com/wp-content/uploads/mswbprod/sites/33/2018/05/b46a7b838118991ffd34a9092310ccf0-1024x501.png)
-WebÀÇ ¹ßÀüÇÔ¿¡ µû¶ó Web °³¹ß ±â¼úµµ Á¡Á¡ °íµµÈ­ µÇ¾î°¡°í ÀÖ½À´Ï´Ù. ÀÌ¸¦ ¿øÈ°È÷ Áö¿øÇÏ±â À§ÇØ °¢ ºê¶ó¿ìÀú¿¡¼­´Â Àü¹®ÀûÀ¸·Î µğ¹ö±ëÀ» ÇÒ ¼ö ÀÖ´Â `DevTools Protocol`À» Áö¿ø ÇÕ´Ï´Ù. 
-![Chrome DevTools Áö¿ø ±â´É](https://user-images.githubusercontent.com/6037055/57776332-24d1c500-775a-11e9-9437-54a537e0961a.png)
-`DevTools Protocol`´Â Web ApplicationÀ» Áø´ÜÇÒ ¼ö ÀÖµµ·Ï Elements, Network, Perfomance, TimeLime, Traceµî ´Ù¾çÇÑ ±â´ÉÀ» Áö¿øÇÏ°í ÀÖ½À´Ï´Ù.
+Webì˜ ë°œì „í•¨ì— ë”°ë¼ Web ê°œë°œ ê¸°ìˆ ë„ ì ì  ê³ ë„í™” ë˜ì–´ê°€ê³  ìˆìŠµë‹ˆë‹¤. ì´ë¥¼ ì›í™œíˆ ì§€ì›í•˜ê¸° ìœ„í•´ ê° ë¸Œë¼ìš°ì €ì—ì„œëŠ” ì „ë¬¸ì ìœ¼ë¡œ ë””ë²„ê¹…ì„ í•  ìˆ˜ ìˆëŠ” `DevTools Protocol`ì„ ì§€ì› í•©ë‹ˆë‹¤. 
+![Chrome DevTools ì§€ì› ê¸°ëŠ¥](https://user-images.githubusercontent.com/6037055/57776332-24d1c500-775a-11e9-9437-54a537e0961a.png)
+`DevTools Protocol`ëŠ” Web Applicationì„ ì§„ë‹¨í•  ìˆ˜ ìˆë„ë¡ Elements, Network, Perfomance, TimeLime, Traceë“± ë‹¤ì–‘í•œ ê¸°ëŠ¥ì„ ì§€ì›í•˜ê³  ìˆìŠµë‹ˆë‹¤.
 
-### Áö¿øÁßÀÎºê¶ó¿ìÀú
-![DevTools Protocol API Áö¿ø ÇöÈ²](https://user-images.githubusercontent.com/6037055/57775898-159e4780-7759-11e9-992a-652672b50d97.png)
-[ºê¶ó¿ìÀúº° Áö¿ø API](http://compatibility.remotedebug.org/)¸¦ ÅëÇØ »ç¿ë °¡´ÉÇÑ API¸¦ È®ÀÎ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.
-¾Æ·¡´Â DevTools Protocol Áö¿ø ºê¶ó¿ìÀú ÀÔ´Ï´Ù.
+### ì§€ì›ì¤‘ì¸ë¸Œë¼ìš°ì €
+![DevTools Protocol API ì§€ì› í˜„í™©](https://user-images.githubusercontent.com/6037055/57775898-159e4780-7759-11e9-992a-652672b50d97.png)
+[ë¸Œë¼ìš°ì €ë³„ ì§€ì› API](http://compatibility.remotedebug.org/)ë¥¼ í†µí•´ ì‚¬ìš© ê°€ëŠ¥í•œ APIë¥¼ í™•ì¸ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+ì•„ë˜ëŠ” DevTools Protocol ì§€ì› ë¸Œë¼ìš°ì € ì…ë‹ˆë‹¤.
 * [Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/)
 * [WebKit / Safari](https://github.com/WebKit/webkit/tree/master/Source/JavaScriptCore/inspector/protocol)
 * [Node.js](https://chromedevtools.github.io/devtools-protocol/v8/)
 * Firefox - [in development](https://groups.google.com/forum/#!msg/mozilla.dev.platform/4-4A8W-nP5g/Y9C9UkWTAAAJ)
 * [Edge DevTools Protocol](https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/)
 
-## ÃâÃ³
+## ì¶œì²˜
 * https://blogs.windows.com/msedgedev/2018/05/11/introducing-edge-devtools-protocol/
 * https://seleniumhq.github.io/docs/wd.html
 * https://stackoverflow.com/questions/50939116/what-is-the-difference-between-webdriver-and-devtool-protocol
