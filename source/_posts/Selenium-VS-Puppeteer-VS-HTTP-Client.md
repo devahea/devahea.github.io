@@ -13,18 +13,19 @@ author: 김종인
 ---
 
 Selenium VS Puppeteer VS HTTP Client 대해 알아볼 예정 입니다.
-각각의 특징은 무엇이며, 마지막엔 비교를 하겠습니다.
+각각의 특징은 무엇인지 알아 보겠습니다.
 
 ### Selenium
 ![Selenium HomePage](https://user-images.githubusercontent.com/6037055/57007275-527b2200-6c22-11e9-9ec6-3938285bbc67.png)
 
-Selenium이란 `Web Browser 자동화`를 위해 태어 났으며, 보통 `Cross Browser Test`에 활용
+Selenium이란 `Web Browser 자동화`를 위해 태어 났으며, 보통 `Cross Browser Test`와 `UI Test`에 활용 합니다.
 
 Selenium 에서 오픈 중인 프로젝트는
 * Selenium-WebDriver : 로컬 또는 원격 시스템에서 브라우저를 기본적으로 구동 할 수 있습니다.
 * Selenium-Grid : 여러 서버에서 동시에 여러 테스트를 실행하여 여러 브라우저 나 운영 체제를 테스트하는 데 걸리는 시간을 줄여 Selenium Remote Control을 다른 수준으로 끌어 올립니다.
 * Selenium IDE : 브라우저에서 테스트를 기록하고 재생할 수있게 해주는 Chrome 및 Firefox 확장 기능입니다.
 * Selenium Remote Control : 거의 모든 프로그래밍 언어와 테스트 프레임 워크를 사용하여 웹 브라우저를 로컬 또는 다른 컴퓨터에서 제어 할 수있는 클라이언트 / 서버 시스템입니다.
+![Selenium Ecosystem 활용](https://seleniumhq.github.io/docs/images/test_framework.png)
 
 이 존재 하며, 자세한건 사이트에서 직접 참조 바람
 https://www.seleniumhq.org/projects/
@@ -82,7 +83,7 @@ Puppeteer 특징은 다음과 같습니다.
 * Chrome 확장 프로그램을 테스트
 
 #### Chrome DevTools Protocol
-DevTools Protocol는 Chrome을 직접 사용 할 수있는 프로토콜이며 다양한 언어의 라이브러리가 존재 하지만, Puppereer처럼 구글에서 관리되는 프로젝트가 아닙니다.
+DevTools Protocol는 Chrome을 직접 사용 할 수있는 프로토콜이며 다양한 언어의 라이브러리가 존재 하지만, Puppeteer처럼 구글에서 관리되는 프로젝트가 아닙니다.
 다른 언어의 라이브러리는 [Awesome chrome-devtools](https://github.com/ChromeDevTools/awesome-chrome-devtools) 참조 하세요
 
 ### HTTP Client
@@ -129,7 +130,7 @@ const {Builder, By, Key, until} = require('selenium-webdriver')
     }
 })()
 ```
-![Node.js Selenium-WebDriver](https://user-images.githubusercontent.com/6037055/57009850-1ea8f800-6c34-11e9-8495-f7cfa601ec9a.png)
+![Node.js Selenium-WebDriver](https://user-images.githubusercontent.com/6037055/57700429-f0e09c00-7694-11e9-8795-b4ad84cf6939.png)
  
  #### Puppeteer
  ```javascript
@@ -145,15 +146,23 @@ const puppeteer = require('puppeteer');
  ![Node.js Puppeteer(No Headless)](https://user-images.githubusercontent.com/6037055/57009934-b73f7800-6c34-11e9-8d7b-5a2368b48bc8.png)
  ![Node.js Puppeteer(Headless)](https://user-images.githubusercontent.com/6037055/57009979-fbcb1380-6c34-11e9-9cb3-73c450e66cbd.png)
  
+ #### 시간 정리
  
- 
+ 1. HTTP Client `0.11초`
+ 2. Puppeteer(Headless) `0.66초`
+ 3. Selenium, Puppeteer(No Headless) `1.56초` 
+  
  ## 정리 
  >* 단순 HTML Content만 Scraping 할 경우 HTTP Client 추천
  >* 크로스 브라우저 UI 테스트가 필요할 경우 와 다양한 지원을 원하면 Selenium 추천
- >* 보안과 Javascript 구동이 필요하고 Chrome의 기능을 구체적으로 사용 하고 싶을 경우 Pupperteer(DevTools Protocol) 추천
+ >* 로그인과 Javascript 구동, SPA의 스크래핑이 필요하고 Chrome의 DevTools 기능을 사용 하고 싶을 경우 Puppeteer(DevTools Protocol) 추천
 
 P.S 
 [Puppeteer 프로젝트들(Awesome Puppeteer)](https://github.com/transitive-bullshit/awesome-puppeteer)을 살펴 보는 와중에 눈에 띄는 재미있는 프로젝트를 2개 발견 하였습니다.
 
 * [puppeteer-cluster](https://github.com/thomasdondorf/puppeteer-cluster) - Worker를 생성해 CPU자원을 최대한 사용가능(모니터링 지원)
 * [puppeteer-recorder](https://github.com/checkly/puppeteer-recorder) - 크롬 확장프로그램으로 녹화 기능을 통해 Puppeteer Node.js Script를 생성
+
+>StackOverflow
+Webdriver VS Devtools에 대해서 비교 해놓음 
+https://stackoverflow.com/questions/50939116/what-is-the-difference-between-webdriver-and-devtool-protocol
