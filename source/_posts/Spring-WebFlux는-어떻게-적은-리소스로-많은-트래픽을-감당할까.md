@@ -220,7 +220,8 @@ Spring에서도 Non-blocking I/O를 이용해서 효율적으로 작업을 처�
 
 대안으로 `publicOn()`을 사용하라고 하지만 마지막 문장에서 Blocking은 이 모델에 적합하지 않다고 한다.
 
-Java 진영에는 아쉽게도 정식으로 DB connection을 non-blokcing으로 정식으로 지원하는 라이브러리가 존재하지 않다. 다만 [R2DBC](https://github.com/r2dbc/r2dbc-postgresql)처럼 개발이 진행 중인 라이브러리들과 MongoDB, Redis 등의 NoSQL은 지원중이다.
+Java 진영에는 아쉽게도 DB connection을 non-blokcing으로 지원하는 라이브러리가 널리 보급되어 잘 사용되지는 않고 있다. 다만 [R2DBC](https://github.com/r2dbc/r2dbc-postgresql)처럼 개발이 진행 중인 라이브러리, 최근에 release된 [jasync sql](https://github.com/jasync-sql/jasync-sql
+) 등이 있으며, MongoDB, Redis 등의 NoSQL은 지원중이다. (피드백 주신 정상혁님 감사합니다.)
 또한 소수의 Thread에 의해서 수많은 요청을 처리하고, 순서대로 작업이 처리되는 것이 아니라 Event에 기반하여 실타래가 엉킨 것처럼 작업이 처리되기 때문에 트래킹 하기에 힘이 들다는 문제가 있다.
 
 그렇다면 <strong>성능이 좋으니 무조건 WebFlux를 사용해야 할까?</strong>
