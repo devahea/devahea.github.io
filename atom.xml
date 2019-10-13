@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ahea Team Study Blog</title>
+  
+  <subtitle>Ahea Team Study Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://devahea.github.io/"/>
+  <updated>2019-10-13T05:18:55.250Z</updated>
+  <id>https://devahea.github.io/</id>
+  
+  <author>
+    <name>Ahea</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019하반기 스터디 주제 공유</title>
+    <link href="https://devahea.github.io/2019/07/03/2019%ED%95%98%EB%B0%98%EA%B8%B0-%EC%8A%A4%ED%84%B0%EB%94%94-%EC%A3%BC%EC%A0%9C-%EA%B3%B5%EC%9C%A0/"/>
+    <id>https://devahea.github.io/2019/07/03/2019하반기-스터디-주제-공유/</id>
+    <published>2019-07-03T01:19:22.000Z</published>
+    <updated>2019-10-13T05:18:55.250Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2019-하반기-스터디-주제는-생산성-입니다&quot;&gt;&lt;a href=&quot;#2019-하반기-스터디-주제는-생산성-입니다&quot; class=&quot;headerlink&quot; title=&quot;2019 하반기 스터디 주제는 생산성 입니다&quot;&gt;&lt;/a&gt;2019 하반기 스터디
+        
+      
+    
+    </summary>
+    
+      <category term="공지" scheme="https://devahea.github.io/categories/%EA%B3%B5%EC%A7%80/"/>
+    
+    
+      <category term="공지" scheme="https://devahea.github.io/tags/%EA%B3%B5%EC%A7%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Selenium VS Puppeteer VS HTTP Client</title>
+    <link href="https://devahea.github.io/2019/05/01/Selenium-VS-Puppeteer-VS-HTTP-Client/"/>
+    <id>https://devahea.github.io/2019/05/01/Selenium-VS-Puppeteer-VS-HTTP-Client/</id>
+    <published>2019-05-01T01:19:51.000Z</published>
+    <updated>2019-10-13T05:18:55.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Selenium VS Puppeteer VS HTTP Client 대해 알아볼 예정 입니다.&lt;br&gt;각각의 특징은 무엇인지 알아 보겠습니다.&lt;/p&gt;
+&lt;h3 id=&quot;Selenium&quot;&gt;&lt;a href=&quot;#Selenium&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="WEB" scheme="https://devahea.github.io/categories/WEB/"/>
+    
+    
+      <category term="HeadlessBrowser" scheme="https://devahea.github.io/tags/HeadlessBrowser/"/>
+    
+      <category term="Chrome" scheme="https://devahea.github.io/tags/Chrome/"/>
+    
+      <category term="headless" scheme="https://devahea.github.io/tags/headless/"/>
+    
+      <category term="javascript" scheme="https://devahea.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WebDriver VS DevTools Protocol</title>
+    <link href="https://devahea.github.io/2019/05/01/WebDriver-VS-DevTools-Protocol/"/>
+    <id>https://devahea.github.io/2019/05/01/WebDriver-VS-DevTools-Protocol/</id>
+    <published>2019-05-01T01:19:50.000Z</published>
+    <updated>2019-10-13T05:18:55.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;WebDriver&quot;&gt;&lt;a href=&quot;#WebDriver&quot; class=&quot;headerlink&quot; title=&quot;WebDriver&quot;&gt;&lt;/a&gt;WebDriver&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="WEB" scheme="https://devahea.github.io/categories/WEB/"/>
+    
+    
+      <category term="HeadlessBrowser" scheme="https://devahea.github.io/tags/HeadlessBrowser/"/>
+    
+      <category term="Chrome" scheme="https://devahea.github.io/tags/Chrome/"/>
+    
+      <category term="headless" scheme="https://devahea.github.io/tags/headless/"/>
+    
+      <category term="javascript" scheme="https://devahea.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbitmq exchange 라우팅 패턴</title>
+    <link href="https://devahea.github.io/2019/04/30/rabbitmq-exchange-%EB%9D%BC%EC%9A%B0%ED%8C%85-%ED%8C%A8%ED%84%B4/"/>
+    <id>https://devahea.github.io/2019/04/30/rabbitmq-exchange-라우팅-패턴/</id>
+    <published>2019-04-30T10:30:38.000Z</published>
+    <updated>2019-10-13T05:18:55.265Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Exchange-라우팅-패턴&quot;&gt;&lt;a href=&quot;#Exchange-라우팅-패턴&quot; class=&quot;headerlink&quot; title=&quot;Exchange 라우팅 패턴&quot;&gt;&lt;/a&gt;Exchange 라우팅 패턴&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;RabbitMQ
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Message Queue" scheme="https://devahea.github.io/tags/Message-Queue/"/>
+    
+      <category term="AMQP" scheme="https://devahea.github.io/tags/AMQP/"/>
+    
+      <category term="RabbitMQ" scheme="https://devahea.github.io/tags/RabbitMQ/"/>
+    
+      <category term="Exchange" scheme="https://devahea.github.io/tags/Exchange/"/>
+    
+      <category term="Routing" scheme="https://devahea.github.io/tags/Routing/"/>
+    
+      <category term="patten" scheme="https://devahea.github.io/tags/patten/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AMQ 모델과 Exchange, Queue, Binding 에 대해</title>
+    <link href="https://devahea.github.io/2019/04/30/AMQ-%EB%AA%A8%EB%8D%B8%EA%B3%BC-Exchange-Queue-Binding-%EC%97%90-%EB%8C%80%ED%95%B4/"/>
+    <id>https://devahea.github.io/2019/04/30/AMQ-모델과-Exchange-Queue-Binding-에-대해/</id>
+    <published>2019-04-30T10:09:47.000Z</published>
+    <updated>2019-10-13T05:18:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;rabbitmq-강점과-유연성은-amqp-스펙에서-나온다&quot;&gt;&lt;a href=&quot;#rabbitmq-강점과-유연성은-amqp-스펙에서-나온다&quot; class=&quot;headerlink&quot; title=&quot;* rabbitmq 강점과 유연성은 amqp 스펙에서
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Message Queue" scheme="https://devahea.github.io/tags/Message-Queue/"/>
+    
+      <category term="AMQP" scheme="https://devahea.github.io/tags/AMQP/"/>
+    
+      <category term="RabbitMQ" scheme="https://devahea.github.io/tags/RabbitMQ/"/>
+    
+      <category term="Exchange" scheme="https://devahea.github.io/tags/Exchange/"/>
+    
+      <category term="binding" scheme="https://devahea.github.io/tags/binding/"/>
+    
+      <category term="queue" scheme="https://devahea.github.io/tags/queue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>5G 초연결시대에 웹 HTTP의 대안은 QUIC?</title>
+    <link href="https://devahea.github.io/2019/04/30/5G-%EC%B4%88%EC%97%B0%EA%B2%B0%EC%8B%9C%EB%8C%80%EC%97%90-%EC%9B%B9-HTTP%EC%9D%98-%EB%8C%80%EC%95%88%EC%9D%80-QUIC/"/>
+    <id>https://devahea.github.io/2019/04/30/5G-초연결시대에-웹-HTTP의-대안은-QUIC/</id>
+    <published>2019-04-29T16:04:34.000Z</published>
+    <updated>2019-10-13T05:18:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;QUIC-소개&quot;&gt;&lt;a href=&quot;#QUIC-소개&quot; class=&quot;headerlink&quot; title=&quot;QUIC 소개&quot;&gt;&lt;/a&gt;QUIC 소개&lt;/h2&gt;&lt;p&gt;QUIC (Quick UDP Internet Connection)&lt;br&gt;구글에서
+        
+      
+    
+    </summary>
+    
+      <category term="WEB" scheme="https://devahea.github.io/categories/WEB/"/>
+    
+    
+      <category term="QUIC" scheme="https://devahea.github.io/tags/QUIC/"/>
+    
+      <category term="HTTP/3" scheme="https://devahea.github.io/tags/HTTP-3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA8말고 JAVA9를 사용해볼까</title>
+    <link href="https://devahea.github.io/2019/04/23/Java9/"/>
+    <id>https://devahea.github.io/2019/04/23/Java9/</id>
+    <published>2019-04-22T18:07:13.000Z</published>
+    <updated>2019-10-13T05:18:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/images/java9/java9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;현재 많은 개발자가 Java8 버전을 사용하여 개발을 하고 있습니다.&lt;/p&gt;
+&lt;p&gt;Java9 부터는 6개월마다 새로운 버전의 Java가 출시되면서 현재
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://devahea.github.io/tags/java/"/>
+    
+      <category term="java9" scheme="https://devahea.github.io/tags/java9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MQ와 amqp 프로토콜 원리에 대하여</title>
+    <link href="https://devahea.github.io/2019/04/22/amqp-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-%EC%9B%90%EB%A6%AC/"/>
+    <id>https://devahea.github.io/2019/04/22/amqp-프로토콜-원리/</id>
+    <published>2019-04-22T08:24:47.000Z</published>
+    <updated>2019-10-13T05:18:55.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;프로젝트를 하면서 rabbitmq, activemq 등 뒤에 MQ라고 붙은 단어들을 많이 들었다.&lt;/p&gt;
+&lt;p&gt;메시지 큐를 알아보기 전에 어디에서 쓰이는지 먼저 알아보자.&lt;/p&gt;
+&lt;p&gt;일단 카카오 메시징 서버 직군에서 지원 자격중에 MQ에 대한
+        
+      
+    
+    </summary>
+    
+      <category term="WEB" scheme="https://devahea.github.io/categories/WEB/"/>
+    
+    
+      <category term="Message Queue" scheme="https://devahea.github.io/tags/Message-Queue/"/>
+    
+      <category term="AMQP" scheme="https://devahea.github.io/tags/AMQP/"/>
+    
+      <category term="RabbitMQ" scheme="https://devahea.github.io/tags/RabbitMQ/"/>
+    
+      <category term="MQ" scheme="https://devahea.github.io/tags/MQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Oracle And Index Principle</title>
+    <link href="https://devahea.github.io/2019/04/22/Oracle-And-Index-Principle/"/>
+    <id>https://devahea.github.io/2019/04/22/Oracle-And-Index-Principle/</id>
+    <published>2019-04-22T00:57:29.000Z</published>
+    <updated>2019-10-13T05:18:55.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;개발자도-알아야-할-Oracle의-원리&quot;&gt;&lt;a href=&quot;#개발자도-알아야-할-Oracle의-원리&quot; class=&quot;headerlink&quot; title=&quot;개발자도 알아야 할 Oracle의 원리&quot;&gt;&lt;/a&gt;개발자도 알아야 할 Oracle의
+        
+      
+    
+    </summary>
+    
+    
+      <category term="oracle" scheme="https://devahea.github.io/tags/oracle/"/>
+    
+      <category term="database" scheme="https://devahea.github.io/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>if(Spring AOP == AspectJ) → { Spring AOP에 대해 }</title>
+    <link href="https://devahea.github.io/2019/04/22/AOP%EC%9D%98-%EB%A7%88%EB%B2%95/"/>
+    <id>https://devahea.github.io/2019/04/22/AOP의-마법/</id>
+    <published>2019-04-21T20:35:15.000Z</published>
+    <updated>2019-10-13T05:18:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;스프링에서도 AOP를 제공하고 있습니다.&lt;/p&gt;
+&lt;p&gt;그게 바로 Spring AOP입니다. Spring AOP는 AspectJ의 어노테이션 방식으로 AOP를 구현할 수 있도록 구현방식을 제공하고 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만, 이러한
+        
+      
+    
+    </summary>
+    
+      <category term="Programming" scheme="https://devahea.github.io/categories/Programming/"/>
+    
+    
+      <category term="AOP" scheme="https://devahea.github.io/tags/AOP/"/>
+    
+      <category term="Spring AOP" scheme="https://devahea.github.io/tags/Spring-AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring WebFlux는 어떻게 적은 리소스로 많은 트래픽을 감당할까?</title>
+    <link href="https://devahea.github.io/2019/04/21/Spring-WebFlux%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%A0%81%EC%9D%80-%EB%A6%AC%EC%86%8C%EC%8A%A4%EB%A1%9C-%EB%A7%8E%EC%9D%80-%ED%8A%B8%EB%9E%98%ED%94%BD%EC%9D%84-%EA%B0%90%EB%8B%B9%ED%95%A0%EA%B9%8C/"/>
+    <id>https://devahea.github.io/2019/04/21/Spring-WebFlux는-어떻게-적은-리소스로-많은-트래픽을-감당할까/</id>
+    <published>2019-04-21T04:44:32.000Z</published>
+    <updated>2019-10-13T05:18:55.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Spring-WebFlux는-어떻게-적은-리소스로-많은-트래픽을-감당할까&quot;&gt;&lt;a href=&quot;#Spring-WebFlux는-어떻게-적은-리소스로-많은-트래픽을-감당할까&quot; class=&quot;headerlink&quot; title=&quot;Spring
+        
+      
+    
+    </summary>
+    
+      <category term="spring" scheme="https://devahea.github.io/categories/spring/"/>
+    
+    
+      <category term="Spring WebFlux" scheme="https://devahea.github.io/tags/Spring-WebFlux/"/>
+    
+      <category term="Event Driven" scheme="https://devahea.github.io/tags/Event-Driven/"/>
+    
+      <category term="Reactive Programming" scheme="https://devahea.github.io/tags/Reactive-Programming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java8 빨대 사용법.</title>
+    <link href="https://devahea.github.io/2019/04/20/Java8NStream/"/>
+    <id>https://devahea.github.io/2019/04/20/Java8NStream/</id>
+    <published>2019-04-20T07:42:01.000Z</published>
+    <updated>2019-10-13T05:18:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Java-와-Stream-API&quot;&gt;&lt;a href=&quot;#Java-와-Stream-API&quot; class=&quot;headerlink&quot; title=&quot;Java 와 Stream API&quot;&gt;&lt;/a&gt;Java 와 Stream API&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://devahea.github.io/tags/java/"/>
+    
+      <category term="java8" scheme="https://devahea.github.io/tags/java8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker ABC</title>
+    <link href="https://devahea.github.io/2019/04/14/Docker-ABC/"/>
+    <id>https://devahea.github.io/2019/04/14/Docker-ABC/</id>
+    <published>2019-04-14T14:26:52.000Z</published>
+    <updated>2019-10-13T05:18:55.252Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Docker-ABC&quot;&gt;&lt;a href=&quot;#Docker-ABC&quot; class=&quot;headerlink&quot; title=&quot;Docker ABC&quot;&gt;&lt;/a&gt;Docker ABC&lt;/h1&gt;&lt;h2 id=&quot;Docker&quot;&gt;&lt;a href=&quot;#Docker&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="infra" scheme="https://devahea.github.io/categories/infra/"/>
+    
+    
+      <category term="docker" scheme="https://devahea.github.io/tags/docker/"/>
+    
+      <category term="container" scheme="https://devahea.github.io/tags/container/"/>
+    
+      <category term="linux" scheme="https://devahea.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Headless Browser란?</title>
+    <link href="https://devahea.github.io/2019/04/13/Headless-Browser%EB%9E%80/"/>
+    <id>https://devahea.github.io/2019/04/13/Headless-Browser란/</id>
+    <published>2019-04-13T11:46:29.000Z</published>
+    <updated>2019-10-13T05:18:55.253Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Headless-Browser란&quot;&gt;&lt;a href=&quot;#Headless-Browser란&quot; class=&quot;headerlink&quot; title=&quot;Headless Browser란?&quot;&gt;&lt;/a&gt;Headless Browser란?&lt;/h2&gt;&lt;p&gt;위키피디아에서
+        
+      
+    
+    </summary>
+    
+      <category term="WEB" scheme="https://devahea.github.io/categories/WEB/"/>
+    
+    
+      <category term="HeadlessBrowser" scheme="https://devahea.github.io/tags/HeadlessBrowser/"/>
+    
+      <category term="Chrome" scheme="https://devahea.github.io/tags/Chrome/"/>
+    
+      <category term="headless" scheme="https://devahea.github.io/tags/headless/"/>
+    
+      <category term="javascript" scheme="https://devahea.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>너는 사람이냐? 봇이냐?(Headless Browser)</title>
+    <link href="https://devahea.github.io/2019/04/13/%EB%84%88%EB%8A%94-%EC%82%AC%EB%9E%8C%EC%9D%B4%EB%83%90-%EB%B4%87%EC%9D%B4%EB%83%90-Headless-Browser/"/>
+    <id>https://devahea.github.io/2019/04/13/너는-사람이냐-봇이냐-Headless-Browser/</id>
+    <published>2019-04-13T05:16:01.000Z</published>
+    <updated>2019-10-13T05:18:55.267Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/6037055/56078088-da89bb00-5e1e-11e9-80f9-2f139d96e9a6.png&quot; alt=&quot;image&quot;&gt;&lt;br&gt;Web을 통해
+        
+      
+    
+    </summary>
+    
+      <category term="WEB" scheme="https://devahea.github.io/categories/WEB/"/>
+    
+    
+      <category term="HeadlessBrowser" scheme="https://devahea.github.io/tags/HeadlessBrowser/"/>
+    
+      <category term="Chrome" scheme="https://devahea.github.io/tags/Chrome/"/>
+    
+      <category term="headless" scheme="https://devahea.github.io/tags/headless/"/>
+    
+      <category term="javascript" scheme="https://devahea.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MS도 오픈소스 합니다</title>
+    <link href="https://devahea.github.io/2018/11/08/ms-eb-8f-84-ec-98-a4-ed-94-88-ec-86-8c-ec-8a-a4-ed-95-a9-eb-8b-88-eb-8b-a4/"/>
+    <id>https://devahea.github.io/2018/11/08/ms-eb-8f-84-ec-98-a4-ed-94-88-ec-86-8c-ec-8a-a4-ed-95-a9-eb-8b-88-eb-8b-a4/</id>
+    <published>2018-11-08T11:19:46.000Z</published>
+    <updated>2019-10-13T05:18:55.263Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Microsoft의-Github인수&quot;&gt;&lt;a href=&quot;#Microsoft의-Github인수&quot; class=&quot;headerlink&quot; title=&quot;Microsoft의 Github인수&quot;&gt;&lt;/a&gt;Microsoft의
+        
+      
+    
+    </summary>
+    
+      <category term="news" scheme="https://devahea.github.io/categories/news/"/>
+    
+    
+      <category term="microsoft" scheme="https://devahea.github.io/tags/microsoft/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Lego scrum-진행편</title>
+    <link href="https://devahea.github.io/2018/11/08/lego-scrum-ec-a7-84-ed-96-89-ed-8e-b8/"/>
+    <id>https://devahea.github.io/2018/11/08/lego-scrum-ec-a7-84-ed-96-89-ed-8e-b8/</id>
+    <published>2018-11-08T11:19:02.000Z</published>
+    <updated>2019-10-13T05:18:55.260Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Lego-Scrum-Game-진행편&quot;&gt;&lt;a href=&quot;#Lego-Scrum-Game-진행편&quot; class=&quot;headerlink&quot; title=&quot;Lego Scrum Game(진행편)&quot;&gt;&lt;/a&gt;Lego Scrum
+        
+      
+    
+    </summary>
+    
+      <category term="agile" scheme="https://devahea.github.io/categories/agile/"/>
+    
+    
+      <category term="lego" scheme="https://devahea.github.io/tags/lego/"/>
+    
+      <category term="scrum" scheme="https://devahea.github.io/tags/scrum/"/>
+    
+      <category term="agile" scheme="https://devahea.github.io/tags/agile/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ahea HackDay2018 - Viewer 팀 리뷰</title>
+    <link href="https://devahea.github.io/2018/09/20/ahea-hackday2018-viewer-ed-8c-80-eb-a6-ac-eb-b7-b0/"/>
+    <id>https://devahea.github.io/2018/09/20/ahea-hackday2018-viewer-ed-8c-80-eb-a6-ac-eb-b7-b0/</id>
+    <published>2018-09-20T07:46:36.000Z</published>
+    <updated>2019-10-13T05:18:55.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://github.com/devahea/2018hackerton-viewer&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="미분류" scheme="https://devahea.github.io/categories/%EB%AF%B8%EB%B6%84%EB%A5%98/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[2018 해커톤] ahea 해커톤 누리카베 리뷰</title>
+    <link href="https://devahea.github.io/2018/09/10/2018-ahea-hackerton-eb-a6-ac-eb-b7-b0/"/>
+    <id>https://devahea.github.io/2018/09/10/2018-ahea-hackerton-eb-a6-ac-eb-b7-b0/</id>
+    <published>2018-09-10T02:17:52.000Z</published>
+    <updated>2019-10-13T05:18:55.250Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;올해 2018 아해 해커톤은 누리카베라는 게임을 해커톤으로 진행 하기로 했다.&lt;/p&gt;
+&lt;p&gt;누리카베에 대한 게임의 설명은 다음 사이트에 잘 나와있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ko.puzzle-nurikabe.com/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="해커톤" scheme="https://devahea.github.io/categories/%ED%95%B4%EC%BB%A4%ED%86%A4/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>선택이 아닌 필수 TDD</title>
+    <link href="https://devahea.github.io/2018/09/10/ec-84-a0-ed-83-9d-ec-9d-b4-ec-95-84-eb-8b-8c-ed-95-84-ec-88-98-tdd/"/>
+    <id>https://devahea.github.io/2018/09/10/ec-84-a0-ed-83-9d-ec-9d-b4-ec-95-84-eb-8b-8c-ed-95-84-ec-88-98-tdd/</id>
+    <published>2018-09-10T00:32:02.000Z</published>
+    <updated>2019-10-13T05:18:55.256Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Test-First-Development&quot;&gt;&lt;a href=&quot;#Test-First-Development&quot; class=&quot;headerlink&quot; title=&quot;Test-First Development&quot;&gt;&lt;/a&gt;Test-First
+        
+      
+    
+    </summary>
+    
+      <category term="미분류" scheme="https://devahea.github.io/categories/%EB%AF%B8%EB%B6%84%EB%A5%98/"/>
+    
+    
+  </entry>
+  
+</feed>

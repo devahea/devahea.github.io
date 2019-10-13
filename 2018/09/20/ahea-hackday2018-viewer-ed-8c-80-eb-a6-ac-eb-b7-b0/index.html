@@ -1,0 +1,878 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Ahea HackDay2018 - Viewer 팀 리뷰, Java, Spring, Reactive">
+    <meta name="description" content="https://github.com/devahea/2018hackerton-viewer
+목표화면에 nurikabe를 풀고 있는 진행상황을 출력해준다 팀이 2팀이기 때문에 2개 이상의 퍼즐을 실시간으로 보여줘야 한다
+설">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Ahea HackDay2018 - Viewer 팀 리뷰 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Ahea HackDay2018 - Viewer 팀 리뷰
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-09-20
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><a href="https://github.com/devahea/2018hackerton-viewer" target="_blank" rel="noopener">https://github.com/devahea/2018hackerton-viewer</a></p>
+<h1 id="목표"><a href="#목표" class="headerlink" title="목표"></a>목표</h1><p>화면에 nurikabe를 풀고 있는 진행상황을 출력해준다 팀이 2팀이기 때문에 2개 이상의 퍼즐을 실시간으로 보여줘야 한다</p>
+<h1 id="설계"><a href="#설계" class="headerlink" title="설계"></a>설계</h1><ol>
+<li>화면에 출력<ul>
+<li>누리카베 퍼즐을 어떻게 화면에 출력해야 할까?</li>
+<li>웹에서 누리카베 퍼즐을 어떤 기술로 해야 할까?</li>
+<li>canvas로 그려보면 어떨까?</li>
+</ul>
+</li>
+<li>실시간으로 메세지를 전송<ul>
+<li>각 팀에서 보내주는 퍼즐진행 정보를 빠르게 화면으로 보내줘야 한다</li>
+<li>websocket이나 socketio를 이용해보면 좋겠다</li>
+</ul>
+</li>
+</ol>
+<h1 id="구현하기"><a href="#구현하기" class="headerlink" title="구현하기"></a>구현하기</h1><h2 id="화면에-출력하기"><a href="#화면에-출력하기" class="headerlink" title="화면에 출력하기"></a>화면에 출력하기</h2><p>우리 프로젝트는 웹 환경으로 제공하려고 했습니다. 이때 웹에서 도형을 그리는 방법은 뭐가 있을까 고민했을때 1도 망설임없이 canvas를 생각했습니다. 첫번째로 네모를 그리는 방법을 찾았습니다 <a href="https://www.w3schools.com/tags/canvas_rect.asp" target="_blank" rel="noopener">https://www.w3schools.com/tags/canvas_rect.asp</a> [code lang=javascript] var c=document.getElementById(“myCanvas”); var ctx=c.getContext(“2d”); ctx.rect(20,20,150,100); ctx.stroke(); [/code] rect를 사용하여 네모를 그리는 방법을 알게 되었습니다 w3school을 보면 paramewter로 x,y,width,height를 받는것을 알수 있습니다 이를 이용하면 내가 원하는 위치에 원하는 크기로 그릴수 있을거 같습니다 두번째로 네모를 여러개를 그리는 방법을 고민했습니다 [code lang=html] &lt;!DOCTYPE html&gt; <html> <head><meta name="generator" content="Hexo 3.8.0"> <title>Hello canvas</title> <a href="/webjars/jquery/jquery.min.js">/webjars/jquery/jquery.min.js</a> <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head> <body> <div id="main-content" class="container"> </div> </body> function createMap(id, width, height) { $(“#main-content”).append(“”) var c = document.getElementById(“canvas” + id); var ctx = c.getContext(“2d”); ctx.font=”15px Arial”; var rectSize = 25; var startPoint ={x:25, y:25}; for (i = 0 ; i </html> [/code] 만약 a팀이 1번 퍼즐을 풀기위해 맵을 만든다면 <code>createMap(&#39;a_1&#39;, 10, 10)</code>을 호출한다면 10 X 10짜리 네모들이 출력이 될것입니다 세번째로 네모 안에 텍스트 집어넣기입니다 누리카베는 총 3개의 타입이 있습니다 검은색이 칠해진 block, 숫자가 들어간 number, 점 하나로 이루어진 room입니다 네모를 그리기 위해서는 <code>rect</code>함수를 사용했다면 텍스트를 넣기 위해서는 <code>fillText</code>, 검은색으로 칠하려면 fillRect를 사용하면 됩니다 [code lang=javascript] if (type == ‘number’) { ctx.fillText(number,startPoint.x + (rectSize <em> x)- 16, startPoint.y + (rectSize </em> y)- 6); ctx.stroke(); } else if (type == ‘block’) { ctx.fillRect(startPoint.x + (rectSize <em> x), startPoint.y + (rectSize </em> y), rectSize, rectSize); ctx.stroke(); } else if (type == ‘room’) { ctx.fillText(“o”,startPoint.x + (rectSize <em> x)- 16, startPoint.y + (rectSize </em> y)- 6); ctx.stroke(); } [/code]</p>
+<h2 id="통신하기"><a href="#통신하기" class="headerlink" title="통신하기"></a>통신하기</h2><p>실시간으로 빠르게 server와 client가 데이터를 주고 받으려면 어떻게 할까 고민하는 중 websocket을 이용하면 어떨까 하여 구글링해봤습니다 <code>spring websocket</code>이라고 구글링을 하게 되면 <a href="https://spring.io/guides/gs/messaging-stomp-websocket/" target="_blank" rel="noopener">https://spring.io/guides/gs/messaging-stomp-websocket/</a> 링크가 상단에 나오는 것을 확인할 수 있습니다 해당 샘플로 프로젝트를 세팅한 후 기능 동작을 확인한 후 우리의 비즈니스에 맞게 수정하는 작업을 진행하였습니다 (수정할때 기존것을 크게 만지지 않았습니다) 퍼즐 맞추는 팀이 처음 데이터를 보내주는 <code>create</code>, 추가적으로 퍼즐을 풀면서 보내는 <code>putItem</code>을 하나 만들었습니다 [code lang=java] @Autowired SimpMessagingTemplate template; @RequestMapping(“/create”) public @ResponseBody String create(String name, Integer x, Integer y, String method, Integer number, String message){ JsonObject jsonObject = new JsonObject(); jsonObject.addProperty(“name”, name); jsonObject.addProperty(“x”, x); jsonObject.addProperty(“y”, y); jsonObject.addProperty(“method”, “create”); System.out.println(“jsonObject.toString() “ + jsonObject.toString()); template.convertAndSend(“/topic/greetings”, jsonObject.toString()); return “goods”; } @RequestMapping(“/putItem”) public @ResponseBody String putMessage(String name, Integer x, Integer y, String method, Integer number, String message){ JsonObject jsonObject = new JsonObject(); jsonObject.addProperty(“name”, name); jsonObject.addProperty(“x”, x); jsonObject.addProperty(“y”, y); jsonObject.addProperty(“method”, method); jsonObject.addProperty(“number”, number); jsonObject.addProperty(“message”, message); System.out.println(“jsonObject.toString() “ + jsonObject.toString()); template.convertAndSend(“/topic/greetings”, jsonObject.toString()); return “goods”; } @MessageMapping(“/hello”) @SendTo(“/topic/greetings”) public String greeting(HelloMessage message) throws Exception { Thread.sleep(1000); // simulated delay System.out.println(“Message “ + message); return message.getName(); } [/code] SimpleMessageTemplate은 다음과 같이 정의되어 있습니다 [code lang=java] @Configuration @EnableWebSocketMessageBroker public class WebSocketConfig implements WebSocketMessageBrokerConfigurer { @Override public void configureMessageBroker(MessageBrokerRegistry config) { config.enableSimpleBroker(“/topic”); config.setApplicationDestinationPrefixes(“/app”); } @Override public void registerStompEndpoints(StompEndpointRegistry registry) { registry.addEndpoint(“/gs-guide-websocket”).withSockJS(); } } [/code] 클라이언트에서는 어떻게 받았을까요 [code lang=javascript] var stompClient = null; function setConnected(connected) { $(“#connect”).prop(“disabled”, connected); $(“#disconnect”).prop(“disabled”, !connected); if (connected) { $(“#conversation”).show(); } else { $(“#conversation”).hide(); } $(“#greetings”).html(“”); } function connect() { var socket = new SockJS(‘/gs-guide-websocket’); stompClient = Stomp.over(socket); stompClient.connect({}, function (frame) { setConnected(true); console.log(‘Connected: ‘ + frame); stompClient.subscribe(‘/topic/greetings’, function (greeting) { showGreeting(greeting.body); setNurikabe(JSON.parse(greeting.body)); }); }); } function disconnect() { if (stompClient !== null) { stompClient.disconnect(); } setConnected(false); console.log(“Disconnected”); } function sendName() { stompClient.send(“/app/hello”, {}, JSON.stringify({‘name’: $(“#name”).val()})); } function showGreeting(message) { $(“#greetings”).append(“<tr><td>“ + message + “</td></tr>“); } function setNurikabe(message) { receiveObj = eval(message); if (receiveObj.method == ‘create’ ) { createMap(receiveObj.name, receiveObj.x , receiveObj.y); } else { appendItem(receiveObj.name, receiveObj.x , receiveObj.y, receiveObj.method, receiveObj.number); } } function createMap(id, width, height) { var rectSize = 25; var startPoint ={x:25, y:25}; $(“#main-content”).append(“<canvas id="\\" canvas""="" +="" "\\"="" width="500px" height="500px"></canvas>“) var c = document.getElementById(“canvas” + id); var ctx = c.getContext(“2d”); ctx.font=”15px Arial”; for (i = 0 ; i &lt; width; i++) { for (j = 0 ; j &lt; height; j++) { ctx.rect(startPoint.x + (rectSize <em> i), startPoint.y + (rectSize </em> j), rectSize, rectSize); ctx.stroke(); } } } function appendItem(id, x, y, type, number) { var rectSize = 25; var startPoint ={x:25, y:25}; var c = document.getElementById(“canvas” + id); var ctx = c.getContext(“2d”); ctx.font=”15px Arial”; if (type == ‘number’) { ctx.fillText(number,startPoint.x + (rectSize <em> x)- 16, startPoint.y + (rectSize </em> y)- 6); ctx.stroke(); } else if (type == ‘block’) { ctx.fillRect(startPoint.x + (rectSize <em> x), startPoint.y + (rectSize </em> y), rectSize, rectSize); ctx.stroke(); } else if (type == ‘room’) { ctx.fillText(“o”,startPoint.x + (rectSize <em> x)- 16, startPoint.y + (rectSize </em> y)- 6); ctx.stroke(); } } $(function () { $(“form”).on(‘submit’, function (e) { e.preventDefault(); }); $( “#connect” ).click(function() { connect(); }); $( “#disconnect” ).click(function() { disconnect(); }); $( “#send” ).click(function() { sendName(); }); }); [/code] 코드 중간중간에 <code>var socket = new SockJS(&#39;/gs-guide-websocket&#39;);</code> 와 <code>stompClient.subscribe(&#39;/topic/greetings&#39;, function (greeting)</code>와 같은 url이 있습니다 해당 코드가 java코드에 어디에 있는지 확인하여 매핑되는지 확인하면 좋을거 같습니다</p>
+<h2 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h2><p>스프링 부트프로젝트를 실행시킵니다 [code lang=text] $ mvn spring-boot:run [/code] 저는 해커톤의 특성상(이라고 쓰고 귀찮아서 라고 읽어주세요) 시간이 부족하기 때문에 url을 떄렸습니다 방생성 : <a href="http://localhost:8080/create?name=A1&amp;x=10&amp;y=10&amp;method=create" target="_blank" rel="noopener">http://localhost:8080/create?name=A1&amp;x=10&amp;y=10&amp;method=create</a> number 마킹 : <a href="http://localhost:8080/putItem?name=A1&amp;x=1&amp;y=1&amp;method=number&amp;number=1" target="_blank" rel="noopener">http://localhost:8080/putItem?name=A1&amp;x=1&amp;y=1&amp;method=number&amp;number=1</a> (1,1) 좌표에 숫자 1이 찍힙니다 <img src="https://github.com/devahea/2018hackerton-viewer/blob/master/ex1.PNG?raw=true" alt="이미지1"> block 마킹 : <a href="http://localhost:8080/putItem?name=A1&amp;x=1&amp;y=2&amp;method=block" target="_blank" rel="noopener">http://localhost:8080/putItem?name=A1&amp;x=1&amp;y=2&amp;method=block</a> (1,2) 좌표가 블록됩니다 (윽 해커톤땐 잘 됬었음요) <img src="https://github.com/devahea/2018hackerton-viewer/blob/master/ex2.PNG?raw=true" alt="이미지2"> room 마킹 : <a href="http://localhost:8080/putItem?name=A1&amp;x=1&amp;y=3&amp;method=room" target="_blank" rel="noopener">http://localhost:8080/putItem?name=A1&amp;x=1&amp;y=3&amp;method=room</a> (1,3) 좌표가 o로 마킹 됩니다 <img src="https://github.com/devahea/2018hackerton-viewer/blob/master/ex3.PNG?raw=true" alt="이미지2"></p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>아해 해커톤에서 누리카베를 실시간으로 보여주기위한 view 프로젝트를 진행했습니다 짧은 시간에 샘플 코드를 빨리 찾아서 빠르게 개발해볼 수 있었습니다</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/09/20/ahea-hackday2018-viewer-ed-8c-80-eb-a6-ac-eb-b7-b0/" class="b-link-green">Ahea HackDay2018 - Viewer 팀 리뷰</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/11/08/lego-scrum-ec-a7-84-ed-96-89-ed-8e-b8/">
+                    <div class="card-image">
+                        
+                        <img src="http://www.plays-in-business.com/wp-content/uploads/2015/09/lego-scrum-city-2.jpg" class="responsive-img" alt="Lego scrum-진행편">
+                        
+                        <span class="card-title">Lego scrum-진행편</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Lego Scrum Game(진행편)#Lego #scrum 지난 어떻게 행사를 준비하게 되었는지 기획편이 포스팅되었습니다 이번 진행편에서는 2018년 6월 9일에 진행한 아해 행사를 통해 진행된 Scrum Game행</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/agile/" class="post-category" target="_blank">
+                                    agile
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/lego/" target="_blank">
+                        <span class="chip bg-color">lego</span>
+                    </a>
+                    
+                    <a href="/tags/scrum/" target="_blank">
+                        <span class="chip bg-color">scrum</span>
+                    </a>
+                    
+                    <a href="/tags/agile/" target="_blank">
+                        <span class="chip bg-color">agile</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/09/10/2018-ahea-hackerton-eb-a6-ac-eb-b7-b0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="[2018 해커톤] ahea 해커톤 누리카베 리뷰">
+                        
+                        <span class="card-title">[2018 해커톤] ahea 해커톤 누리카베 리뷰</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">올해 2018 아해 해커톤은 누리카베라는 게임을 해커톤으로 진행 하기로 했다.
+누리카베에 대한 게임의 설명은 다음 사이트에 잘 나와있다.
+https://ko.puzzle-nurikabe.com/
+누리카베를 위 사이트</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-09-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/해커톤/" class="post-category" target="_blank">
+                                    해커톤
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

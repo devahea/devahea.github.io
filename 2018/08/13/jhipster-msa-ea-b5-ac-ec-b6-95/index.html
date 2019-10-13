@@ -1,0 +1,921 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="JHipster MSA 구축, Java, Spring, Reactive">
+    <meta name="description" content="개요Mricroservice는 수많은 장점을 가지고 있지만 구축하는건 생각보다 쉽지 않습니다. JHipster와 함께 MSA구축을 하면 한층 쉽게 다가갈수 있다고 생각 되어 글을 작성 하게 되었습니다. 본 글에서는 ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>JHipster MSA 구축 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        JHipster MSA 구축
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/docker/" target="_blank">
+                                <span class="chip bg-color">docker</span>
+                            </a>
+                        
+                            <a href="/tags/java/" target="_blank">
+                                <span class="chip bg-color">java</span>
+                            </a>
+                        
+                            <a href="/tags/JHipster/" target="_blank">
+                                <span class="chip bg-color">JHipster</span>
+                            </a>
+                        
+                            <a href="/tags/spring-boot/" target="_blank">
+                                <span class="chip bg-color">spring boot</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-08-13
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>Mricroservice는 수많은 장점을 가지고 있지만 구축하는건 생각보다 쉽지 않습니다. JHipster와 함께 MSA구축을 하면 한층 쉽게 다가갈수 있다고 생각 되어 글을 작성 하게 되었습니다. 본 글에서는 크게</p>
+<ul>
+<li>개발 MSA 환경 구축</li>
+<li>Docker Compose를 활용한 Service Mash</li>
+</ul>
+<p>나뉘며 프로젝트 생성부터 Microservice Gateway와 Microservice Application생성과 더불어 상용 배포를 위한 Docker Compose 설정까지 알아 보겠습니다.</p>
+<h1 id="개발-MSA-환경-구축"><a href="#개발-MSA-환경-구축" class="headerlink" title="개발 MSA 환경 구축"></a>개발 MSA 환경 구축</h1><p><img src="https://www.jhipster.tech/images/microservices_architecture_detail.001.png" alt="MSA diagram"></p>
+<ul>
+<li>Gateway 생성<ul>
+<li>Registry 실행</li>
+<li>Gateway 실행</li>
+</ul>
+</li>
+<li>Application 생성<ul>
+<li>Application 실행</li>
+</ul>
+</li>
+</ul>
+<p>여기에선 이 구조로 프로젝트를 생성 해 보겠습니다. <img src="https://user-images.githubusercontent.com/6037055/44248354-066b8700-a225-11e8-8303-4049bb6fc16b.png" alt="wallet"> <img src="https://user-images.githubusercontent.com/6037055/43988352-c1192640-9d6e-11e8-9723-d77ee7674fb1.png" alt="directory"></p>
+<h2 id="Gateway-생성"><a href="#Gateway-생성" class="headerlink" title="Gateway 생성"></a>Gateway 생성</h2><p>Gateway를 생성한 뒤 먼저 JHipster Registry를 실행한다. [code lang=bash] // Gateway로 프로젝트 생성 $ cd gateway $ jhipster [/code] <img src="https://user-images.githubusercontent.com/6037055/43988345-bfed690c-9d6e-11e8-9c47-0fb1dd3b1516.png" alt="gateway_generate"> [code lang=bash] // Registry 실행 $ docker-compose -f src/main/docker/jhipster-registry.yml up [/code] <img src="https://user-images.githubusercontent.com/6037055/43988350-c0b8cbce-9d6e-11e8-86b4-98b644cfc333.png" alt="registry_run"> JHipster Registry는 <code>Spring Cloud Config</code>와 <code>Eureka Server</code>로 이루어져 있으며 Microservice의 Config관리 및 서버 발견 역할을 한다. registry가 셋팅 된후에 gateway를 실행 시킨다. [code lang=bash] // Gateway 실행 $ ./gradlew [/code] <img src="https://user-images.githubusercontent.com/6037055/43988346-c021a9ba-9d6e-11e8-9ad7-e797411cdbb9.png" alt="gateway_run"></p>
+<h2 id="Application-생성"><a href="#Application-생성" class="headerlink" title="Application 생성"></a>Application 생성</h2><p>[code lang=bash] // Application로 프로젝트 생성 (member, wallet 각각 실행) $ cd member $ jhipster [/code] <img src="https://user-images.githubusercontent.com/6037055/43988348-c05189b4-9d6e-11e8-8b74-86da2dd6425a.png" alt="member_generate"> <img src="https://user-images.githubusercontent.com/6037055/43988351-c0eb1688-9d6e-11e8-90e8-0d0a7a825fe9.png" alt="wallet_generate"> 생성 후 별도의 비즈니스로직 추가 후 애플리케이션을 실행 하시면 됩니다. [code lang=bash] // Gateway 실행 $ ./gradlew [/code]</p>
+<h2 id="개발-MSA-환경-실행"><a href="#개발-MSA-환경-실행" class="headerlink" title="개발 MSA 환경 실행"></a>개발 MSA 환경 실행</h2><p>지금까지 잘 따라오셨으면</p>
+<ul>
+<li>Registry</li>
+<li>Gateway</li>
+<li>Application</li>
+</ul>
+<p>3개의 서비스들이 잘 실행 되어 있고 Gateway에서 각각의 Application의 API를 호출하면 정상적으로 동작하는걸 확인 하실 수 있습니다. <img src="https://user-images.githubusercontent.com/6037055/43988349-c08271aa-9d6e-11e8-9e30-80feec06d61a.png" alt="registry_check"> <img src="https://user-images.githubusercontent.com/6037055/43988355-c1a150f6-9d6e-11e8-8c77-b38491c25a79.png" alt="gateway_check"> <img src="https://user-images.githubusercontent.com/6037055/43988353-c1499aaa-9d6e-11e8-9a1f-ad028fc7361b.png" alt="gateway_app_check_1"> <img src="https://user-images.githubusercontent.com/6037055/43988354-c17b96e0-9d6e-11e8-831e-49487bc1052d.png" alt="gateway_app_check_2"> swagger를 통해 Gateway에서 각각의 member와 wallet Service의 API를 확인하고 개발 할 수 있습니다.</p>
+<h1 id="Docker-Compose를-활용한-Service-Mash"><a href="#Docker-Compose를-활용한-Service-Mash" class="headerlink" title="Docker Compose를 활용한 Service Mash"></a>Docker Compose를 활용한 Service Mash</h1><p><img src="https://ahea.files.wordpress.com/2018/08/d160f-1jk4vdnsrf6ynab2nyhmsdq.png" alt="docker-compose logo"> Docker Compose는 Multi-Container 정의 툴로써 YAML형식의 파일로 작성 하며, 여러 개의 Docker Container를 한번에 생성 하실 수 있습니다. Docker Compose를 실행하기전 각각의 애플리케이션의 Dokcer Image가 필요하여 아래의 명령어를 실행 해줘야 합니다. [code lang=bash] $ ./gradlew bootWar -Pprod buildDocker [/code] <code>docker images</code>로 Docker Image를 확인 하실 수 있습니다. [code lang=bash] $ docker images [/code] <img src="https://user-images.githubusercontent.com/6037055/43988576-e06f3f48-9d73-11e8-97e9-42f814005407.png" alt="docker_images"> 필요한 모든 준비가 완료 되었습니다. 이제 docker-compose로 서비스들을 묶은 뒤 실행만 하면 됩니다. [code lang=bash] $ cd wallet-app-compose $ jhipster docker-compose [/code] <img src="https://user-images.githubusercontent.com/6037055/43988578-e25a1c4c-9d73-11e8-9d9b-86288ad38cb7.png" alt="docker-compose_generate"> 생성을 완료 한 후 실행을 해봅니다. [code lang=bash] $ docker-compose up -d [/code] <img src="https://user-images.githubusercontent.com/6037055/43988579-e2fdcd2e-9d73-11e8-810f-423e7461d370.png" alt="docker-compose_up"> <img src="https://user-images.githubusercontent.com/6037055/44254727-a08bf900-a23e-11e8-9a75-167e6ba44e5b.png" alt="docker-compose"> 이외 compose사용시 유용한 명령어들 입니다.</p>
+<ul>
+<li><code>docker-compose up -d</code> - 컨테이너들 생성과 동시에 실행</li>
+<li><code>docker-compose down</code> - 컨테이너들 종료와 동시에 삭제</li>
+<li><code>docker-compose start</code> - 컨테이너들 실행</li>
+<li><code>docker-compose stop</code> - 컨테이너들 종료</li>
+</ul>
+<p>docker로 실행 시 몇가지 유용한 명령어를 정리 해 보았습니다.</p>
+<ul>
+<li><code>docker stats</code> - 컨테이너의 cpu, memory, I/O 등</li>
+<li><code>docker images</code> - 이미지 확인</li>
+<li><code>docker ps</code> - 컨테이너 확인</li>
+<li><code>docker rmi</code> - 이미지 삭제</li>
+<li><code>docker rm</code> - 컨테이너 삭제</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/6037055/43988577-e0bbab3a-9d73-11e8-8d1e-733ba811f815.png" alt="docker_stats"> 자세한 사용법은 명령어 뒤에 <code>--help</code> 를 넣어 확인 바랍니다. JHipster Console도 설치 하여 MSA관리를 수월할 수 있게 도와 줍니다. <img src="https://user-images.githubusercontent.com/6037055/43988583-efa2428a-9d73-11e8-9dcf-a49e5cee3901.png" alt="console_dashboard"> <img src="https://user-images.githubusercontent.com/6037055/43988604-4267cec2-9d74-11e8-94e0-ad09e3a3b3b2.png" alt="console_log"></p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/08/13/jhipster-msa-ea-b5-ac-ec-b6-95/" class="b-link-green">JHipster MSA 구축</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/08/17/ec-b4-88-ea-b8-89-ed-8e-b8-java-hipster-ea-b3-b5-eb-b6-80-ed-95-98-ea-b8-b0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="[초급편] JAVA HIPSTER 공부하기">
+                        
+                        <span class="card-title">[초급편] JAVA HIPSTER 공부하기</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">프로그래밍 초급자가 바라본 JAVA HIPSTER - “아~ 이건 언제 다 공부하냐” 1. 가장 먼저 한 일 - “https://www.jhipster.tech&quot; 사이트 둘러보기
+
+(의문을 가지다) : “J</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-08-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/07/29/jhipster-eb-9e-80/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="JHipster란?">
+                        
+                        <span class="card-title">JHipster란?</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">JHipster란? 간단히 정의 하면 자바 기반 생성(generate) 개발 플랫폼 이라고 말씀 드릴 수 있습니다. 기존 뛰어난 생산성으로 흥한 개발 플랫폼인 Ruby의 Ruby on Ralse나 Node.js의 M</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-07-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Ahea
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/devops/" target="_blank">
+                        <span class="chip bg-color">devops</span>
+                    </a>
+                    
+                    <a href="/tags/JHipster/" target="_blank">
+                        <span class="chip bg-color">JHipster</span>
+                    </a>
+                    
+                    <a href="/tags/spring/" target="_blank">
+                        <span class="chip bg-color">spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

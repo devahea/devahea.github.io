@@ -1,0 +1,939 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="5G 초연결시대에 웹 HTTP의 대안은 QUIC?, Java, Spring, Reactive">
+    <meta name="description" content="QUIC 소개QUIC (Quick UDP Internet Connection)구글에서 QUIC라는 프로토콜 설계하였고 2013년 6월 공개 했다.
+국제 인터넷 표준화 기구 (IETF)에 QUIC 프로토콜 표준화를 제">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>5G 초연결시대에 웹 HTTP의 대안은 QUIC? | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        5G 초연결시대에 웹 HTTP의 대안은 QUIC?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/QUIC/" target="_blank">
+                                <span class="chip bg-color">QUIC</span>
+                            </a>
+                        
+                            <a href="/tags/HTTP-3/" target="_blank">
+                                <span class="chip bg-color">HTTP/3</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                WEB
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-04-30
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="QUIC-소개"><a href="#QUIC-소개" class="headerlink" title="QUIC 소개"></a>QUIC 소개</h2><p>QUIC (Quick UDP Internet Connection)<br>구글에서 QUIC라는 프로토콜 설계하였고 2013년 6월 공개 했다.</p>
+<p>국제 인터넷 표준화 기구 (IETF)에 QUIC 프로토콜 표준화를 제안하였다.</p>
+<p>Google-QUIC은 오로지 HTTP만 전송했으나 IETF QUIC 워킹 그룹을 통해 IETF-QUIC 은 TLS 1.3의 암호화 보안을 적용해 개선하였다.</p>
+<p>HTTP-over-QUIC은 2018년 11월에 HTTP/3로 개명하였고 QUIC 버전 1의 최종 명세 2019년 7월 발표 예정이다.</p>
+<h2 id="QUIC-프로토콜에-대해"><a href="#QUIC-프로토콜에-대해" class="headerlink" title="QUIC 프로토콜에 대해"></a>QUIC 프로토콜에 대해</h2><p>기능 설명에 앞서서 QUIC를 이해하기 위해서는 TCP와 UDP에 대한 이해가 필요하다.</p>
+<h4 id="TCP란"><a href="#TCP란" class="headerlink" title="TCP란?"></a>TCP란?</h4><p>전송 제어 프로토콜<br>(Transmission Control Protocol, TCP)</p>
+<p><img src="https://user-images.githubusercontent.com/28129081/56914109-35453700-6aee-11e9-82a7-6f2b0ea32418.png" alt="출처: https://hpbn.co/transport-layer-security-tls/#tls-handshake"></p>
+<p>TCP는 요청마다 3-way Handshake 와 SSL과 같은 암호화가 추가 된다면 TLS handshake 로 인한 RTT(Round Trip Time) 증가한다.<br>또한 HOL(head of line) 블로킹 문제 등이 있다.</p>
+<h5 id="HOL-Head-Of-Line-블로킹"><a href="#HOL-Head-Of-Line-블로킹" class="headerlink" title="HOL(Head Of Line) 블로킹"></a>HOL(Head Of Line) 블로킹</h5><p><img src="https://user-images.githubusercontent.com/28129081/56914303-b8ff2380-6aee-11e9-98f0-f0c45d256a0d.png" alt="출처: https://hpbn.co/building-blocks-of-tcp/#head-of-line-blocking"><br> 위 그림을 보면 P1을 받아오지 못해 재요청을 하여 데이터를 받아오는것을 볼 수 있다. 데이터를 다시 요청함으로써 신뢰성을 높이지만 반대로 통신이 지연되는 것을 알 수 있다.<br>이는 TCP 통신의 장점이자 단점으로 보이는 문제라 볼수 있는데 이를 Head Of Line Blocking이라 한다.</p>
+<h4 id="UDP-란"><a href="#UDP-란" class="headerlink" title="UDP 란?"></a>UDP 란?</h4><p>사용자 데이터그램 프로토콜<br>(User Datagram Protocol, UDP)</p>
+<p><img src="https://user-images.githubusercontent.com/28129081/56914420-067b9080-6aef-11e9-8752-c69a8028374d.png" alt="UDP"><br>TCP처럼 3way-handshake가 없으며 RTT(Round Trip Time) 적어 속도가 빠른 반면에 데이터의 손실 가능성이 있고 그로 인해 신뢰성이 떨어진다고 볼 수 있다.</p>
+<p>때문에 유튜브 영상 또는 게임에서 캐릭터 이동 등 데이터가 손실이 있더라도 괜찮은(?) 상황에서 많이 사용된다고 한다.</p>
+<p>P2P통신에서도 UDP를 많이 쓴다고 하는데 중개서버를 활용한 UDP 홀펀칭이라는 기법을 사용한다고 한다.</p>
+<p>시간이 된다면 추후 UDP 홀펀칭 기법도 스터디하여 소개할 수 있도록 하겠다.</p>
+<p>여기까지 간단하게 TCP와 UDP에 대한 이해는 넘어가고 본격적으로 QUIC에 대해 알아보자.</p>
+<h3 id="QUIC-프로토콜"><a href="#QUIC-프로토콜" class="headerlink" title="QUIC 프로토콜"></a>QUIC 프로토콜</h3><p><img src="https://user-images.githubusercontent.com/28129081/56917902-a4735900-6af7-11e9-8617-3dc7547eda7a.JPG" alt="출처: https://http3-explained.haxx.se/en/the-protocol.html"></p>
+<p>위 그림과 같이 QUIC은 UDP 기반 위에서 구현한 전송 프로토콜이다. UDP는 데이터 신뢰성을 보장하지 않지만 <span style="color:red"><strong>QUIC 계층추가</strong></span>를 통해 TCP와 같은 <span style="color:red"><strong>신뢰성을 제공</strong></span>한다</p>
+<p>HTTP2의 <span style="color:red"><strong>Multiplexing</strong></span> 과 같이 하나의 연결로 다수의 병렬 스트림으로 데이터를 동시 전송하며 UDP 기반이지만 그와 다르게 TCP와 같은 <span style="color:red"><strong>순서에 맞는 전송처리</strong></span>를 한다.</p>
+<p>HTTP2에서는 여러 스트림중에 하나의 스트림이 패킷을 잃을 경우 복구가 되지 않았지만 QUIC은 다른 스트림이 전송 중에 잃은 <span style="color:red"><strong>스트림의 패킷을 재전송</strong></span>을 하여 완료가 가능하다고 한다.</p>
+<p>0-RTT와 1-RTT설정을 지원하여 기존의 TCP와는 다른 빠른 핸드쉐이크를 지원한다. TLS 1.3 전송 보안을 지원하는데 핸드쉐이크시 더 적은 RTT를 위해 사용한다.<br>TLS 1.3은 RTT를 개선하였고 보안을 강화하기 위해서 TLS 1.2에서 지원하던 보안에 취약했던 기능들을 삭제를 했다고 한다.</p>
+<p>HTTP/2에서 <strong>HPACK</strong>은 순차적인 스트림 전달에 의존하기 때문에 QUIC에 맞게 스트림을 순서 없이 전달 가능하게 수정하였는데 이를 <span style="color:red"><strong>QPACK</strong></span>이라고 한다.</p>
+<p>최종적으로 TCP와 TCP+TLS 그리고 QUIC을 비교하면 아래그림과 같다.<br><img src="https://user-images.githubusercontent.com/28129081/56918649-8a3a7a80-6af9-11e9-8b3b-f52d33ad229f.png" alt="출처: https://blog.chromium.org/2015/04/a-quic-update-on-googles-experimental.html"><br>이렇게 HTTP3는 UDP기반을 통해 RTT를 0에 가깝게 줄여 속도향상을 가져왔다. 그리고 QUIC+TLS1.3 계층을 통해 TCP의 장점인 데이터의 신뢰성까지 보완했다고 볼 수 있다.<br>곧 오는 2019년 7월에 예정에 맞추어 QUIC 버전 1 이 정식으로 공개되고 나면 다시 한번 웹 시장은 5G 시대에 발 맞추어 기업들의 속도 경쟁에 요동칠 것으로 보인다. </p>
+<p>조금 더 들어가 다음으로는 HTTP/2를 소개하도록 하겠다.</p>
+<h2 id="HTTP-2-소개"><a href="#HTTP-2-소개" class="headerlink" title="HTTP/2 소개"></a>HTTP/2 소개</h2><p>구글에서 2009년 중반에 SPDY 발표 하였고 HTTP/2 프로토콜의 출발점으로 SPDY 사양이 채택되어 2015년 5월에 RFC 7540(HTTP/2) 및 RFC 7541(HPACK) 발행되었다.</p>
+<h4 id="바이너리-프레이밍-계층"><a href="#바이너리-프레이밍-계층" class="headerlink" title="바이너리 프레이밍 계층"></a>바이너리 프레이밍 계층</h4><p><img src="https://user-images.githubusercontent.com/28129081/56918877-22386400-6afa-11e9-97a9-4de7c79cdb9d.PNG" alt="출처: https://hpbn.co/http2/#request-and-response-multiplexing"><br>위 그림의 오른쪽을 보면 이전 버전인 HTTP/1.1 에서는 헤더와 메시지의 그림이 하나로 묶여있던것을 볼수 있는데 HTTP/2 에서는 <strong>헤더 프레임</strong>과 <strong>데이터 프레임</strong>으로 나뉜것을 볼수 있다. 이들은 바이너리 형식으로 인코딩되어 처리가 된다.</p>
+<p>프레임이라는 단어 및 그림을 계속 연상하면서 가보자.</p>
+<h4 id="멀티플렉싱"><a href="#멀티플렉싱" class="headerlink" title="멀티플렉싱"></a>멀티플렉싱</h4><p><img src="https://user-images.githubusercontent.com/28129081/56919415-7e4fb800-6afb-11e9-9f09-d7fa1de4a5fe.PNG" alt="출처: https://hpbn.co/http2/#request-and-response-multiplexing"></p>
+<p>위 그림은 스트림들이 어떻게 처리가 되는지를 보여준다. 스트림 단위로 병렬로 처리되고 있음을 볼 수 있다.<br>이는 기존 TCP의 문제인 HOL(Head Of Line) Blocking 문제로 인한 시간지연을 제거했다고 볼 수 있다.</p>
+<h4 id="서버푸시"><a href="#서버푸시" class="headerlink" title="서버푸시"></a>서버푸시</h4><p><img src="https://user-images.githubusercontent.com/28129081/56924418-d1c80300-6b07-11e9-9b5f-4718594c5c90.PNG" alt="출처: https://hpbn.co/http2/#request-and-response-multiplexing"><br>위 그림은 오른쪽 클라이언트가 왼쪽 서버에 stream1에 해당하는 frame1을 전송했다. 그리고 클라이언트는 계속해서 stream1의 frame2를 보내는 중이었다.<br>그런데 하나의 요청으로 서버는 추가적인 모든 데이터를 클라이언트에 푸시를 할 수가 있다.</p>
+<p>이를 HTTP/2의 강력한 기능 중 하나인 <strong>서버푸시</strong>라 한다.</p>
+<h4 id="헤더압축"><a href="#헤더압축" class="headerlink" title="헤더압축"></a>헤더압축</h4><p><img src="https://user-images.githubusercontent.com/28129081/56924693-84986100-6b08-11e9-95d1-f1d1116486dc.PNG" alt="출처: https://hpbn.co/http2/#request-and-response-multiplexing"><br>이번 그림은 헤더압축을 나타내는 그림이다. request1과 request 2를 잘 보면 헤더정보가 url path만 다르고 같은 값들로 채워져 있다.<br>request1에 해당하는 Sream1을 전달한 후에 request 2 의 헤더정보를 담고 있는 Sream2의 중복되는 헤더 정보를 제외하고 다른Stream으로 서버에 요청을 할 것이다.<br><strong>중복된 헤더정보를 제거</strong>함으로써 페이지 로드 시간이 상당히 감소했다고 한다.</p>
+<p>지금까지 HTTP/3 과 HTTP/2 에 대한 개념과 기능에 대해 알아보았다.<br>정리하자면 아래와 같다.</p>
+<ul>
+<li>첫째, HTTP/3는 <span style="color:red"><strong>스트림의 패킷 재전송</strong></span>을 통한 복구 완료가 가능하다는 점.</li>
+<li>둘째, HPACK 의 순차적인 스트림 전달을 순서 없이 전달 가능하게 하여 <strong>병렬처리 성능을 개선</strong>하여 나온 <span style="color:red"><strong>QPACK</strong></span>.</li>
+<li>마지막으로 셋째, UDP기반위의 <span style="color:red"><strong>QUIC 프로토콜</strong></span>을 통해 암호화 보안(TLS 1.3)을 적용했음에도 이론상 <span style="color:red"><strong>0-RTT</strong></span>라는 것이 HTTP/3의 장점이라고 말하고 있다.</li>
+</ul>
+<p>병렬처리 성능 및 속도, 보안 향상, 데이터의 신뢰성 등. 어느것 하나 빠짐없어 보이는 장점들을 보며 곧 다가올 2019년 7월 발표 예정일이 기대가 된다.</p>
+<p><br></p>
+<div style="font-size:14px;"><br>참고자료<br>[HTTP2]<br><a href="https://developers.google.com/web/fundamentals/performance/http2/" target="_blank" rel="noopener">https://developers.google.com/web/fundamentals/performance/http2/</a><br><a href="https://hpbn.co/http2/#request-and-response-multiplexing" target="_blank" rel="noopener">https://hpbn.co/http2/#request-and-response-multiplexing</a><br>[HTTP/3 explained]<br>저자 Daniel Stenberg - curl 개발자 (<a href="https://http3-explained.haxx.se/en/" target="_blank" rel="noopener">https://http3-explained.haxx.se/en/</a>)<br></div>
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/04/30/5G-초연결시대에-웹-HTTP의-대안은-QUIC/" class="b-link-green">5G 초연결시대에 웹 HTTP의 대안은 QUIC?</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <div class=" col s12 m6 l12" data-aos="zoom-in-up">
+                                        <div class="card frind-card6">
+                                            <div class="frind-ship">
+                                                <div class="title">
+                                                    <img src="http://devahea.github.io/friends/image/조홍신.jpg" alt="img">
+                                                    <div style="margin-left: 20px;">
+                                                        <h1 class="friend-name" style="font-size: 1.5rem;     margin: 15px 0 22px -5px;">조홍신</h1>
+                                                        <p>2014년 개발자의 길로 들어선 후부터 JAVA에서 벗어나지 못하고 허우적거리고 있다.<br>머리가 지끈하지만 배우는걸 좋아한다.<br>금융산업에 관련된 개발을 좋아하는것 같다.</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/04/30/AMQ-모델과-Exchange-Queue-Binding-에-대해/">
+                    <div class="card-image">
+                        
+                        <img src="/images\amqp\2-1.png" class="responsive-img" alt="AMQ 모델과 Exchange, Queue, Binding 에 대해">
+                        
+                        <span class="card-title">AMQ 모델과 Exchange, Queue, Binding 에 대해</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">* rabbitmq 강점과 유연성은 amqp 스펙에서 나온다.
+rabbitmq를 설명하기 앞서 amqp가 무엇인지 부터 알아보자.
+amqp (advanced message queuing protocol)
+
+메시징 프</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            최경운
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Message-Queue/" target="_blank">
+                        <span class="chip bg-color">Message Queue</span>
+                    </a>
+                    
+                    <a href="/tags/AMQP/" target="_blank">
+                        <span class="chip bg-color">AMQP</span>
+                    </a>
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                    <a href="/tags/Exchange/" target="_blank">
+                        <span class="chip bg-color">Exchange</span>
+                    </a>
+                    
+                    <a href="/tags/binding/" target="_blank">
+                        <span class="chip bg-color">binding</span>
+                    </a>
+                    
+                    <a href="/tags/queue/" target="_blank">
+                        <span class="chip bg-color">queue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/23/Java9/">
+                    <div class="card-image">
+                        
+                        <img src="/images/java9/java9.jpg" class="responsive-img" alt="JAVA8말고 JAVA9를 사용해볼까">
+                        
+                        <span class="card-title">JAVA8말고 JAVA9를 사용해볼까</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+현재 많은 개발자가 Java8 버전을 사용하여 개발을 하고 있습니다.
+Java9 부터는 6개월마다 새로운 버전의 Java가 출시되면서 현재 12버전까지 출시 하였습니다.
+그 중에서  JAVA9 버전에 관해 대해 자</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            김형진
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/java9/" target="_blank">
+                        <span class="chip bg-color">java9</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

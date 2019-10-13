@@ -1,0 +1,988 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hadoop architecture (20170414), Java, Spring, Reactive">
+    <meta name="description" content="Hadoop 이란 HDFS + MapReduce로 구성되어 있습니다. (이전 글  : https://ahea.wordpress.com/2017/03/29/hadoop-eco-system-정리-1-20170329/ )">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hadoop architecture (20170414) | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Hadoop architecture (20170414)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2017-04-14
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Hadoop 이란 HDFS + MapReduce로 구성되어 있습니다. (이전 글  : <a href="https://ahea.wordpress.com/2017/03/29/hadoop-eco-system-정리-1-20170329/" target="_blank" rel="noopener">https://ahea.wordpress.com/2017/03/29/hadoop-eco-system-정리-1-20170329/</a> ) 각 시스템의 아키텍처에 대해 정리해 보았습니다.</p>
+<h3 id="1-HDFS"><a href="#1-HDFS" class="headerlink" title="1. HDFS"></a>1. HDFS</h3><p> - Hadoop Distributed File System<br> - 블록 구조의 파일 시스템 (특정 크기의 블록으로 나누어 분산된 서버에 저장)<br> - 분산 파일 시스템 : 블록을 다중 노드에 분산해서 보관<br> - Replication : 하나의 블록은 여러 노드에 복제, 특정 노드 장애에 무정지 대응</p>
+<h4 id="네임노드-Name-Node"><a href="#네임노드-Name-Node" class="headerlink" title="네임노드 (Name Node)"></a>네임노드 (Name Node)</h4><ol>
+<li>메타데이터 관리 : 파일 스스템을 유지하기 위한 메타데이터 관리</li>
+<li>데이터 노드 모니터링 : 데이터 노드는 네임 노드에게 3초 마다 하트비트(heartbeat)를 전송<ul>
+<li>네임 노드는 이를 이용해 데이터 노드의 실행 상태와 용량을 체크</li>
+<li>heartbeat를 전송하지 않은 데이터 노드는 장애 서버로 판단</li>
+</ul>
+</li>
+<li>블록 관리 : 장애가 발생한 데이터 노드의 블록을 새로운 데이터 노드에 복제<ul>
+<li>용량이 부족하다면 여유가 있는 데이터 노드에 블록을 옮긴다.</li>
+</ul>
+</li>
+<li>클라이언트 요청 접수 : 클라이언트가 HDFS에 접근하려면 반드시 네임노드의 먼저 접속<ul>
+<li>HDFS에 파일을 저장할 경우 기존 파일의 저장여부와 권한 확인 절파를 거쳐 저장을 승인</li>
+</ul>
+</li>
+<li>이중화가 가능해졌지만, 중요한 정보들을 가지고 있으므로, 물리적으로 Disk 백업 체계를 고려해야한다.</li>
+<li>SPOF ( Single Point Of Failure )</li>
+</ol>
+<h4 id="보조-네임노드-Secondary-Name-Node"><a href="#보조-네임노드-Secondary-Name-Node" class="headerlink" title="보조 네임노드 (Secondary Name Node)"></a>보조 네임노드 (Secondary Name Node)</h4><ol>
+<li>네임노드가 메타데이터를 메모리에 담고 처리하는데 만약 서버가 리부팅되는 경우 사라질 수 있다.</li>
+<li>HDFS는 이러한 문제로 인해 editslog와 fsimage라는 두 개의 파일을 생성<ul>
+<li>editslog : HDFS의 모든 변경이력을 저장</li>
+<li>fsimage : 메모리에 저장된 메타데이터의 파일 시스템 이미지를 저장하는 파일</li>
+</ul>
+</li>
+<li>editslog가 커지면 fsimage를 만드는데 시간이 많이 소요되는 단점</li>
+<li>세컨드리 네임노드가 fsimage를 갱신 (체크포인트) : 세컨드리 네임노드 = 체크포인팅 서버</li>
+<li>네임노드의 백업이 아닌 fsimage를 줄여주는 역할</li>
+<li>fsimage가 너무 커서 네임노드가 메모이레 로딩되지 못하는 경우를 예방하기 위해 사용되는 것</li>
+</ol>
+<h4 id="데이터-노드-Data-Node"><a href="#데이터-노드-Data-Node" class="headerlink" title="데이터 노드 (Data Node)"></a>데이터 노드 (Data Node)</h4><ol>
+<li>클라이언트가 HDFS에 저장하는 파일을 로컬 디스크에 유지</li>
+<li>파일을 두가지로 저장되는데 하나는 실제 저장되는 로우 데이터이며, 다른 하나는 체크섬이나 파일 생성 일장 같은 메타데이터가 저장된 파일</li>
+<li>Hadoop이 자체적인 Replication을 해서 High Availability를 보장하기 때문에 물리적인 Disk 백업이 필요하지 않다.</li>
+</ol>
+<p>구글 이미지 검색 중 HDFS architecture로 검색하니 다음 이미지가 나왔다. <img src="https://ahea.files.wordpress.com/2017/04/ed9598eb91a1_ed8c8cec9dbcec8b9cec8aa4ed859c.png" alt="하둡_파일시스템"> 이 그림은 HDFS 아키텍쳐의 설명을 자세하게 설명되어 있습니다.  이 중 파일 저장과 파일 읽기에 관한 내용을 간단하게 정리해봤습니다.</p>
+<h4 id="파일-저장"><a href="#파일-저장" class="headerlink" title="파일 저장"></a>파일 저장</h4><ol>
+<li>클라이언트에서 먼저 네임노드와 통신 과정을 통해 스트림(DFSOutputStream)을 생성</li>
+<li>생성된 스트림을 통해 클라이언트에서 파일을 각 데이터 노드에 전송. 저장할 파일을 패킷 단위로 나누어 전송</li>
+<li>파일 전송이 완료되면 클라이언트에서는 네임노드에서 얻은 스트림을 close하면 남은 모든 패킷이 flush.</li>
+<li>클라이언트에서 네임노드의 complete 메소드를 호풀해서 정상적으로 저장되었다면 true가 반환.</li>
+</ol>
+<h4 id="파일-읽기"><a href="#파일-읽기" class="headerlink" title="파일 읽기"></a>파일 읽기</h4><ol>
+<li>클라이언트에서 네임노드이 입력스트림 객체(DFSInputStream)를 통해 스트림 객체를 생성</li>
+<li>생성된 스트림 객체를 이용하여 기본 블록의 10배수 만큼 조회</li>
+<li>클라이언트에서 스트림 객체에서 블록리더기를 생성하는데 블록이 저장된 데이터노드가 같은 서버에 있다면 로컬블록리더기(BlockReaderLocal)을 생성, 원격에 있다면 원격블록리더기(RemoteBlockReader)를 생성한다.</li>
+<li>DFSInputStream은 파일 모두 읽을 때까지 블록을 조회한다. 모두 읽었다면 close 를 통해 닫아주어야한다.</li>
+</ol>
+<p>참고 사이트 : <a href="http://hadooper.blogspot.kr/" target="_blank" rel="noopener">http://hadooper.blogspot.kr/</a> <a href="http://socurites.com/hadoop/%EB%B2%88%EC%97%AD-%ED%95%98%EB%91%A1-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B3%BC-mr-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98" target="_blank" rel="noopener">http://socurites.com/hadoop/%EB%B2%88%EC%97%AD-%ED%95%98%EB%91%A1-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B3%BC-mr-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98</a></p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p> - Google에서 정보 검색을 위한 데이터 가공(색인어 추출, 정렬 및 역 인덱스 생성 등)을<br>목적으로 개발된 분산 환경에서의 병렬 데이터 처리 기법이자 프로그래밍 모델<br> - Map과 Reduce는 모두 입/출력으로 Key-Value</p>
+<h4 id="Map-Key1-Value1-gt-Key2-Value2"><a href="#Map-Key1-Value1-gt-Key2-Value2" class="headerlink" title="Map : (Key1, Value1) -&gt; (Key2, Value2)"></a>Map : (Key1, Value1) -&gt; (Key2, Value2)</h4><ul>
+<li>(Key, Value) 쌍을 읽어 다른 (Key, Value)쌍에 대응</li>
+<li>(Key, Value)를 읽어서 이를 필터링 하거나, 다른 값으로 변환하는 작업을 수행</li>
+</ul>
+<h4 id="Reduce-Key2-List-Value-gt-Key3-Value3"><a href="#Reduce-Key2-List-Value-gt-Key3-Value3" class="headerlink" title="Reduce : (Key2, List Value) -&gt; (Key3, Value3)"></a>Reduce : (Key2, List Value) -&gt; (Key3, Value3)</h4><ul>
+<li>Key2를 기준으로 취합된 value list를 읽어 집계된 값 value3를 출력</li>
+<li>Map함수를 통해 출력된 값들을 새 키 Key3를 기준으로 그룹화 한 후 집계연산을 수행한 결과를 출력</li>
+</ul>
+<h4 id="처리-흐름"><a href="#처리-흐름" class="headerlink" title="처리 흐름"></a>처리 흐름</h4><ol>
+<li>HDFS 상에 적재된 각 파일 조각들은 Mapper 태스크들에 할당</li>
+<li>Mapper들은 클러스터 상의 여러 노드들에 분산되어 있으며, 각기 청크 하나를 받아 Map 함수를 수행하고 그 결과를 Mapper가 수행된 노드의 로컬 디스크에 기록한다. Mapper 태스크의 작업이 끝나고 남아 있는 chunk가 있다면, 추가로 할당하여 처리하도록 한다.</li>
+<li>Mapper들은 선택적으로 combiner를 가질 수도 있다. 이는 Mapper가 key-value만을 출력하고 이를 Reducer가 복사, 분할 하는데 드는 I/O와 네트워크 대역폭을 절감하고자 각 Mapper가 출력한 key-value에 대해 미리 그룹화하고 집계 연산을 수행하도록 하는데 이용된다.</li>
+<li>더 이상 처리해야 할 chunk가 없고 모든 Mapper가 정상 종료되었다면, Reducer 태스크를 수행한다.</li>
+<li>HTTPS를 이용해 여러 노드들로부터 Key를 기준으로 각 Reducer가 처리해야 할 Key-Value를 이전 Mapper들의 로컬 디스크로부터 읽어 온다.</li>
+<li>key값을 기준으로 정렬 연산을 수행, 정렬된 key-value들을 동일 키 값을 기준으로 그룹화를 수행</li>
+<li>각 key값을 기준으로 그룹지어진 값들을 대상으로 집계 연산을 수행하고, 그 결과를 다시 HDFS상에 출력.</li>
+</ol>
+<h4 id="데이터-처리-중-장애-발생"><a href="#데이터-처리-중-장애-발생" class="headerlink" title="데이터 처리 중 장애 발생"></a>데이터 처리 중 장애 발생</h4><ul>
+<li>Mapper의 경우 같은 청크를 대상으로 다시 수행하거나, 또는 유휴한 다른 Mapper가 해당 청크를 수행</li>
+<li>Reducer의 경우 Mapper의 결과는 이미 로컬 디스크에 Mapper의 결과가 실체화된 상태이므로 Mapper의 수행은 건너뛰고 Reducer 작업을 다시 수행.</li>
+<li>파일의 내구성은 HDFS의 데이터 복제에 의존</li>
+</ul>
+<p>위 글을 읽고 다음 그림을 보면 이해하기 쉬울것입니다. <img src="https://ahea.files.wordpress.com/2017/04/ed9598eb91a1_eba7b5eba6aceb9380ec8aa4.png" alt="하둡_맵리듀스.png"></p>
+<h4 id="학회지-CACM에-두-진영-DBMS와-MapReduce-이-주장하는-MapReduce의-장단점-요약-http-bart7449-tistory-com-276-이-분께서-번역을-너무-잘해주셨습니다"><a href="#학회지-CACM에-두-진영-DBMS와-MapReduce-이-주장하는-MapReduce의-장단점-요약-http-bart7449-tistory-com-276-이-분께서-번역을-너무-잘해주셨습니다" class="headerlink" title="학회지 CACM에 두 진영(DBMS와 MapReduce)이 주장하는 MapReduce의 장단점 요약 - http://bart7449.tistory.com/276 이 분께서 번역을 너무 잘해주셨습니다."></a>학회지 CACM에 두 진영(DBMS와 MapReduce)이 주장하는 MapReduce의 장단점 요약 - <a href="http://bart7449.tistory.com/276" target="_blank" rel="noopener">http://bart7449.tistory.com/276</a> 이 분께서 번역을 너무 잘해주셨습니다.</h4><h4 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h4><ol>
+<li>단순하고 사용이 편리<ul>
+<li>Map함수와 Reduce함수 라는 두 개의 함수를 구현함으로써 병렬 처리가 가능하게 한다는 것.</li>
+<li>데이터의 분산 배치와 실행은 스케쥴러가 담당함으로써 사용자는 분산 시스템의 물리적 구조를 알지 못해도 데이터 병렬화 방식을 통해 분산 처리를 매우 쉽게 할 수 있다는 이점</li>
+</ul>
+</li>
+<li>유연성<ul>
+<li>특정화된 데이터 모델이나 스키마 정의, 질의 언어에 의존적이지 않다.</li>
+<li>범용의 프로그래밍 언어를 이용하여 데이터를 어떻게 처리할지 기술</li>
+<li>관계형 데이터 모델로는 표현되기 어려운 다르거나, 비 정형적인 데이터 모델들도 지원</li>
+</ul>
+</li>
+<li>저장 구조와의 독립성<ul>
+<li>병렬 데이터 처리를 위한 시스템으로 하부 저장구조와 독립적</li>
+<li>기본적으로 HDFS와 같은 분산 파일 시스템 상의 파일을 입출력으로 하지만, 그외 일반 파일 시스템이나 DBMS등 다른 저장 구조를 하부에 두는 것도 가능</li>
+</ul>
+</li>
+<li>내고장성<ul>
+<li>분산 파일 시스템의 replication에 기반한 데이터의 내구성 지원과 함계 Mapper나 Reducer의 태스크 장애 시 각 태스크의 재수행을 통해 장애로부터의 내고장성을 확보한다.</li>
+<li>Map과 Reduce 작업이 처음부터 다시 실행되는 것을 막기 위해 Map의 결과는 Mapper가 수행된 노드의 로컬 디스크에 기록</li>
+</ul>
+</li>
+<li>높은 확장성<ul>
+<li>처리해야 할 데이터 크기가 커지면 그 만큼 높은 작업처리량을 가지도록 시스템을 개선</li>
+<li>기존의 방식은 HW성능의 개선을 통해 처리량을 향상 시키는 scale-up방식</li>
+<li>MapReduce는 저가의 범용 PC들을 추가로 할당함으로써 확장성을 지원하는 scale-out 방식의 구현을 용이하게 한다.</li>
+</ul>
+</li>
+</ol>
+<h4 id="단점"><a href="#단점" class="headerlink" title="단점"></a>단점</h4><ol>
+<li>고정된 단일 데이터 흐름<ul>
+<li>이항 연상자를 지원하지 않는다.</li>
+<li>때문에 join은 하나의 MapReduce 작업으로 표현되지 못하고 여러개의 MapReduce 작업을 직렬로 연결해 표현해야 한다.</li>
+<li>Loop는 매 반복때마다 계속 입력을 반복해서 읽어야 하는 등의 I/O 낭비가 심하다.</li>
+<li>즉 MapReduce에서는 DAG(Directed Acyclic Graph) 형태로 자신의 워크플로우를 따로 적의하는 작업은 불가능하며, 복잡한 알고리즘의 구현을 위해서는 여러 번의 MapReduce 작업을 수행해야하는 불편함과 그에 따른 성능 저하가 많다.</li>
+</ul>
+</li>
+<li>스키마, 인덱스, 고차원 언어 등의 미지원<ul>
+<li>기존의 DBMS가 제공하는 스키마나 질의 언어, 인덱스 등을 제공하지 못한다.</li>
+<li>데이터의 무결성의 미비는 결국 프로그램 로직 상에서 무결성을 검증하도록 하게 한다.</li>
+<li>프로그램의 복잡성이 높ㅍ아지며, 하부 데이터 형식의 변경은 프로그램 조직의 변경을 야기하고, 또한 질의 형식의 재활용이나 손쉬운 질의의 작성을 어렵게 한다.</li>
+<li>인덱스는 질의 처리 성능의 향상을 위해 중요하지만, MapReduce는 지원하지 않으며, 데이터의 일괄 처리만을 제공</li>
+</ul>
+</li>
+<li>단순한 스케쥴링<ul>
+<li>런타임 스케쥴링에 기반</li>
+<li>런타임 스케쥴링에서는 태스크를 수행하는 경우는<ul>
+<li>1. 실패한 태스크를 재수행</li>
+<li>2. 아직 수행되지 않는 태스크를 수행</li>
+<li>3. 태스크가 매우 느린 경우</li>
+</ul>
+</li>
+<li>특히 3 의 경우는 임계값을 설정해 두고 일정 시간동안에 임계값을 도달하지 못하는 경우 strggler로 판정하고, 이를 다시 수행시키는데 노드 PC 성능이 상이한 경우 이 과정이 효과적이 못하다.</li>
+<li>한 클러스터에서 여러 MapReduce 작업을 동시에 수행하는 경우에 대해서 효과적인 다중 작업 스케쥴링을 제공하지 못한다.</li>
+</ul>
+</li>
+<li>상대적으로 낮은 성능<ul>
+<li>성능 측정은 대개 단위 시간당 작업 처리량이나 시스템의 효율성 등으로 측정</li>
+<li>MapReduce는 다른 병렬 DBMS에 비해 데이터 적재 시간 이외에 우수한 성능을 보이지 못함</li>
+<li>이러한 늦은 성능은 내고장서 지원을 위해 디스크 I/O를 희생하는 태생적인 이유에 근거<ul>
+<li>파일을 보관하는 분산 ㅍ파일 시스템은 2개의 replication를 추가로 가짐에 따라 디스크 공간과 I/O를 소비</li>
+<li>복제된 이휴 읽기 연산은 각기 다른 복사본에 접근함으로써 병렬화를 꾀할 수는 있지만, 출력의 경우 한 데이터를 가지고 여러 노드에 분산, 기록.</li>
+<li>각 태스크는 수행 결과를 다음 태스크에 전달하기 이전에 태스크를 수행한 노드의 로컬 디스크 또는 분산 파일 시스템 상에 기족하는 과정을 먼저 수행.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>참고 사이트 : <a href="http://bart7449.tistory.com/276" target="_blank" rel="noopener">http://bart7449.tistory.com/276</a> 다음 글은  MapReduce를 사용하여 Hello World인 WordCount를 구현하도록 하겠습니다. 구현 하면서 동작되는 원리를 정리해 볼까 합니다.</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2017/04/14/hadoop-architecture-20170414/" class="b-link-green">Hadoop architecture (20170414)</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2017/04/27/mapreduce-20170427/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="MapReduce (20170427)">
+                        
+                        <span class="card-title">MapReduce (20170427)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">이번 글은 MapReduce에 대해 자세히 공부해볼까합니다. HDFS는 파일을 저장하고, 읽고, 삭제하고, 관리하는 시스템이니 설정 및 서버 환경에 대한 이슈를 제외하면 큰 문제가 되는건 없다고 생각합니다. 하지만,</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-04-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/03/29/hadoop-ec-9d-b4-eb-9e-80-20170329/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Hadoop 이란 (20170329)">
+                        
+                        <span class="card-title">Hadoop 이란 (20170329)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">꼭 알아야해까진 아니여서 간략하게 읽을 수 있도록 정리 하고, 추후 글 추가 및 수정으로 공부한 내용을 올리겠습니다.
+1. Bigdata 란
+서버 한 대로 처리할 수 없는 규모의 데이터
+
+
+아마존의 data scie</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-03-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

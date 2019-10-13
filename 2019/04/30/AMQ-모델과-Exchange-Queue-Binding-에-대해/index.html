@@ -1,0 +1,976 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="AMQ 모델과 Exchange, Queue, Binding 에 대해, Java, Spring, Reactive">
+    <meta name="description" content="* rabbitmq 강점과 유연성은 amqp 스펙에서 나온다.
+rabbitmq를 설명하기 앞서 amqp가 무엇인지 부터 알아보자.
+amqp (advanced message queuing protocol)
+
+메시징 프">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AMQ 모델과 Exchange, Queue, Binding 에 대해 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images\amqp\2-1.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        AMQ 모델과 Exchange, Queue, Binding 에 대해
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Message-Queue/" target="_blank">
+                                <span class="chip bg-color">Message Queue</span>
+                            </a>
+                        
+                            <a href="/tags/AMQP/" target="_blank">
+                                <span class="chip bg-color">AMQP</span>
+                            </a>
+                        
+                            <a href="/tags/RabbitMQ/" target="_blank">
+                                <span class="chip bg-color">RabbitMQ</span>
+                            </a>
+                        
+                            <a href="/tags/Exchange/" target="_blank">
+                                <span class="chip bg-color">Exchange</span>
+                            </a>
+                        
+                            <a href="/tags/binding/" target="_blank">
+                                <span class="chip bg-color">binding</span>
+                            </a>
+                        
+                            <a href="/tags/queue/" target="_blank">
+                                <span class="chip bg-color">queue</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-04-30
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="rabbitmq-강점과-유연성은-amqp-스펙에서-나온다"><a href="#rabbitmq-강점과-유연성은-amqp-스펙에서-나온다" class="headerlink" title="* rabbitmq 강점과 유연성은 amqp 스펙에서 나온다."></a>* rabbitmq 강점과 유연성은 amqp 스펙에서 나온다.</h3><ul>
+<li><p>rabbitmq를 설명하기 앞서 amqp가 무엇인지 부터 알아보자.</p>
+<p>amqp (advanced message queuing protocol)</p>
+<ul>
+<li><p>메시징 프로토콜!!!!</p>
+</li>
+<li><p>amqp 스펙은 여러가지가 있는데 rabbitmq는 0-8, 0-9-1과 밀접하게 관련돼 있다.</p>
+</li>
+<li><p>rabbitmq는 amqp 스펙을 구현했는데, 주요 아케텍쳐와 통신 방식이 핵심이다. </p>
+</li>
+</ul>
+</li>
+</ul>
+<p>AMQP 스펙은 HTTP 프로토콜과 달리 네트워크 프로토콜의 정의뿐 아니라 서버 측 서비스와 동작 방식도 정의한다.</p>
+<p>AMQ 모델은 메시지 라우팅 동작을 정의 하는 메시지 브로커의 <strong>세 가지 추상 컴포넌트</strong>를 다음과 같이 정의한다. </p>
+<p>* 익스체인지 : 메시지 브로커에서 큐에 메시지를 전달하는 컴포넌트</p>
+<p>* 큐 : 메시지를 저장하는 디스크 상이나 메모리 상의 자료구조</p>
+<p>* 바인딩: 익스체인지에 전달된 메시지가 어떤 큐에 저장돼야 하는지 정의하는 컴포넌트 </p>
+<p>여기서 이 3개 이해 못하고 넘어가면 두고두고 이해가 안간다.. </p>
+<p>꼭 이해하고 넘어가자.</p>
+<p><img src="/images\amqp\2-1.png" alt=""></p>
+<ol>
+<li>Producer가 exchange에게 메세지를 publish한다. (우체국으로 편지를 보내는거와 같다)</li>
+<li><p>exchange는 binding이라는 규칙을 사용해 메세지의 복사본을 Queue에 배포한다.<br>-&gt; (원문) Exchanges then distribute message copies to queues using rules called bindings.<br>-&gt; 실제 메시지를 큐에 넣는 대신 메시지에 대한 참조가 queue에 추가 된다. 메시지를 전달할 준비가 되면 큐는 이 참조를 사용해서 클라이언트에 전송한다. 메시지가 여러 목적지에 발행될 때, 참조만 저장해서 메모리를 적게 사용한다.  </p>
+</li>
+<li><p>broker는 subscribe하고 있는 consumer에게 메시지를 전달하거나<br>요청시 queue에서 메시지를 fetch하거나 pull한다</p>
+</li>
+</ol>
+<h4 id="–-Exchange-–"><a href="#–-Exchange-–" class="headerlink" title="-– Exchange -–"></a>-– Exchange -–</h4><p>- amqp 모델이 정의하는 세 컴포넌트 중 하나. </p>
+<p>- rabbitmq로 전송한 메시지를 수신하고 메시지를 보낼 위치를 결정한다.</p>
+<p>- 발행한 메시지가 처음 도착하는 지점, 메시지가 목적지에 도달할 수 있도록 라우팅 규칙 적용 담당.</p>
+<p>- 다양한 라우팅 규칙이 존재함(Direct exchange, Fanout exchange, Topic exchange, Headers exchange)</p>
+<h4 id="–Queue-—"><a href="#–Queue-—" class="headerlink" title="-–Queue —"></a>-–Queue —</h4><p>- AMQP 스펙에 따라 큐 설정이 immutable 함.(선언 후 지정한 설정 변경 불가, 설정 변경시 삭제 후 다시 만들어야 함)</p>
+<p>- 수신한 메시지를 저장하는 역할을 한다. 메시지에 수행하는 작업을 정의하는 설정정보가 있다. </p>
+<p>queue 동작을 결정하는 다양한 설정이 존재 한다.</p>
+<ul>
+<li>자동 삭제 큐<br>-&gt; comsumer와 연결을 맺고 메시지를 전달한 후 연결을 끓으면 큐 제거.</li>
+<li>큐 독점 설정<br>-&gt; 설정하지 않으면 다수 consumer 가 큐를 구독 할 수 있음.<br>-&gt; 활성화 시 소비자가 연결 해제된 후 큐가 자동으로 제거 됨.<br>-&gt; 선언한 연결과 채널에서만 사용 할 수 있다. </li>
+<li>자동 메시지 만료<br>-&gt; 일정 기간 동안 사용하지 않은 큐를 삭제 할 수 있는 기능<br>-&gt; 만료될 떄 즉시 제거되는것을 보장안함.</li>
+<li>대기 메시지 수 제한<br>-&gt; 3.1.0부터 메시지 최대 크기를 설정 할 수 있음.<br>-&gt; 최대 크기에 도달 하면 새로운 메시지가 추가 될 때 가장 먼저 받은 메시지를 삭제한다.</li>
+<li>오래된 메시지 큐에서 제거<br>-&gt; 메시지를 오랫동안 소비 않을떄 자동으로 삭제하는 기능</li>
+</ul>
+<p>queue 볼때 그냥 FIFO 아니야 하고 쉽게 봤는데 RabbitMq에서 쓰이는 queue는 진짜 한도 끝도 없다.</p>
+<p>일단 개념 부터 Message Orderingm, Mirrored and Distributed Queues, Priorities, </p>
+<p>CPU Utilisation and Parallelism Considerations  이런것도 있고 여기서 파생되는 문서가 너무 많다… </p>
+<p>Priorities만 하더라도 AMQP 0-9-1 사양과 달리 RabbitMQ 대기열은 기본적으로 우선 순위를 지원하지 않는다. </p>
+<p>얼랭 프로세스에 의해 1~10까지만 사용한다고 추천된다. </p>
+<p>If priority queues are desired, we recommend using between 1 and 10. Currently using more priorities will consume more resources (Erlang processes). </p>
+<p>이런게 한두가지가 아니라 필요하면 그때 찾아보고 개념만 이해하는게 좋을거 같다.</p>
+<h4 id="–-Binding-—"><a href="#–-Binding-—" class="headerlink" title="-– Binding —"></a>-– Binding —</h4><p>- amqp 모델은 바인딩을 사용해서 큐와 익스체인지 관계를 정의한다. </p>
+<p>- exchange와 queue간의 가상연결로 메시지가 익스체인지에서 큐로 이동할 수 있도록 하는 역할  </p>
+<p>- Binding과Binding key는 익스체인지가 <strong>어떤 큐에</strong> 메시지를 전달해야 하는지를 의미한다.</p>
+<p>- 익스체인지에 메시지를 발행할 때 애플리케이션은 라우팅 키 속성을 사용한다. </p>
+<p>요약 ::::: </p>
+<pre><code>     1. 애플리케이션이 메시지를 익스체인지에게 발행할때 routing-key 속성을 사용한다. 
+
+     2. exchange가 메시지를 큐로 전달하기 위해 메시지의routing-key를 binding 키에 맞춰서 평가한다.
+
+     3. binding 키는 큐를 익스체인지에 연결하고 , 라우팅키를 평가하는 기준이다.  
+</code></pre><p>출처 :<br><a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html" target="_blank" rel="noopener">https://www.rabbitmq.com/tutorials/amqp-concepts.html</a></p>
+<p><a href="https://www.rabbitmq.com/amqp-0-9-1-reference.html" target="_blank" rel="noopener">https://www.rabbitmq.com/amqp-0-9-1-reference.html</a></p>
+<p><a href="https://www.rabbitmq.com/queues.html" target="_blank" rel="noopener">https://www.rabbitmq.com/queues.html</a></p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/04/30/AMQ-모델과-Exchange-Queue-Binding-에-대해/" class="b-link-green">AMQ 모델과 Exchange, Queue, Binding 에 대해</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <div class=" col s12 m6 l12" data-aos="zoom-in-up">
+                                        <div class="card frind-card2">
+                                            <div class="frind-ship">
+                                                <div class="title">
+                                                    <img src="http://devahea.github.io/friends/image/최경운.jpg" alt="img">
+                                                    <div style="margin-left: 20px;">
+                                                        <h1 class="friend-name" style="font-size: 1.5rem;     margin: 15px 0 22px -5px;">최경운</h1>
+                                                        <p>모르는게 많은 개발자입니다. <br>현재 API 서버 개발을 맡고 있습니다. </p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/04/30/rabbitmq-exchange-라우팅-패턴/">
+                    <div class="card-image">
+                        
+                        <img src="/images\amqp\3-1.png" class="responsive-img" alt="rabbitmq exchange 라우팅 패턴">
+                        
+                        <span class="card-title">rabbitmq exchange 라우팅 패턴</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Exchange 라우팅 패턴
+RabbitMQ 최대 강점은 애플리케이션이 제공한 라우팅 정보를 기반으로 서로 다른 큐로 유연하게 라우팅 가능
+
+RabbitMQ의 4가지 기본 유형의 익스체인지와 유형을 알아본다.
+
+Di</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            최경운
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Message-Queue/" target="_blank">
+                        <span class="chip bg-color">Message Queue</span>
+                    </a>
+                    
+                    <a href="/tags/AMQP/" target="_blank">
+                        <span class="chip bg-color">AMQP</span>
+                    </a>
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                    <a href="/tags/Exchange/" target="_blank">
+                        <span class="chip bg-color">Exchange</span>
+                    </a>
+                    
+                    <a href="/tags/Routing/" target="_blank">
+                        <span class="chip bg-color">Routing</span>
+                    </a>
+                    
+                    <a href="/tags/patten/" target="_blank">
+                        <span class="chip bg-color">patten</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/30/5G-초연결시대에-웹-HTTP의-대안은-QUIC/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="5G 초연결시대에 웹 HTTP의 대안은 QUIC?">
+                        
+                        <span class="card-title">5G 초연결시대에 웹 HTTP의 대안은 QUIC?</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">QUIC 소개QUIC (Quick UDP Internet Connection)구글에서 QUIC라는 프로토콜 설계하였고 2013년 6월 공개 했다.
+국제 인터넷 표준화 기구 (IETF)에 QUIC 프로토콜 표준화를 제</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/QUIC/" target="_blank">
+                        <span class="chip bg-color">QUIC</span>
+                    </a>
+                    
+                    <a href="/tags/HTTP-3/" target="_blank">
+                        <span class="chip bg-color">HTTP/3</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

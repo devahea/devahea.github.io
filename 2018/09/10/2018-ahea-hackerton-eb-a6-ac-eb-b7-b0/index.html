@@ -1,0 +1,925 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="[2018 해커톤] ahea 해커톤 누리카베 리뷰, Java, Spring, Reactive">
+    <meta name="description" content="올해 2018 아해 해커톤은 누리카베라는 게임을 해커톤으로 진행 하기로 했다.
+누리카베에 대한 게임의 설명은 다음 사이트에 잘 나와있다.
+https://ko.puzzle-nurikabe.com/
+누리카베를 위 사이트">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>[2018 해커톤] ahea 해커톤 누리카베 리뷰 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        [2018 해커톤] ahea 해커톤 누리카베 리뷰
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/해커톤/" class="post-category" target="_blank">
+                                해커톤
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-09-10
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>올해 2018 아해 해커톤은 누리카베라는 게임을 해커톤으로 진행 하기로 했다.</p>
+<p>누리카베에 대한 게임의 설명은 다음 사이트에 잘 나와있다.</p>
+<p><a href="https://ko.puzzle-nurikabe.com/" target="_blank" rel="noopener">https://ko.puzzle-nurikabe.com/</a></p>
+<p>누리카베를 위 사이트에서 크롤링하고 이미지를 OCR로 변환한다음 Map을 DB에 Insert 하는 서버.</p>
+<p>서버에서 데이터를 받아와서 문제를 푼 사용자에게 Ranking을 매기고 계산하는 Front.</p>
+<p>또 인원을 나누어 팀끼리 퍼즐을 풀어내는 Client까지 계획했다.</p>
+<p>예상되는 시스템 구성은 다음과 같은데</p>
+<p><img src="https://ahea.files.wordpress.com/2018/09/1.png" alt="1"></p>
+<p>팀 공통 주제 중 내가 맡은 건 크롤러가 가져온 데이터를 파싱해서 db에 insert 하는 부분이었는데</p>
+<p>2가지 방법을 생각했다.</p>
+<p>1)</p>
+<ol>
+<li><p>div값 좌표를 크롤링</p>
+</li>
+<li><p>크롤링 된걸 데이터화</p>
+</li>
+<li><p>데이터 insert</p>
+</li>
+</ol>
+<p>2)</p>
+<ol>
+<li><p>크롤링으로 이미지 캡쳐</p>
+</li>
+<li><p>ocr - 크롤링 된걸 데이터 화</p>
+</li>
+<li><p>데이터 insert</p>
+</li>
+</ol>
+<p>2번의 경우는 이미지를 캡쳐하는 라이브러리, OCR 라이브러리 두가지의 사용법을 알아야 해서</p>
+<p>빠르게 진행하는 해커톤에 맞지 않아 30분만 살펴보고 쉽지 않을것 같으면 바로 1번으로 바꾸기로 했다.</p>
+<p>쉽게 되지 않을것 같아서 2번으로 진행했고 총 3명의 팀원이서</p>
+<p>각각 jhipster로 환경구축, 데이터 크롤링, 크롤링 한것을 db형식에 맞게 파싱.</p>
+<p>프론트와 독립적으로 진행되기 때문에 디비 구조 부터 잡았어야 했는데 구조는 다음과 같이 잡았다.</p>
+<p>숫자가 있는값은 숫자로 될 수 있도록 했고,</p>
+<p>1~XX 까지는 쓰일 수 있는 숫자여서, 빈칸 -1, ㅁ-&gt; 0 , 숫자 -&gt; 숫자 이런식으로 설계했다.</p>
+<p><img src="https://ahea.files.wordpress.com/2018/09/2.png" alt="2"></p>
+<p>크롤링 개발과 독립적으로 파싱하는것을 만들기 위해 누리카베 사이트를 살펴봤는데</p>
+<p>소스코드를 보면 다음과 같이 되어있다.</p>
+<p><img src="https://ahea.files.wordpress.com/2018/09/3.png" alt="3"></p>
+<p>div 클래스 이름으로 각각 어떤 상태인지 구분 할 수 있었다.</p>
+<pre><code>\* cell selectable cell-off - 흰벽
+
+\* nurikabe-task-cell wall  - 점선벽
+
+\* nurikabe-task-cell       - 숫자
+</code></pre><p>파싱을 할때 html -xml 파서를 이용했어야 했는데 몰라서 String을 split 로 짤라서 구분했다.</p>
+<p>줄바꿈은 top의 px가 달라지면 줄바꿈으로 인식하도록 했다.</p>
+<p>그런데 문제가 된게 빈칸은 똑같은 줄에 있더라도 px가 달랐는데 이는 누리카베 경계가 되는 선</p>
+<p>때문에 같은 줄에 있어도 px 차이가 났다.</p>
+<p>해결책은 top 픽셀값이 +-2 가 넘어가면 줄바꿈으로 인식되게 수정했다.</p>
+<p>파싱 개발을 다 마치고 누리카베 문제 풀이에 들어갔는데 팀원들과 회의를 하는데 의견은 대충</p>
+<p>나 : 패턴으로 검색</p>
+<p>호훈님 : 전체를 검색</p>
+<p>PM 의견 : 패턴으로 하는 팀은 있고, 어떤 문제는 전체를 대입해 봐야 하니 전체 패턴을 찾고 소거법으로 제거 해 가자.</p>
+<p>결론은</p>
+<ol>
+<li><p>맵에서 좌표, 숫자를 추출해내자.</p>
+</li>
+<li><p>숫자로 표시된 타일의 갈 수 있는 모든 경우의 수 추출.</p>
+</li>
+<li><p>2번에서 구한 경우의 수가 1번에 경로에 있으면 삭제</p>
+</li>
+<li><p>3번에서 나온 경우의 수와 다른 숫자의 경우의 수의 교집합을 찾음.</p>
+</li>
+<li><p>나온 교집합들에 게임룰을 적용해서 안되는 패턴을 제거한다.</p>
+</li>
+</ol>
+<p>이렇게 나온 순서도를 서로 팀원들과 나누어 진행했는데 이런 문제는 많이 풀어보지 못해서 생각보다 시간이 엄청 오래 걸렸다.</p>
+<p>먼가 항상 기술 공부만 해서 이렇게 어떤 자료구조를 쓰고 어떻게 값을 수정하고 이런걸 많이 안해보니깐 퍼포먼스도 안나오고 그래도 4년차인데 내가 신입때 생각했던 4년차의 퍼포먼스가 나오지 않는것 같다. 문제는 알고 있는데 고치지 않으면 발전이 없는데 발전없이 살고 있었던것 같다. 어디가서 개발자라고 하기에 창피한 실력인것 같다. 그래도 더 기간이 지나기 전에 알아차릴수 있어서 다행이다.</p>
+<p>—-  마지막으로 해커톤을 참석하신 분들의 후기  —-</p>
+<p>종인 - 1박2일이라 컨디션 조절을 좀 신경안써서 좋았다. 2박3일이면 쪽잠 자고 해야겟다 생각… 이번밤만 지나면 끝이니깐.. 좀 더 열심히 했다. 다른걸로 시간을 안뺏겨서 좋았다. 환경설정 등등</p>
+<p>먹을것도 먹었고 투덜거림이 없음. 다른 사람과 커뮤니케이션 못한게 아쉽. 알고리즘.. 힘들었다 재미있고 머리 안터지는걸로…. 알고리즘 준비 안했으면 무의미 했다.</p>
+<p>호훈님 - 괜찮았다… 팀안에서 이해 수준이 비슷해서 좋았다. 진행이 수월했음. 처음에 목적이 알고리즘이 었는데.. 다른거에 시간을 뺏겨서 아쉽다. 결론적으로 안써먹다. 주제에만 집중하면 좋았을것.</p>
+<p>근열님 - 행사가 처음이라 새롭기도 하고 배울점이 많았음. 해보지 않았던걸 해서 재미있었는데 이해 못하는것도 많았음. 평균적인 실력이 부족한거같아 힘들었다. 전체적으로 빨리 진행해야 하는데 못해서 힘듬. 개선 할 점은 개인적인 역량이 조율이 되서 행사진행 할때 원활 했으면 좋겟다.</p>
+<p>홍신님 - 안해봤던것들 jpa같은 것들 사용법을 경험해본것이 좋았다. 필요한 기술 스택을 몰라 진행하는데 쉽지 않았다. 일주일 전에 예비 모임을 가졌으면 좋겟다. 누리카베에 대한 기획이나 처음에 세팅, 준비해야할것들 시간을 줄이고 실제로 계획을 더 많이 세웠으면 좋을것 같다. 준비없이 해서 민폐인것 같다.</p>
+<p>문겸님 - 새로운 기술 몰랐던거 접해볼수 있어서 좋았음. 새로운 걸 시도 할때 주목적이 알고리즘이었는데 환경설정에 오래 걸려서 정작 알고리즘 구현하는데 힘들었음. 개선할점은 필요한 부분 같은 걸 사전모임으로 최소 기술 스펙정도는 보고 올 수 있을정도로 하면 좋을것 같다.</p>
+<p>민수님 - 팀원 세분이 새로운걸 도전했고, 피드백이 좋아서 만족. 팀원이 접해본것만 해도 만족. 시간적인 부분을 보면 새로운 기술이 아니라 서로 잘 아는걸로 프로토 타입을 만들었으면 빨랐을것 같다. 스프링5 쓰면 머 하지도 못했을것. 초점을 잘 캐치 하지 못한것 같다. 이해 못하거나 커뮤니케이션 부분들에 있어서 수정하는데 시간이 오래 걸렸다. 작년에는 멀 해야할지 머리속에 그려졌는데, 구현 방식을 몰랐다. 이번에는 뭘 해야할지 감이 없었다. 이번이 어려웠던 시간 이었음. 목표를 정하고 각자 할 수 있는 기술로 하면 달라지지 않았을까…</p>
+<p>경운 - 알고리즘이라 힘들었음. 같이 일하는 사람들 실력을 파악할수 있어서 좋았음.</p>
+<p>성현 - 난 완성 다함. 못써봐서 아쉬움. 행사를 유지 하고 있는것만 으로 좋음. 협업을 하지 않음. 다 자서 나도 잤음. 완성을 못하고…. 아쉬움. 다들 뭐 했나….. 어떻게 소개 시켜줄지 걱정스러움. 내년부터는… 침대있는곳 안되겟다… 마음가짐도 중요할것 같다. 비싼 개발자들 일 안해서 고민중…. pm의 욕심이 과하지 않았나… 개인적 목표는 치고박고 싸우고 안해봤던거 하고 다른사람들 보고 배우고 팔로업도 해주고… 팀끼리 잘된것 같다. si개발자들 안해본것 해봐서 좋았음.</p>
+<p>스터디 한 걸 많이 집어 넣지 못함. 팀끼리 경계선을 볼 수 있어서 좋았다. 개인적으로 만족스럽지 않음. 배워가는 느낌이 있엇는데… 그런게 없었음.</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/09/10/2018-ahea-hackerton-eb-a6-ac-eb-b7-b0/" class="b-link-green">[2018 해커톤] ahea 해커톤 누리카베 리뷰</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/09/20/ahea-hackday2018-viewer-ed-8c-80-eb-a6-ac-eb-b7-b0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Ahea HackDay2018 - Viewer 팀 리뷰">
+                        
+                        <span class="card-title">Ahea HackDay2018 - Viewer 팀 리뷰</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">https://github.com/devahea/2018hackerton-viewer
+목표화면에 nurikabe를 풀고 있는 진행상황을 출력해준다 팀이 2팀이기 때문에 2개 이상의 퍼즐을 실시간으로 보여줘야 한다
+설</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-09-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/09/10/ec-84-a0-ed-83-9d-ec-9d-b4-ec-95-84-eb-8b-8c-ed-95-84-ec-88-98-tdd/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="선택이 아닌 필수 TDD">
+                        
+                        <span class="card-title">선택이 아닌 필수 TDD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Test-First DevelopmentTDD = TFD(Test-First Development) + Refactoring
+TDD는 TFD와 리팩토링이 합쳐진 개발 방법론으로 소프트웨어 엔지니어인 켄트 벡(Kent</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-09-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

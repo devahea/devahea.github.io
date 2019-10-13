@@ -1,0 +1,838 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Category: WEB, Java, Spring, Reactive">
+    <meta name="description" content="Category: WEB | Ahea Team Study Blog">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Category: WEB | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+<div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                    Ahea Team Study Blog
+                
+            </div>
+
+            <div class="description center-align">
+                
+                    Java 개발자들의 정보 공유
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// 每天切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+</script>
+    </div>
+</div>
+
+<main class="content">
+
+    
+
+<div id="category-cloud" class="container chip-container">
+    <div class="card">
+        <div class="card-content">
+            <div class="tag-title center-align">
+                <i class="fa fa-bookmark"></i>&nbsp;&nbsp;Post Categories
+            </div>
+            <div class="tag-chips">
+                
+                
+                
+                <a href="/categories/공개스터디/" title="공개스터디: 6">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F9EBEA;">공개스터디
+                        <span class="tag-length">6</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/공개스터디/java/" title="java: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F5EEF8;">java
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/spring-batch/" title="spring batch: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D5F5E3;">spring batch
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/미분류/" title="미분류: 38">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #E8F8F5;">미분류
+                        <span class="tag-length">38</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/해커톤/" title="해커톤: 5">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #FEF9E7;">해커톤
+                        <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/공개스터디/java/spring/" title="spring: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F8F9F9;">spring
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/공지/" title="공지: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #82E0AA;">공지
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/공개스터디/java/reactive/" title="reactive: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D7BDE2;">reactive
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Programming/" title="Programming: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #A3E4D7;">Programming
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/infra/" title="infra: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #85C1E9;">infra
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/WEB/" title="WEB: 6">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active " style="background-color: #F8C471;">WEB
+                        <span class="tag-length">6</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/스터디-모임/" title="스터디 모임: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F9E79F;">스터디 모임
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/공개스터디/java/spring/spring-batch/" title="spring batch: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D5F5E3;">spring batch
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/과거-스터디-자료/" title="과거 스터디 자료: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F8F9F9;">과거 스터디 자료
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/java/" title="java: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #A3E4D7;">java
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/spring/" title="spring: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D7BDE2;">spring
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/공개스터디/java/reactive/spring/" title="spring: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D7BDE2;">spring
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/maven/" title="maven: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #FEF9E7;">maven
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/미분류/공개스터디/" title="공개스터디: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #FEF9E7;">공개스터디
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/미분류/spring/" title="spring: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D7BDE2;">spring
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/agile/" title="agile: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F5EEF8;">agile
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/미분류/lego/" title="lego: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F9E79F;">lego
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/reactive/" title="reactive: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F9E79F;">reactive
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/news/" title="news: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D7BDE2;">news
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/05/01/Selenium-VS-Puppeteer-VS-HTTP-Client/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="Selenium VS Puppeteer VS HTTP Client">
+                            
+                            <span class="card-title">Selenium VS Puppeteer VS HTTP Client</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Selenium VS Puppeteer VS HTTP Client 대해 알아볼 예정 입니다.각각의 특징은 무엇인지 알아 보겠습니다.
+Selenium
+Selenium이란 Web Browser 자동화를 위해 태어 났으며
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/HeadlessBrowser/" target="_blank">
+                            <span class="chip bg-color">HeadlessBrowser</span>
+                        </a>
+                        
+                        <a href="/tags/Chrome/" target="_blank">
+                            <span class="chip bg-color">Chrome</span>
+                        </a>
+                        
+                        <a href="/tags/headless/" target="_blank">
+                            <span class="chip bg-color">headless</span>
+                        </a>
+                        
+                        <a href="/tags/javascript/" target="_blank">
+                            <span class="chip bg-color">javascript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/05/01/WebDriver-VS-DevTools-Protocol/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="WebDriver VS DevTools Protocol">
+                            
+                            <span class="card-title">WebDriver VS DevTools Protocol</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                WebDriverWeb Browser 자동화를 위해 태어 났으며, 보통 Cross Browser Test와 UI Test에 활용 합니다. WebDriver는 W3에서 정의한 WebDriver 스펙에 맞춰 각 브라우저
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/HeadlessBrowser/" target="_blank">
+                            <span class="chip bg-color">HeadlessBrowser</span>
+                        </a>
+                        
+                        <a href="/tags/Chrome/" target="_blank">
+                            <span class="chip bg-color">Chrome</span>
+                        </a>
+                        
+                        <a href="/tags/headless/" target="_blank">
+                            <span class="chip bg-color">headless</span>
+                        </a>
+                        
+                        <a href="/tags/javascript/" target="_blank">
+                            <span class="chip bg-color">javascript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/04/30/5G-초연결시대에-웹-HTTP의-대안은-QUIC/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="5G 초연결시대에 웹 HTTP의 대안은 QUIC?">
+                            
+                            <span class="card-title">5G 초연결시대에 웹 HTTP의 대안은 QUIC?</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                QUIC 소개QUIC (Quick UDP Internet Connection)구글에서 QUIC라는 프로토콜 설계하였고 2013년 6월 공개 했다.
+국제 인터넷 표준화 기구 (IETF)에 QUIC 프로토콜 표준화를 제
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/QUIC/" target="_blank">
+                            <span class="chip bg-color">QUIC</span>
+                        </a>
+                        
+                        <a href="/tags/HTTP-3/" target="_blank">
+                            <span class="chip bg-color">HTTP/3</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/04/22/amqp-프로토콜-원리/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://paolopatierno.files.wordpress.com/2018/01/header-e1514835848967.png?w=665&amp;h=300" class="responsive-img" alt="MQ와 amqp 프로토콜 원리에 대하여">
+                            
+                            <span class="card-title">MQ와 amqp 프로토콜 원리에 대하여</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                프로젝트를 하면서 rabbitmq, activemq 등 뒤에 MQ라고 붙은 단어들을 많이 들었다.
+메시지 큐를 알아보기 전에 어디에서 쓰이는지 먼저 알아보자.
+일단 카카오 메시징 서버 직군에서 지원 자격중에 MQ에 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Message-Queue/" target="_blank">
+                            <span class="chip bg-color">Message Queue</span>
+                        </a>
+                        
+                        <a href="/tags/AMQP/" target="_blank">
+                            <span class="chip bg-color">AMQP</span>
+                        </a>
+                        
+                        <a href="/tags/RabbitMQ/" target="_blank">
+                            <span class="chip bg-color">RabbitMQ</span>
+                        </a>
+                        
+                        <a href="/tags/MQ/" target="_blank">
+                            <span class="chip bg-color">MQ</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/04/13/Headless-Browser란/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="Headless Browser란?">
+                            
+                            <span class="card-title">Headless Browser란?</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Headless Browser란?위키피디아에서 발췌 했습니다.
+
+A headless browser is a web browser without a graphical user interface.
+
+말 그대로 GUI환경
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/HeadlessBrowser/" target="_blank">
+                            <span class="chip bg-color">HeadlessBrowser</span>
+                        </a>
+                        
+                        <a href="/tags/Chrome/" target="_blank">
+                            <span class="chip bg-color">Chrome</span>
+                        </a>
+                        
+                        <a href="/tags/headless/" target="_blank">
+                            <span class="chip bg-color">headless</span>
+                        </a>
+                        
+                        <a href="/tags/javascript/" target="_blank">
+                            <span class="chip bg-color">javascript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/04/13/너는-사람이냐-봇이냐-Headless-Browser/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="너는 사람이냐? 봇이냐?(Headless Browser)">
+                            
+                            <span class="card-title">너는 사람이냐? 봇이냐?(Headless Browser)</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Web을 통해 다양한 정보를 소비하며 쉽게 접근 할 수 있는 환경에 살고있습니다.이 다양한 정보를 가지고 애플리케이션을 만들어 사용하고 싶은데 Open API를 제공하지 않아 곤란해 하는 경우가 많고 제대로 제공하지
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/HeadlessBrowser/" target="_blank">
+                            <span class="chip bg-color">HeadlessBrowser</span>
+                        </a>
+                        
+                        <a href="/tags/Chrome/" target="_blank">
+                            <span class="chip bg-color">Chrome</span>
+                        </a>
+                        
+                        <a href="/tags/headless/" target="_blank">
+                            <span class="chip bg-color">headless</span>
+                        </a>
+                        
+                        <a href="/tags/javascript/" target="_blank">
+                            <span class="chip bg-color">javascript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

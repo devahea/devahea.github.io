@@ -1,0 +1,980 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="How Tomcat load spring web framework #1 (Root Applicaion Context의 생성), Java, Spring, Reactive">
+    <meta name="description" content="How Tomcat load spring web frameworkenvironment
+Base project
+Eclipse -&amp;gt; File -&amp;gt; New -&amp;gt; Other -&amp;gt; Spring Getti">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>How Tomcat load spring web framework #1 (Root Applicaion Context의 생성) | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        How Tomcat load spring web framework #1 (Root Applicaion Context의 생성)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                            <a href="/categories/미분류/spring/" class="post-category" target="_blank">
+                                spring
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2017-06-23
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="How-Tomcat-load-spring-web-framework"><a href="#How-Tomcat-load-spring-web-framework" class="headerlink" title="How Tomcat load spring web framework"></a>How Tomcat load spring web framework</h1><h2 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h2><ul>
+<li>Base project</li>
+<li>Eclipse -&gt; File -&gt; New -&gt; Other -&gt; Spring Getting Started Content -&gt; spring-mvc-showcase</li>
+<li>Spring framework version : 4.2.2.RELEASE</li>
+<li>Web Application Server : Apache Tomcat 8.0.36</li>
+</ul>
+<h2 id="Spring-web-framework-deployment"><a href="#Spring-web-framework-deployment" class="headerlink" title="Spring web framework deployment"></a>Spring web framework deployment</h2><p>Web application에서 artifact를 servlet container에 올리는 과정을 deployment라고 표현한다. [code lang=text] 11-Apr-2017 02:49:11.284 정보 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory /Users/thdghgns/Documents/workspace/web-server/apache-tomcat-8.0.43/webapps/manager 11-Apr-2017 02:49:11.310 정보 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory /Users/thdghgns/Documents/workspace/web-server/apache-tomcat-8.0.43/webapps/manager has finished in 25 ms [/code]</p>
+<h3 id="Deployment-Descriptor-web-xml"><a href="#Deployment-Descriptor-web-xml" class="headerlink" title="Deployment Descriptor (web.xml)"></a>Deployment Descriptor (web.xml)</h3><p>container/engine으로 배포되는 artifact에 대한 설정파일 Java Platform에서는 component, module, 또는 application이 어떻게 배포되어야 하는지에 대해 설명한다. deployment tool에게 module 또는 application이 특정한 container option, security setting으로 deploy할 것을 알려주고, 특정 설정 요구사항에 대해 설명해준다. XML은 deployment descriptor 파일 작성을 위해 사용된 문법이다. Web application에서 deployment descriptor는 <strong>web.xml</strong>이라고 불리며 web application root의 WEB-INF 디렉토리 하위에 위치해야 한다(<strong>$root/WEB-INF/web.xml</strong>) . Java EE application에서 deployment descriptor는 이름이 application.xml이어야 하며 application .ear file의 최상위 레벨의 META-INF 디렉토리 하위에 존재해야 한다. 참고자료 : 1. <a href="https://en.wikipedia.org/wiki/Deployment_descriptor" title="Wikipedia DD" target="_blank" rel="noopener">Wikipia</a> 2. <a href="https://docs.oracle.com/cd/E14571_01/web.1111/e13712/web_xml.htm#WBAPP502" title="Oracle weblogic" target="_blank" rel="noopener">Oracle Weblogic</a> 3. <a href="https://cloud.google.com/appengine/docs/standard/java/config/webxml" title="Google appengine" target="_blank" rel="noopener">Google Appengine</a> 4. <a href="http://myblog.opendocs.co.kr/archives/436" title="Opendocs" target="_blank" rel="noopener">Opendocs</a></p>
+<h3 id="How-Tomcat-Load-Spring-sketch"><a href="#How-Tomcat-Load-Spring-sketch" class="headerlink" title="How Tomcat Load Spring (sketch)"></a>How Tomcat Load Spring (sketch)</h3><p><img src="https://s3-ap-northeast-1.amazonaws.com/thdghgns/HowTomcatLoadSpring.svg" alt="How Tomcat Load Spring (detail)"> 링크 : <a href="https://s3-ap-northeast-1.amazonaws.com/thdghgns/HowTomcatLoadSpring.svg" target="_blank" rel="noopener">How Tomcat Load Spring (sketch)</a></p>
+<h3 id="ContextLoaderListener"><a href="#ContextLoaderListener" class="headerlink" title="ContextLoaderListener"></a>ContextLoaderListener</h3><h4 id="역할"><a href="#역할" class="headerlink" title="역할"></a>역할</h4><ol>
+<li>Spring의 root WebApplicationContext의 시작/종료를 위한 Bootstrap listener.</li>
+<li><code>ContextCleanupListener</code>와 같이 간단하게 ContextLoader에게 위임한다.</li>
+</ol>
+<p><code>ServletContextListener</code>를 구현함으로써 servlet context에 대해 발생하는 이벤트를 받을 수 있게된다.</p>
+<ul>
+<li>생성(초기화) : <code>public void contextInitialized(ServletContextEvent sce)</code>;</li>
+<li>삭제 : <code>public void contextDestroyed(ServletContextEvent sce)</code></li>
+</ul>
+<h4 id="javadoc"><a href="#javadoc" class="headerlink" title="javadoc"></a>javadoc</h4><h5 id="org-springframework-web-context-ContextLoaderListener"><a href="#org-springframework-web-context-ContextLoaderListener" class="headerlink" title="org.springframework.web.context.ContextLoaderListener"></a>org.springframework.web.context.ContextLoaderListener</h5><p>[code lang=java] /*<em> </em> Bootstrap listener to start up and shut down Spring’s root {@link WebApplicationContext}. <em> Simply delegates to {@link ContextLoader} as well as to {@link ContextCleanupListener}. </em> <em> This listener should be registered after {@link org.springframework.web.util.Log4jConfigListener} </em> in {@code web.xml}, if the latter is used. <em> </em> As of Spring 3.1, {@code ContextLoaderListener} supports injecting the root web <em> application context via the {@link #ContextLoaderListener(WebApplicationContext)} </em> constructor, allowing for programmatic configuration in Servlet 3.0+ environments. <em> See {@link org.springframework.web.WebApplicationInitializer} for usage examples. </em> <em> @author Juergen Hoeller </em> @author Chris Beams <em> @since 17.02.2003 </em> @see #setContextInitializers <em> @see org.springframework.web.WebApplicationInitializer </em> @see org.springframework.web.util.Log4jConfigListener */ public class ContextLoaderListener extends ContextLoader implements ServletContextListener { [/code]</p>
+<h5 id="javax-servlet-ServletContextListener"><a href="#javax-servlet-ServletContextListener" class="headerlink" title="javax.servlet.ServletContextListener"></a>javax.servlet.ServletContextListener</h5><p>[code lang=java] /*<em> </em> Implementations of this interface receive notifications about changes to the <em> servlet context of the web application they are part of. To receive </em> notification events, the implementation class must be configured in the <em> deployment descriptor for the web application. </em> <em> @see ServletContextEvent </em> @since v 2.3 */ public interface ServletContextListener extends EventListener { [/code]</p>
+<p>참고 :</p>
+<ul>
+<li>[ContextLoaderListener](<a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/context/ContextLoaderListener.html" target="_blank" rel="noopener">http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/context/ContextLoaderListener.html</a>)</li>
+<li>[ServletContextListener](<a href="https://tomcat.apache.org/tomcat-8.5-doc/servletapi/javax/servlet/ServletContextListener.html" target="_blank" rel="noopener">https://tomcat.apache.org/tomcat-8.5-doc/servletapi/javax/servlet/ServletContextListener.html</a>)</li>
+</ul>
+<h4 id="web-xml-설정"><a href="#web-xml-설정" class="headerlink" title="web.xml 설정"></a>web.xml 설정</h4><p>[code lang=xml] <listener> <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> </listener> [/code]</p>
+<h3 id="ContextLoader"><a href="#ContextLoader" class="headerlink" title="ContextLoader"></a>ContextLoader</h3><h4 id="역할-1"><a href="#역할-1" class="headerlink" title="역할"></a>역할</h4><ol>
+<li>root application context의 실제 초기화 작업을 수행</li>
+<li>web.xml에서 <code>&lt;context-param&gt;</code>을 찾아서 context class type을 구분하여 `contextClass`로 설정.</li>
+<li>web.xml에서 <code>&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</code>을 찾아서 context instance의 값으로 전달<ol>
+<li>허용되는 value<ol>
+<li>commas 또는 spaces로 구분되는 여러개의 파일 경로</li>
+<li>Ant-style의 표현식(eg.”<code>WEB-INF/*Context.xml,WEB-INF/spring*.xml</code>“)</li>
+<li>defualt : “<code>/WEB-INF/applicationContext.xml</code>“</li>
+</ol>
+</li>
+<li>다중 값이 적용되기 때문에 순서에 따라 override가 됨.</li>
+</ol>
+</li>
+</ol>
+<p>참고 : <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/context/ContextLoader.html" target="_blank" rel="noopener">Spring framework javadoc - ContextLoader</a></p>
+<h3 id="How-Tomcat-Load-Spring-detail"><a href="#How-Tomcat-Load-Spring-detail" class="headerlink" title="How Tomcat Load Spring (detail)"></a>How Tomcat Load Spring (detail)</h3><p><img src="https://s3-ap-northeast-1.amazonaws.com/thdghgns/SpringRootWebApplicationContextLoading.svg" alt="How Tomcat Load Spring (detail)"> 링크 : <a href="https://s3-ap-northeast-1.amazonaws.com/thdghgns/SpringRootWebApplicationContextLoading.svg" target="_blank" rel="noopener">How Tomcat Load Spring (detail)</a></p>
+<ol>
+<li>Web Application Server(tomcat)이 DD(web.xml)을 읽어서 Listener(<code>ClassLoaderListener</code>)를 등록</li>
+<li>Web Application Server가 Servlet Context를 생성하면 servlet context 초기화 이벤트(ServletContextEvent)가 발생하고, 이벤트를 <code>ClassLoaderListener</code>가 이벤트를 받아서 <code>contextInitialized()</code>를 실행한다.<ol>
+<li>이때 받은 <code>ServletContextEvent</code>에서 <code>ServletContext</code>를 꺼내고 보면 실제 context는 <code>org.apache.catalina.core.ApplicationContext</code>이다.</li>
+</ol>
+</li>
+<li>현재 <code>context==null</code>이기 떄문에 context를 생성한다.<ol>
+<li>별다른 설정이 없을 경우 <code>XmlWebApplicationContext</code>가 기본.</li>
+</ol>
+</li>
+<li>context가 active가 아니고 root이기 때문에 parent==null이고 parent를 주려고 찾아도 없다.</li>
+<li>ServletContext를 WebApplicationContext의 servlet context로 설정한다.</li>
+<li>에 설정된 contextConfigLocation 설정 파일 위치를 읽어서 <code>StandardServletEnvironment</code>을 생성한다. <code>StandardServletEnvironment</code>는 내부적으로 <code>StandardEnvironment</code>를 확장하고, <code>StandardEnvironment</code>는 내부적으로 <code>AbstractEnvironment</code>를 확장한다.<ol>
+<li>property source를 customize.<ol>
+<li>servletConfigInitParams</li>
+<li>servletContextInitParams</li>
+<li>jndiProperties</li>
+<li>systemProperties</li>
+<li>systemEnvironment</li>
+</ol>
+</li>
+<li>property source를 init(새로 만들고 replace)<ol>
+<li>servletContextInitParams</li>
+</ol>
+</li>
+<li>refresh()<ol>
+<li>refresh 준비<ol>
+<li>active로 변경</li>
+<li>property source를 다시 init</li>
+</ol>
+</li>
+<li>ConfigurableListableBeanFactory 획득. 없으면 생성<ol>
+<li>XmlBeanDefinitionReader<ol>
+<li>environment 설정</li>
+<li>resource loader설정</li>
+<li>entity resolver 설정</li>
+<li>init</li>
+</ol>
+</li>
+<li>reader로 xml resource에서 bean definition을 읽음.</li>
+<li>bean을 읽고</li>
+<li>resource 닫고</li>
+</ol>
+</li>
+<li>postProcessBeanFactory</li>
+<li>invokeBeanFactoryPostProcessors</li>
+<li>registerBeanPostProcessors</li>
+<li>initMessageSource</li>
+<li>initApplicationEvntMulticaster</li>
+<li>onRefresh -&gt; theme 설정</li>
+<li>registerListeners</li>
+<li>finishBeanFactoryInitialization<ol>
+<li>bean 생성</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Filter 등록<ol>
+<li>등록할 때 <code>StandardServletEnvironment</code>를 다시 customize하면서 property source 다시 설정</li>
+</ol>
+</li>
+<li>DispatcherServlet 등록<ol>
+<li>servletContext 생성</li>
+<li>등록할 때 <code>StandardServletEnvironment</code>를 다시 customize하면서 property source 다시 설정</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="ApplicationContext의-특성"><a href="#ApplicationContext의-특성" class="headerlink" title="ApplicationContext의 특성"></a>ApplicationContext의 특성</h2><h3 id="Application-Context-vs-Bean-Factory"><a href="#Application-Context-vs-Bean-Factory" class="headerlink" title="Application Context vs Bean Factory"></a>Application Context vs Bean Factory</h3><h4 id="역할-및-기능"><a href="#역할-및-기능" class="headerlink" title="역할 및 기능"></a>역할 및 기능</h4><p><img src="https://i.stack.imgur.com/TqcgB.jpg" alt=""></p>
+<ul>
+<li>Bean Factory :<ul>
+<li>Bean instantiation/wiring</li>
+</ul>
+</li>
+<li>Application Context :<ul>
+<li>Bean instantiation/wiring</li>
+<li>Automatic BeanPostProcessor registration</li>
+<li>Automatic BeanFactoryPostProcessor registration</li>
+<li>Convenient MessageSource access (for i18n)</li>
+<li>ApplicationEvent publication</li>
+</ul>
+</li>
+</ul>
+<h3 id="Application-Context-Structure"><a href="#Application-Context-Structure" class="headerlink" title="Application Context Structure"></a>Application Context Structure</h3><p><img src="https://slipp.net/wiki/download/attachments/25527577/ApplicationContext_2.jpg?version=1&amp;modificationDate=1453340947000&amp;api=v2" alt="">### Application Context Inheritance<em> Root Web Application Context : <code>ContextLoader</code>가 생성한 Application Context</em> DispatcherServlet Web Application Context : <code>Root Web Application Context</code>를 부모로 하는 child application context&gt; parent에서는 child를 바라보지 못하고, child는 parent를 바라볼 수 있다.&gt; 그래서 parent는 child context에 정의된 bean을 사용할 수 없고, child는 parent에 정의된 bean을 사용한다. 이때 한 parent에 속하는 child는 parent의 bean을 공유한다.<img src="http://www.deroneriksson.com/deroneriksson-resources/tutorials/java/spring/introduction-to-the-spring-framework/configuring-root-web-application-context-in-spring-web-application/application-context-inheritance.png" alt="Application Context Inheritance">&gt; BeanPostProcessors, BeaFactoryPostProcessors는 child에게 상속되지 않는다. 이유는 scope가 <code>per-container</code>이기 때문이다.<a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#beans-factory-extension-bpp" target="_blank" rel="noopener">참고자료 : 7.8.1 Customizing beans using a BeanPostProcessor</a>### Root Web Application Context vs DispatcherServlet Web Application Context일반적으로 Root Applicaion Context에는 Services, DAOs와 같은 bean이 정의되고, DispatcherServlet Web Applicaion Context에는 servlet을 사용하는 Controller bean이 등록된다.<img src="http://www.deroneriksson.com/deroneriksson-resources/tutorials/java/spring/introduction-to-the-spring-framework/configuring-root-web-application-context-in-spring-web-application/root-web-application-context-vs-dispatcherservlet-web-application-context.png" alt="root context vs servlet context"></p>
+<h3 id="Application-Context-Inheritance"><a href="#Application-Context-Inheritance" class="headerlink" title="Application Context Inheritance"></a>Application Context Inheritance</h3><ul>
+<li>Root Web Application Context : <code>ContextLoader</code>가 생성한 Application Context</li>
+<li>DispatcherServlet Web Application Context : Root Web Application Context를 부모로 하는 child application context</li>
+</ul>
+<p>parent에서는 child를 바라보지 못하고, child는 parent를 바라볼 수 있다. 그래서 parent는 child context에 정의된 bean을 사용할 수 없고, child는 parent에 정의된 bean을 사용한다. 이때 한 parent에 속하는 child는 parent의 bean을 공유한다. <img src="http://www.deroneriksson.com/deroneriksson-resources/tutorials/java/spring/introduction-to-the-spring-framework/configuring-root-web-application-context-in-spring-web-application/application-context-inheritance.png" alt=""> BeanPostProcessors, BeaFactoryPostProcessors는 child에게 상속되지 않는다. 이유는 scope가 ‘per-container’이기 때문이다. <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#beans-factory-extension-bpp" target="_blank" rel="noopener">참고자료 : 7.8.1 Customizing beans using a BeanPostProcessor</a></p>
+<h3 id="Root-Web-Application-Context-vs-DispatcherServlet-Web-Application-Context"><a href="#Root-Web-Application-Context-vs-DispatcherServlet-Web-Application-Context" class="headerlink" title="Root Web Application Context vs DispatcherServlet Web Application Context"></a>Root Web Application Context vs DispatcherServlet Web Application Context</h3><p>  일반적으로 Root Applicaion Context에는 Services, DAOs와 같은 bean이 정의되고, DispatcherServlet Web Applicaion Context에는 servlet을 사용하는 Controller bean이 등록된다. <img src="http://www.deroneriksson.com/deroneriksson-resources/tutorials/java/spring/introduction-to-the-spring-framework/configuring-root-web-application-context-in-spring-web-application/root-web-application-context-vs-dispatcherservlet-web-application-context.png" alt=""> 참고자료 : <a href="http://www.deroneriksson.com/tutorial-categories/java/spring/introduction-to-the-spring-framework" target="_blank" rel="noopener">deroneriksson.com</a></p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2017/06/23/how-tomcat-load-spring-web-framework-1-root-applicaion-context-ec-9d-98-ec-83-9d-ec-84-b1-trashed/" class="b-link-green">How Tomcat load spring web framework #1 (Root Applicaion Context의 생성)</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2017/06/23/how-tomcat-load-spring-web-framework-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="How Tomcat load spring web framework #1">
+                        
+                        <span class="card-title">How Tomcat load spring web framework #1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">How Tomcat load spring web frameworkenvironment
+Base project
+Eclipse -&gt; File -&gt; New -&gt; Other -&gt; Spring Getti</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-06-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/06/22/ec-8a-a4-ed-94-84-eb-a7-81-eb-b9-88-ec-9d-b4-eb-93-b1-eb-a1-9d-eb-90-98-eb-8a-94-ea-b3-bc-ec-a0-954/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="스프링 빈이 등록되는 과정(4)">
+                        
+                        <span class="card-title">스프링 빈이 등록되는 과정(4)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">우리는 지난 포스팅을 통해 xml, java-config 방식의 빈등록 과정을 살펴봤으며 이번시간에는 내용을 정리해보려고 합니다. 예제들은 모두 Spring Boot을 기준으로 진행되었으나 핵심적인 원리는 스프링 모</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-06-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

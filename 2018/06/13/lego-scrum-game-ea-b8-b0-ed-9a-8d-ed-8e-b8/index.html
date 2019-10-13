@@ -1,0 +1,922 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Lego Scrum Game(기획편), Java, Spring, Reactive">
+    <meta name="description" content="아해 스터디를 진행하면서 팀원들에게 자주 했던 말 중에 하나는 언제 기회가 되면 레고 스크럼을 함꼐 해보자 였습니다 언제 레고 스크럼을 알게 되었는지는 기억이 나지 않지만 2018년 6월 처음으로 아해팀에서 레고스크">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Lego Scrum Game(기획편) | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Lego Scrum Game(기획편)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                            <a href="/categories/미분류/lego/" class="post-category" target="_blank">
+                                lego
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-06-13
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>아해 스터디를 진행하면서 팀원들에게 자주 했던 말 중에 하나는 언제 기회가 되면 레고 스크럼을 함꼐 해보자 였습니다 언제 레고 스크럼을 알게 되었는지는 기억이 나지 않지만 2018년 6월 처음으로 아해팀에서 레고스크럼 게임 행사를 진행하게 되었습니다 이번 포스팅에서는 어떻게 행사를 준비하게 되었는지 <code>기획편</code>과 2018년 행사의 내용이 담긴 <code>진행편</code>으로 나누어 글을 써보자 합니다 <code>기획편</code>에서는 매년 아해팀에서 레고 스크럼 게임 행사를 준비하려고 할때 참고할수 있도록, 그리고 아해 뿐만 아니라 다른 많은 분들이 참고하셔서 레고 스크럼 게임을 진행하실수 있는 내용을 담아보려고 합니다</p>
+<h1 id="레고-스크럼-게임이란"><a href="#레고-스크럼-게임이란" class="headerlink" title="레고 스크럼 게임이란"></a>레고 스크럼 게임이란</h1><p><img src="http://www.plays-in-business.com/wp-content/uploads/2015/09/lego-scrum-city-2.jpg" alt="lego scrum image"> 스크럼을 함께 배워보고 실제로 해보고도 싶은데… 여기서 문제가 될만한 것들이 뭐가 있을까요?</p>
+<ul>
+<li>함께 배우는 개발자들의 언어가 다르다</li>
+<li>함께 배우는 개발자들의 실력이 다르다</li>
+<li>아무리 작은 텀 프로젝트 하나를 한다고 해도 시간이 많이 든다</li>
+</ul>
+<p>제가 생각하는 문제는 다음과 같았습니다. 아주 짧고 굵게 스크럼을 익히기 위한 방법이 뭐가 있을까 찾다보니 레고 스크럼이 위의 문제를 해결하면서 스크럼을 배워볼수 있는 답이였습니다 레고는 누구나 만질수 있으며 실력의 차이라는거도 있지 않습니다. 또 레고스크럼게임은 2-3시간이면 끝나기 때문에 짧고 굵게 배우기 좋은 방법이였습니다</p>
+<h1 id="인터넷에서-scrum-game-자료"><a href="#인터넷에서-scrum-game-자료" class="headerlink" title="인터넷에서 scrum game 자료"></a>인터넷에서 scrum game 자료</h1><p>이번 행사를 준비하면서 가장 불안했던 부분은 레고로 스크럼을 배워보자고 하면 사람들이 행사를 참여하는데 있어 정보를 어떻게 찾아볼것인가 였습니다. 제가 만약 참가자였다면 레고 스크럼 게임이 뭐지? 하고 인터넷을 찾아봤을거 같은데요 네이버에서 레고 스크럼을 검색할 경우 지금은 저희가 올렸던 아해 행사 모집글 정도가 올라오고 특별히 레고 스크럼에 관련된 정보를 알수 없었습니다 이 말은 한국자료는 없다라고 봐도 되지 않나 싶습니다 저같은 경우는 두가지 루트로 레고 스크럼 게임을 준비했습니다</p>
+<h2 id="유튜브-동영상"><a href="#유튜브-동영상" class="headerlink" title="유튜브 동영상"></a>유튜브 동영상</h2><p>유튜브에서는 scrum이라고만 검색해도 꽤 상단에 레고 스크럼 게임 자료를 보실 수 있습니다 (기억은 안나지만 저도 이렇게 처음 레고 스크럼 게임을 알게 되지 않았나 싶습니다) <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum1/1.png" alt="유튜브 스크럼 검색 캡쳐"> <code>UTS Software Engineering</code>이라는 유튜브명으로 많은 자료가 올라와있습니다. 어떻게 하는지에 대한 내용부터 이팀에서 진행한 행사의 진행내용도 확인할 수 있었습니다 <a href="https://www.youtube.com/watch?v=Wy5F1XyNt74&amp;t=531s" target="_blank" rel="noopener">Lego Scrum Game 2017 - YouTube</a></p>
+<h2 id="lego4scrum"><a href="#lego4scrum" class="headerlink" title="lego4scrum"></a>lego4scrum</h2><p><a href="https://www.lego4scrum.com/" target="_blank" rel="noopener">https://www.lego4scrum.com/</a> 저희가 준비하는데 아주 실질적인 자료는 이곳에서 얻게 되었습니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum1/2.png" alt="유튜브 스크럼 검색 캡쳐"> 라이센스가 Creative Commons Attribution 3.0 Unported License. 라고 나와 있는데요. 처음부터 끝까지, 그리고 진행 방식과 주의점까지 아주 잘 나와 있습니다 도큐먼트를 한글로도 받을 수 있는데요…. 물론 번역을 해주신 분께는 너무 감사드리는 일이지만 약간은 번역기 느낌이 납니다. 내용을 영어 문서와 함께 보시는것을 추천드립니다</p>
+<h1 id="레고-구매하기"><a href="#레고-구매하기" class="headerlink" title="레고 구매하기"></a>레고 구매하기</h1><p>준비의 1단계는 레고 구매였습니다 저희는 다음제품을 구매했습니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum1/3.png" alt="유튜브 스크럼 검색 캡쳐"> <a href="https://www.amazon.com/Building-Bricks-Blocks-Pieces-Brands/dp/B019VC1E66/ref=sr_1_5?ie=UTF8&amp;qid=1528731814&amp;sr=8-5&amp;keywords=building+bricks+1000+pc+bulk+blocks" target="_blank" rel="noopener">Amazon.com: Building Bricks - 1000 Pc Bulk Blocks - Includes 60 Roof Pieces - Tight Fit with Major Brands: Toys &amp; Games</a> 국내에서 레고 벌크를 구매하기는 쉽지 않았습니다 거의 해외구매를 해야 했고요 저희팀은 인터파크를 통해서 구매했습니다 lego4scrum의 문서를 보시면 그 팀에서 사용한 레고 벌크 모델이 명확하게 나와 있습니다 저희는 가격을 최대한 줄여보려고 500개가 아닌 1000개 짜리를 구매했습니다 lego4scrum에서는 한팀당 500피스정도 있으면 된다고 얘기합니다 아쉬웠던 점은 바퀴나 사람은 위에 제품에 있지 않았습니다 차를 만들고 싶을때 바퀴나 사람이 탈수 있도록 사람 캐릭터가 있으면 더 좋았을거 같습니다</p>
+<h1 id="백로그-만들기"><a href="#백로그-만들기" class="headerlink" title="백로그 만들기"></a>백로그 만들기</h1><p>이번 스크럼게임의 주제를 저희는 도시 만들기로 했습니다 (많은 자료가 도시를 만들었고 처음 진행하는 행사라 무난한 주제를 잡았습니다) 심시티를 하듯이 맵을 구상해야 했습니다 도로가 있고 강이 흐르는 아주 간단한 지도를 생각했습니다 그렇다면 도시에 있는것들이 무엇이 있을까를 고민해서 백로그를 만들었습니다</p>
+<ul>
+<li>강을 건널수 있는 다리</li>
+<li>가정집 (1층짜리 2층짜리)</li>
+<li>경찰서</li>
+<li>소방서</li>
+<li>공원</li>
+<li>교회</li>
+<li>유치원</li>
+<li>버스정류장</li>
+<li>편의점</li>
+<li>병원</li>
+<li>화장실</li>
+<li>벤치</li>
+<li>기념비</li>
+</ul>
+<p>각자 백로그에는 몇가지 요구사항을 넣었습니다 예를 들면 기념비의 경우 개발자를 위한 기념비를 건설해주세요 라는 요구사항이 있으며, 교회의 경우 십자가 모양이 있어야 한다는 건물의 특징을 요구사항에 잘 적어놨습니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum1/4.png" alt="유튜브 스크럼 검색 캡쳐"> 사실 백로그를 몇가지 이렇게 제시했지만 만약 제가 다음 행사를 진행한다면 큰 주제만 정하고(심시티처럼 도시를 건설하던지, 심즈처럼 신혼집을 꾸미던지) 백로그는 팀에서 정하라고 해볼까도 합니다 백로그의 요구사항을 아주 구체적으로 넣지는 않았습니다.. 일부러요.. 왜냐하면 스크럼을 하면서 고객과의 소통을 중요하게 인식시키고 싶었는데요.. 요구사항을 일부러 추상적으로 해서 고객에게 자꾸 물어보거나 또는 팀에서 꾸준한 커뮤니케이션을 통해 요구사항을 구체화 하는 그런 액션이 일어나기를 바랬습니다 또 각자 팀마다 재미있는 아이디어가 들어가서 독특한 결과물이 나오길 기대했죠 첨부파일을 통해 저희팀에서 사용한 백로그를 공유드립니다 [<a href="https://github.com/devload/devload.github.io/tree/master/assert/file/ahea\_lego\_scrum1\]" target="_blank" rel="noopener">https://github.com/devload/devload.github.io/tree/master/assert/file/ahea\_lego\_scrum1\]</a></p>
+<h1 id="플래닝-포커"><a href="#플래닝-포커" class="headerlink" title="플래닝 포커"></a>플래닝 포커</h1><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/CrispPlanningPokerDeck.jpg/250px-CrispPlanningPokerDeck.jpg" alt="플래닝 포커"> 레고 스크럼 게임의 핵심은 레고로 결과물을 잘 뽑아내는게 목표가 아니고 스크럼 자체를 경험하는게 아주 중요한 목표라고 생각합니다 이번 스프린트에서 얼마만큼의 백로그를 소모할것인지 목표로 하려면 백로그를 소모하는데 얼마만큼의 워킹이 걸릴지를 잘 예측해야 합니다 그러려면 모든 팀원이 백로그를 해결하는데 있어 같은 생각을 가져야 합니다 예를 들면 회원가입이라는 백로그가 있다고 했을때 A는 2시간이 걸릴거 같다고 생각하지만 B는 30분이면 끝낼수 있을거라는 생각을 하고 있다면 A는 간단하게 끝낼 방법을 생각하지 못했기 때문에 B보다 오랜 시간이 걸린다고 예측했을수도 있고 반대로 B는 A가 예측한 문제점을 고려하지 않았을 수도 있겠죠 이때 모든 팀원들이 백로그에 대해 같은 생각을 만들어주는 방법중에 하나로 플래닝 포커를 합니다 <a href="https://www.youtube.com/watch?v=0FbnCWWg_NY&amp;t=179s" target="_blank" rel="noopener">Agile in Practice: Planning Poker - YouTube</a> 아이폰/안드로이드 앱에 <code>scrum time</code>이라는 앱을 추천드립니다</p>
+<h1 id="행사에-필요한-다양한-비품들"><a href="#행사에-필요한-다양한-비품들" class="headerlink" title="행사에 필요한 다양한 비품들"></a>행사에 필요한 다양한 비품들</h1><p>이번 아해에서 진행한 레고스크럼에서 애자일의 가치중 가장 높은 우선순위로 잡은것은 커뮤니케이션입니다 모르는 사람들과 팀을 구성하여 한두시간동안 커뮤니케이션을 잘하려면 뭐가 필요할까 고민했습니다 그래서 우선적으로 준비해야 할것이 <code>명찰</code>이였습니다 별거 아닌거 같지만 이름을 몰라서 호칭이 너무 애매해지는것을 막고 싶었습니다 두번째로 스크럼 보드를 직접 그려보는 경험이 필요할거 같았습니다 행사 전날까지도 고민했던 부분인데 lego4scrum에서는 팀이 구성되면 책상을 옮기거나 하면서 가볍게 호흡해보는 것이 좋다라고 나옵니다 스크럼보드도 직접 그리면서 하나의 가벼운 호흡 맞추기가 되었으면 했습니다 참고로 저희 스크럼 보드는 todo/doing/done이 구분되어 있는 표와 번다운차트가 있었습니다 스크럼 보드를 보면서 진행사항을 확인할수 있도록 하고 싶었습니다 저희는 지도도 직접 그리게 했습니다 마찬가지로 가벼운 호흡 맞추기였습니다 스크럼보드와 지도를 그리기 위해 한팀당 b2용지 두장이 필요했고 색연필을 제공해드렸습니다 또 포스티지를 드렸는데 스프린트 백로그로 옮길때 사용하고, 지도에 건물 짓기 전에 포스티지로 표현해놓는 식으로 유튜브에서는 많이 하는데 저는 진행자로써 굳이 어떻게 써라 라고 말씀드리진 않았습니다 나눠드리면 알아서 잘 쓰십니다</p>
+<h1 id="행사진행"><a href="#행사진행" class="headerlink" title="행사진행"></a>행사진행</h1><p>팀구성이 다 되었다면 레고 스크럼 게임 진행방법을 리뷰합니다 저희는 플래닝 포커를 시작전에 연습을 몇번 하고 진행했습니다 플래닝 포커를 너무 귀찮아 하지 않도록 행사 진행하면서 애자일 코치들이 진행을 잘 잡아주셔야 할거 같습니다 스크럼게임은 3단게로 진행합니다 게임전 - 게임 - 게임 후</p>
+<h2 id="게임전"><a href="#게임전" class="headerlink" title="게임전"></a>게임전</h2><h3 id="팀구성"><a href="#팀구성" class="headerlink" title="팀구성"></a>팀구성</h3><p>최대한 모르는 사람끼리 팀이 되게 해주세요 한팀당 4-6명이 적당합니다</p>
+<h3 id="백로그-만들기-1"><a href="#백로그-만들기-1" class="headerlink" title="백로그 만들기"></a>백로그 만들기</h3><p>저희는 저희가 정한 백로그를 나눠드렸습니다 백로그는 많으면 많을수록 좋습니다 절대 못할만큼의 양을 주세요 팀에서 선택과 집중을 할지 안할지는 모르지만 충분히 할수 있도록 하게 하지 마세요</p>
+<h3 id="추정하기"><a href="#추정하기" class="headerlink" title="추정하기"></a>추정하기</h3><h3 id="지도그리기"><a href="#지도그리기" class="headerlink" title="지도그리기"></a>지도그리기</h3><h3 id="스크럼-보드-만들기"><a href="#스크럼-보드-만들기" class="headerlink" title="스크럼 보드 만들기"></a>스크럼 보드 만들기</h3><h2 id="게임"><a href="#게임" class="headerlink" title="게임"></a>게임</h2><p>3번의 스프린트 계획 3분 - 스프린트7분 리뷰 5분 처음 스프린트에서는 계획의 시간을 좀 길게 주는것을 권장합니다 시간의 압박을 계속 줘야 합니다 시간이 거의 다 되면 계속 깜빡거리는 카운트다운 시계가 혹시 있다면 그런거 쓰세요 그리고 계속 시간을 알려주면서 귀찬게 만들고 스트레스를 계속 줘야 합니다 또 중간중간 요구사항을 강력하게 변경하세요 - 건물 색을 통일시켜주세요 - 좌우 대칭으로 만들어주세요 - 더 넓게 만들어주세요 진행하면서 계속 요구사항을 흔들어주세요 실제로 일어날만한 다양한 이벤트를 넣으세요 - 병에 걸리셨습니다 3분 쉬세요 - a님과 b님 팀을 이번스프린트에서 바꿔주세요</p>
+<h2 id="결과-보고-회고"><a href="#결과-보고-회고" class="headerlink" title="결과 보고 (회고)"></a>결과 보고 (회고)</h2><p>회고에서는 전반적으로 다양한 의견이 나오면 좋습니다 - 무엇을 느꼈나요 - 스크럼 팀의 진행에 어떤 느낌을 받았나요 - 스프린트 반복은 잘 진행된거 같나요 - 다음에 게임을 한다면 무엇이 바껴야 하나요 - 요구사항 변경이 될 때 기분이 어땠나요</p>
+<h2 id="애자일-코치"><a href="#애자일-코치" class="headerlink" title="애자일 코치"></a>애자일 코치</h2><p>애자일 전문가가 꼭 필요한건 아닙니다 애자일코치가 있다면 이분의 역할은 진행이 잘 되지 않거나 잘못된 방향으로 가고 있는 스크럼 내용을 중간중간에 잡아내서 피드백을 주시면 좋습니다 팀에 독단적인 맴버가 있거나 대화의 방식에 문제가 있다면 잡아주는게 좋습니다 애자일코치는 레고 게임에 참여하기보단 돌아다니면서 코치해주는 스탭과 같은 느낌입니다 (뭐든 마찬가지지만 어떻게 정하느냐에 따라 다릅니다 팀에 하나씩 있어서 레고도 같이할수도 있는거죠.. 정하기 나름입니다)</p>
+<h2 id="스크럼-마스터"><a href="#스크럼-마스터" class="headerlink" title="스크럼 마스터"></a>스크럼 마스터</h2><p>스크럼마스터가 꼭 필요한건 아닙니다 스크럼마스터는 스크럼 진행을 하는 역할입니다만 팀장은 아닙니다 스크럼마스터는 개인의 의견을 최대한 내지 마시고 진행에 집중하는것이 좋습니다 실제 스크럼마스터는 프로젝트 개발에 참여하기보단 진행에 참여하는 경우가 많습니다 팀원들이 잘 의사소통할 수 있도록 노력해야 합니다</p>
+<h2 id="고객"><a href="#고객" class="headerlink" title="고객"></a>고객</h2><p>고객은 아주 변덕스럽고 고집이 쎄고 뭐든 잘 모르는척 해야 합니다 요구사항이 분명하지 않다면 분명 질문이 올텐데요.. 물어보는 질문 이외에 것은 답변을 최대한 하지 마세요 하나를 물어보면 열을 말해주는 고객이 되지 말란 말입니다~ 실제 고객은 그렇지 않나요 ㅎㅎ 저희가 기획단계에서 준비한 내용은 이렇습니다 lego4scrum과 저희문서를 함께 보신다면 레고 스크럼 게임이 무슨행사일지 조금은 감을 잡으시는데 도움이 되길 바랍니다</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/06/13/lego-scrum-game-ea-b8-b0-ed-9a-8d-ed-8e-b8/" class="b-link-green">Lego Scrum Game(기획편)</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/07/29/ed-95-b4-ec-99-b8-ed-8c-90-ec-a0-84-ec-9e-90-ec-a0-95-eb-b6-80-ed-94-84-eb-a0-88-ec-9e-84-ec-9b-8c-ed-81-ac-jhipster-ec-97-90-eb-8c-80-ed-95-b4-ec-95-8c-ec-95-84-eb-b3-b4-ec-9e-90/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="해외판 전자정부프레임워크? JHipster에 대해 알아 보자!">
+                        
+                        <span class="card-title">해외판 전자정부프레임워크? JHipster에 대해 알아 보자!</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">개요우리나라에서 공공기관과 민간기업에서 많이 사용하는 전자정부프레임워크가 있습니다. 업데이트도 느리거니와 생성도 불편하다고 생각 됩니다. 웹 프론트엔드 개발은 전자정부프레임워크인 경우 JSP(Java Server P</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-07-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/devops/" target="_blank">
+                        <span class="chip bg-color">devops</span>
+                    </a>
+                    
+                    <a href="/tags/JHipster/" target="_blank">
+                        <span class="chip bg-color">JHipster</span>
+                    </a>
+                    
+                    <a href="/tags/spring/" target="_blank">
+                        <span class="chip bg-color">spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/05/11/spring-ec-96-b4-eb-94-94-ea-b9-8c-ec-a7-80-ea-b9-8c-eb-b4-a4-eb-8b-88-eb-b0-b0-ea-b2-bd-ec-a7-80-ec-8b-9d-ec-9e-91-ec-84-b1-ec-a4-91/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Spring, 어디까지 까봤니? (배경지식, Servlet)">
+                        
+                        <span class="card-title">Spring, 어디까지 까봤니? (배경지식, Servlet)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Java Servlet최근에 java에 입문한 쥬니어라면 “Java Servlet”에 대해 어디선가 들어봤지만, 누구도 자세히 알려주지 않습니다. 주로 회사에서 배우다보면 업무에 필요한 프레임워크 레벨부터 배우기 때</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-05-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            <a href="/categories/미분류/공개스터디/" class="post-category" target="_blank">
+                                    공개스터디
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/servlet/" target="_blank">
+                        <span class="chip bg-color">servlet</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

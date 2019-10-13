@@ -1,0 +1,843 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="스프링 빈이 등록되는 과정(1), Java, Spring, Reactive">
+    <meta name="description" content="BeanDefinitionSpring의 빈설정은 대표적으로 xml과 java config(annotation)으로 구성되어 있습니다. 하지만 이말은 사실은 BeanDefinition으로 추상화되어 있는 빈설정을 xm">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>스프링 빈이 등록되는 과정(1) | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        스프링 빈이 등록되는 과정(1)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/spring/" target="_blank">
+                                <span class="chip bg-color">spring</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2017-06-11
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="BeanDefinition"><a href="#BeanDefinition" class="headerlink" title="BeanDefinition"></a>BeanDefinition</h1><p>Spring의 빈설정은 대표적으로 xml과 java config(annotation)으로 구성되어 있습니다. 하지만 이말은 사실은 BeanDefinition으로 추상화되어 있는 빈설정을 xml, java config로 표현하고 있다고 말할수 있습니다. BeanDefinition은 다음과 같이 사용할 수 있습니다 [code lang=java] BeanDefinition helloDef = new RootBeanDefinition(Sample.class); helloDef.getPropertyValues().addPropertyValue(“name”,”Spring”); applicationContext.registerBeanDefinition(“hello2”, helloDef); [/code] 저는 Spring Boot에서 Unit Test를 통해 코드를 돌려보려고 합니다 제가 작성한 코드는 다음과 같습니다 [code lang=java] @RunWith(SpringRunner.class) @SpringBootTest public class DemoApplicationTest { @Autowired ApplicationContext applicationContext; @Test public void difinitionTest() { BeanDefinition helloDef = new RootBeanDefinition(Sample.class); helloDef.getPropertyValues().addPropertyValue(“name”,”Spring”); applicationContext.registerBeanDefinition(“hello2”, helloDef); System.out.println(applicationContext.getBean(“hello2”)); } } [/code] 이렇게 작성했을경우 컴파일 에러가 나게 됩니다 [code lang=java] applicationContext.registerBeanDefinition(“hello2”, helloDef); [/code] applicationContext는 <code>registerBeanDefinition</code>이라는 메소드가 없던 것입니다. registerBeanDefinition메소드가 가능한 applicationContext는 제가 기본적으로 알고 있던 것이 StaticApplicationContext입니다. StaticApplicationContext의 소스를 열어보면서 확인해보니 GenericApplicationContext라는 상위 클래스에 정의되어 있는 것을 알수 있습니다. 우리가 처음에 시도한 ApplicationContext의 경우 GenericApplicationContext의 상위 클래스입니다. 적어도 우리는 GenericApplicationContext를 상속받는 실제 구현체로 선언해야 하는거죠.. 물론 GenericApplicationContext로 타입을 주어도 상관 없지만 Spring Boot는 어떤 구현체를 사용하는 알고 싶어졌습니다. [code lang=java] @Test public void applicationContexTypeTest() { System.out.println(“applicationContext “ + applicationContext ); System.out.println(“applicationContext “ + applicationContext.getClass()); } [/code] [code lang=text] . <strong>__ _ </strong> _ _ /\\ / <strong>_’_ </strong> _ _(_)_ <strong> </strong> _ \ \ \ \ ( ( )\<strong>_ | ‘_ | ‘<em>| | ‘</em> \/ _` | \ \ \ \ \\/ _</strong>)| |<em>)| | | | | || (</em>| | ) ) ) ) ‘ |<strong>__| .</strong>|<em>| |</em>|<em>| |</em>\<strong>, | / / / / =========|<em>|==============|</em></strong>/=/_/_/_/ :: Spring Boot :: (v1.5.4.RELEASE) 2017-06-11 18:02:06.280 INFO 7204 — [ main] com.ahea.spring.DemoApplicationTest : Starting DemoApplicationTest on Nohui-MacBook-Pro.local with PID 7204 (started by nohsunghyun in /Users/nohsunghyun/Downloads/BeanDefinition) 2017-06-11 18:02:06.281 INFO 7204 — [ main] com.ahea.spring.DemoApplicationTest : No active profile set, falling back to default profiles: default 2017-06-11 18:02:06.301 INFO 7204 — [ main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@43bc63a3: startup date [Sun Jun 11 18:02:06 KST 2017]; root of context hierarchy 2017-06-11 18:02:06.621 INFO 7204 — [ main] com.ahea.spring.DemoApplicationTest : Started DemoApplicationTest in 10.587 seconds (JVM running for 11.171) applicationContext org.springframework.context.annotation.AnnotationConfigApplicationContext@43bc63a3: startup date [Sun Jun 11 18:02:06 KST 2017]; root of context hierarchy applicationContext class org.springframework.context.annotation.AnnotationConfigApplicationContext 2017-06-11 18:02:06.655 INFO 7204 — [ Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@43bc63a3: startup date [Sun Jun 11 18:02:06 KST 2017]; root of context hierarchy [/code] ApplicationContext객체의 클래스 타입을 찍어보니 <code>AnnotationConfigApplicationContext</code>인것을 알수 있습니다. <code>ApplicationContext</code>타입을 <code>AnnotationConfigApplicationContext</code>로 변경후 테스트를 다음과 같이 진행하였습니다 [code lang=text] @Autowired AnnotationConfigApplicationContext applicationContext; @Test public void difinitionTest() { BeanDefinition helloDef = new RootBeanDefinition(Sample.class); helloDef.getPropertyValues().addPropertyValue(“name”,”Spring”); applicationContext.registerBeanDefinition(“hello2”, helloDef); System.out.println(applicationContext.getBean(“hello2”)); } [/code] [code lang=text] 결과 Sample{name=’Spring’} [/code]</p>
+<h1 id="AnnotationConfigApplicationContext"><a href="#AnnotationConfigApplicationContext" class="headerlink" title="AnnotationConfigApplicationContext"></a>AnnotationConfigApplicationContext</h1><p>[code lang=java] @SpringBootApplication public class DemoApplication { public static void main(String[] args) { SpringApplication.run(DemoApplication.class, args); } } [/code] 이 코드는 SpringBoot Application을 시작하기 위한 코드입니다. 저는 spring 2.5부터 시작을 했었는데 기존에는 web.xml에 리스너를 통해 스프링 컨텍스트를 올렸죠. 스프링 부트를 모르시는 분들은 그 설정없이 위에 코드가 그 부분이라고 생각하셔도 좋겠네요. <code>SpringApplication</code>을 들어가보면 쉽게 AnnotationConfigApplicationContext를 찾을수 있습니다 [code lang=Java] protected ConfigurableApplicationContext createApplicationContext() { Class&lt;?&gt; contextClass = this.applicationContextClass; if(contextClass == null) { try { contextClass = Class.forName(this.webEnvironment?”org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext”:”org.springframework.context.annotation.AnnotationConfigApplicationContext”); } catch (ClassNotFoundException var3) { throw new IllegalStateException(“Unable create a default ApplicationContext, please specify an ApplicationContextClass”, var3); } } return (ConfigurableApplicationContext)BeanUtils.instantiate(contextClass); } [/code] 중간 코드를 보면 contextClass 가 <code>AnnotationConfigEmbeddedWebApplicationContext</code> 또는 <code>AnnotationConfigApplicationContext</code>가 webEnviroment의 값에 따라 나뉘어지게 되는군요.. 둘다 뭐가 어쨌든 어노테이션 기반 어플리케이션 컨텍스트인거 같습니다. <code>AnnotationConfigApplicationContext</code>에 대해 조금 더 알아보겠습니다. <code>AnnotationConfigApplicationContext</code>의 코드를 열어보면 다음과 같은 프로퍼티가 있습니다 [code lang=text] private final AnnotatedBeanDefinitionReader reader; private final ClassPathBeanDefinitionScanner scanner; [/code] 해당 클래스에서 reader가 하는 것들을 모아봤습니다 [code lang=text] this.reader.setEnvironment(environment); this.reader.setBeanNameGenerator(beanNameGenerator); this.reader.setScopeMetadataResolver(scopeMetadataResolver); this.reader.register(annotatedClasses); [/code]</p>
+<ul>
+<li>환경설정인걸까요?</li>
+<li>빈 네임 제너레이터를 set해주는 것도 있습니다</li>
+<li>메타데이터 리졸버라는 것이 있네요?</li>
+<li>어노테이션 클래스를 register하고 있습니다</li>
+</ul>
+<p>reader의 메소드 명은 <code>AnnotatedBeanDefinitionReader</code>인데요. 어노테이션으로 된 beanDefinition 리더 라고 이름이 지어져 있습니다. <code>BeanDefinition</code>은 이번 포스팅에 가장 처음 나온 이야기였는데요. 이름으로 추측하건데 어노테이션으로 된 <code>BeanDefinition</code>을 읽어오는 녀석인거 같습니다. scanner는 어떤지 보겠습니다 [code lang=text] this.scanner.setEnvironment(environment); this.scanner.setBeanNameGenerator(beanNameGenerator); this.scanner.setScopeMetadataResolver(scopeMetadataResolver); this.scanner.clearCache(); this.scanner.scan(basePackages); [/code] 위에 3개는 reader와 같은 일을 하나 봅니다 새로운 것이 밑에 두개인데요 scanner.clearCache는 무엇인지 쫒아 들어가보면 [code lang=text] private final Map&lt;Resource, MetadataReader&gt; metadataReaderCache = new LinkedHashMap&lt;Resource, MetadataReader&gt;(256, 0.75F, true) { protected boolean removeEldestEntry(Entry&lt;Resource, MetadataReader&gt; eldest) { return this.size() &gt; CachingMetadataReaderFactory.this.getCacheLimit(); } }; [/code] 이런 코드가 있습니다. 때려 맞춰보건데 scanner는 메타데이터를 캐싱처리하며 들고 있고 이것을 클리어 할수 있도록 메소드를 제공해주고 있습니다. scan은 파라미터로 넘기려는 변수명부터가 아주 친숙합니다. ComponentScan할때 basePackage를 주죠. ComponentScan이 이때 이녀석을 통해 일어나는지 확인해보고 싶겠죠??? [code lang=text] public int scan(String… basePackages) { int beanCountAtScanStart = this.registry.getBeanDefinitionCount(); this.doScan(basePackages); if(this.includeAnnotationConfig) { AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry); } return this.registry.getBeanDefinitionCount() - beanCountAtScanStart; } [/code] 우선 scan의 리턴 타입은 int인데요, 이 값으로 어떤 처리를 하려는지는 더 분석해봐야 겠습니다. 스캔을 호출하는 <code>AnnotationConfigApplicationContext</code>에서는 리턴값을 받아놓지 않아서요… 우리는 <code>ComponentScan</code>과의 관계, 즉 <code>basePackages</code>값에 있는 어노테이션을 빈으로 등록해주는가를 찾아가보도록 하겠습니다 세번째 줄에 <code>doScan(basePackages)</code>를 호출하는데 굉장히 의심스럽습니다. 타고 들어가보면 다음 소스인데요 [code lang=text] protected Set doScan(String… basePackages) { Assert.notEmpty(basePackages, “At least one base package must be specified”); Set beanDefinitions = new LinkedHashSet(); String[] var3 = basePackages; int var4 = basePackages.length; for(int var5 = 0; var5 &lt; var4; ++var5) { String basePackage = var3[var5]; Set candidates = this.findCandidateComponents(basePackage); Iterator var8 = candidates.iterator(); while(var8.hasNext()) { BeanDefinition candidate = (BeanDefinition)var8.next(); ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(candidate); candidate.setScope(scopeMetadata.getScopeName()); String beanName = this.beanNameGenerator.generateBeanName(candidate, this.registry); if(candidate instanceof AbstractBeanDefinition) { this.postProcessBeanDefinition((AbstractBeanDefinition)candidate, beanName); } if(candidate instanceof AnnotatedBeanDefinition) { AnnotationConfigUtils.processCommonDefinitionAnnotations((AnnotatedBeanDefinition)candidate); } if(this.checkCandidate(beanName, candidate)) { BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, beanName); definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry); beanDefinitions.add(definitionHolder); this.registerBeanDefinition(definitionHolder, this.registry); } } } return beanDefinitions; } [/code] 코드를 쭉 살펴보면 <code>Set candidates = this.findCandidateComponents(basePackage)</code>가 있는데요 리턴 타입이 BeanDefinition을 Set으로 주는걸 보니 이부분을 잘 봐야 겠습니다. <code>findCandidateComponents(basePackage)</code>를 호출하면 basePackage에 있는 빈을 주는건 아닐까요? 안으로 들어가보면 [code lang=text] LinkedHashSet candidates = new LinkedHashSet(); . . MetadataReader metadataReader = this.metadataReaderFactory.getMetadataReader(resource); if(resource.isReadable()) { try { MetadataReader metadataReader = this.metadataReaderFactory.getMetadataReader(resource); if(this.isCandidateComponent(metadataReader)) { ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader); sbd.setResource(resource); sbd.setSource(resource); if(this.isCandidateComponent((AnnotatedBeanDefinition)sbd)) { if(debugEnabled) { this.logger.debug(“Identified candidate component class: “ + resource); } candidates.add(sbd); } else if(debugEnabled) { this.logger.debug(“Ignored because not a concrete top-level class: “ + resource); } } else if(traceEnabled) { this.logger.trace(“Ignored because not matching any filter: “ + resource); } } catch (Throwable var13) { throw new BeanDefinitionStoreException(“Failed to read candidate component class: “ + resource, var13); } } else if(traceEnabled) { this.logger.trace(“Ignored because not readable: “ + resource); } [/code] 해당 코드에서는 <code>this.isCandidateComponent(metadataReader)</code> 조건에 따라 ScannedGenericBeanDefinition는 생성하여 Set에 담아주는것을 볼수 있습니다 코드를 쫒아와서 이부분인가? 싶은곳을 이렇게 발견했지만 실제 여기 맞는지 검증을 해보려고 합니다 우선 Application에 ComponentScan을 추가하고 패키지를 줬습니다 [code lang=text] @SpringBootApplication @ComponentScan(basePackages = “com.ahea.spring”) public class DemoApplication { public static void main(String[] args) { SpringApplication.run(DemoApplication.class, args); } } [/code] 그리고 패키지 안에 HomeController라고 하나 만들어놓고 @Controller어노테이션을 줘봤습니다 [code lang=text] @Controller public class HomeContoller { } [/code] 그리고 마지막으로 findCandidateComponents에 중단점을 찍은 후 디버그 모드로 돌려봤습니다. 결과는 basePackage라는 파라미터에는 ComponentScan에 넣어준 basePackages값이 있었으며 <img src="https://ahea.files.wordpress.com/2017/06/e18489e185b3e1848fe185b3e18485e185b5e186abe18489e185a3e186ba-2017-06-11-e1848be185a9e18492e185ae-11-19-04.png?w=300" alt="img2"> 리턴값인 candidates 에는 HomeController가 정의된 BeanDefinition이 들어 있는것을 확인할수 있었습니다. <img src="https://ahea.files.wordpress.com/2017/06/e18489e185b3e1848fe185b3e18485e185b5e186abe18489e185a3e186ba-2017-06-11-e1848be185a9e18492e185ae-11-19-58.png?w=300" alt="img1"> 다시 돌아와서 doScan에서는 위에 내용과 같이 ComponentScan하여 나온 빈정보들을 가지고 registerBeanDefinition를 통해 ApplicationContext에 등록하게 됩니다. [code lang=text] if(this.checkCandidate(beanName, candidate)) { BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, beanName); definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry); beanDefinitions.add(definitionHolder); this.registerBeanDefinition(definitionHolder, this.registry); } [/code] 하나 흥미로운 점은 Bean 객체나 BeanDefinition을 등록하는것이 아니라 BeanDefinitionHolder에 한번 감싸서 등록하는데요. AnnotationConfigUtils.applyScopedProxyMode를 통해 프록시모드 처리를 진행하는 코드를 확인할 수 있었습니다. 프록시 설정에 따라 스프링에서 프록시 객체를 만드는 법을 확인해 볼수 있는데요. 추후에 이부분도 진행하겠습니다</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2017/06/11/1203/" class="b-link-green">스프링 빈이 등록되는 과정(1)</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2017/06/22/ec-8a-a4-ed-94-84-eb-a7-81-eb-b9-88-ec-9d-b4-eb-93-b1-eb-a1-9d-eb-90-98-eb-8a-94-ea-b3-bc-ec-a0-952/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="스프링 빈이 등록되는 과정(2)">
+                        
+                        <span class="card-title">스프링 빈이 등록되는 과정(2)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">스프링 빈이 등록되는 과정(2)1편에서는 Spring Boot을 기반으로 스프링이 빈을 어떻게 등록하는지 알아봤습니다 아주 기본적으로는 AnnotationConfigApplicationContext에 대해 알아봤는데</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-06-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/05/29/ahea-study-20170527-ec-8a-a4-ed-84-b0-eb-94-94-eb-aa-a8-ec-9e-84/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="ahea study - 20170527 스터디 모임">
+                        
+                        <span class="card-title">ahea study - 20170527 스터디 모임</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">2회 공개세미나를 하기전에 스터디 원들이 모여서 각자 진척상황과 스터디 피드백을 하기 위해 강남역에서 모임을 가졌습니다. 간단하게 Ahea 소개를 하자면 저희는 하고싶은 주제를 스스로 정해서, 꾸준히 스터디를 하며 </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-05-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/스터디-모임/" class="post-category" target="_blank">
+                                    스터디 모임
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

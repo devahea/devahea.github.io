@@ -1,0 +1,1340 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="JAVA8말고 JAVA9를 사용해볼까, Java, Spring, Reactive">
+    <meta name="description" content="
+현재 많은 개발자가 Java8 버전을 사용하여 개발을 하고 있습니다.
+Java9 부터는 6개월마다 새로운 버전의 Java가 출시되면서 현재 12버전까지 출시 하였습니다.
+그 중에서  JAVA9 버전에 관해 대해 자">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>JAVA8말고 JAVA9를 사용해볼까 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/java9/java9.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        JAVA8말고 JAVA9를 사용해볼까
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/java/" target="_blank">
+                                <span class="chip bg-color">java</span>
+                            </a>
+                        
+                            <a href="/tags/java9/" target="_blank">
+                                <span class="chip bg-color">java9</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-04-23
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="/images/java9/java9.jpg" alt=""></p>
+<p>현재 많은 개발자가 Java8 버전을 사용하여 개발을 하고 있습니다.</p>
+<p>Java9 부터는 6개월마다 새로운 버전의 Java가 출시되면서 현재 12버전까지 출시 하였습니다.</p>
+<p>그 중에서  JAVA9 버전에 관해 대해 자세히 알아봅니다.</p>
+<h2 id="JDK-출시-및-지원-기간"><a href="#JDK-출시-및-지원-기간" class="headerlink" title="JDK 출시 및 지원 기간"></a>JDK 출시 및 지원 기간</h2><p><img src="/images/java9/oracleJdk.gif" alt=""></p>
+<p>JDK 출시 및 지원기간에 대해 알아보겠습니다.<br>파란색 마커는 무료 버전 OpenJDK의 출시시기 및 지원 기간을 나타내고 주황색 마커는 유료 버전 Oracle JDK를 뜻합니다.무료 OpenJDK 6 개월마다 메이저 버전 업이 등장하고 그 때마다 지원 기간이 종료하는 것을 알 수 있습니다.<br>Java 11부터 Java는 3 년마다 “LTS”(Long Term Support)라는 장기 지원에 대응 한 메이저 버전이 등장합니다. 그 LTS 버전마다 Oracle JDK의 메이저 버전 업을 합니다.</p>
+<p>메이저 버전 업 후에는 이전 주요 버전에 대한 마이너 버전 업을하지 않게됩니다.</p>
+<p><img src="/images/java9/java-version.png" alt=""></p>
+<p>왜 Java는 6 개월마다 메이저 버전 업으로 출시 모델을 변경하는 걸까요?<br>Java는 지금까지 큰 기능 추가에 따라 메이저 버전 업을 해왔습니다. 큰 새로운 기능의 개발에 오랜 시간이 걸리고 때로는 개발 일정 지연도 있었습니다. 예를 들어, Java 6에서 7로 메이저 버전 업에는 4 년 8 개월, Java 7에서 8로 2 년 8 개월, Java 8-9로는 3 년 6 개월 걸렸습니다. 최근에는 Java는 다른 언어 나 기술과 비교하면 진화가 느린 다소 오래된 것으로 보입니다.기존 출시 모델을 바꾸게 6 개월마다로 전환 한 것은 이러한 점에서 Java를 지금까지보다 빠른 속도로 전진 시키려고하고 있기 때문입니다.</p>
+<h2 id="마이그레이션시-우려-사항"><a href="#마이그레이션시-우려-사항" class="headerlink" title="마이그레이션시 우려 사항"></a>마이그레이션시 우려 사항</h2><p>많은 개발자들이 Java8에서 Java9로 업그레이드 할 때 많은 변경으로 인해 애플리케이션이 중단될수 있다는 걱정이 있습니다. 변경 사항 중 하나는 내부 API의 캡슐화 입니다. 애플리케이션에서 내부 API를 사용하지 않는 경우 Java9 이상으로 마이그레이션 하는것은 어렵지 않습니다.</p>
+<h2 id="알아두면-좋을-변경된-점"><a href="#알아두면-좋을-변경된-점" class="headerlink" title="알아두면 좋을 변경된 점"></a>알아두면 좋을 변경된 점</h2><h3 id="HTTP-2-Client"><a href="#HTTP-2-Client" class="headerlink" title="HTTP 2 Client"></a><strong>HTTP 2 Client</strong></h3><ul>
+<li>HttpURLConnection를 대체<ul>
+<li>요청,응답의 하나의 스레드만 지원</li>
+<li>오버헤드 발생</li>
+</ul>
+</li>
+<li>jdk.incubator.http 패키지 추가</li>
+<li>HTTP/1.1 및 HTTP/2 프로토콜 지원<ul>
+<li>JAVA1.8 까지는 HTTP/ 1.1만을 지원</li>
+</ul>
+</li>
+<li>동기/비동기 지원</li>
+</ul>
+<pre class=" language-java"><code class="language-java">HttpClient client <span class="token operator">=</span> HttpClient
+    <span class="token punctuation">.</span><span class="token function">newBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">version</span><span class="token punctuation">(</span>Version<span class="token punctuation">.</span>HTTP_2<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//동기 호출</span>
+HttpResponse<span class="token operator">&lt;</span>String<span class="token operator">></span> response <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>
+    HttpRequest
+        <span class="token punctuation">.</span><span class="token function">newBuilder</span><span class="token punctuation">(</span>TEST_URI<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span>BodyProcessor<span class="token punctuation">.</span><span class="token function">fromString</span><span class="token punctuation">(</span><span class="token string">"Hello world"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    BodyHandler<span class="token punctuation">.</span><span class="token function">asString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//비동기 호출</span>
+<span class="token comment" spellcheck="true">//임의의 정수가 비동기적으로 요청, 완료 될 때까지 주 스레드 대기</span>
+List<span class="token operator">&lt;</span>CompletableFuture<span class="token operator">&lt;</span>String<span class="token operator">>></span> responseFutures <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">ints</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">mapToObj</span><span class="token punctuation">(</span>String<span class="token operator">:</span><span class="token operator">:</span>valueOf<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>message <span class="token operator">-</span><span class="token operator">></span> client
+        <span class="token punctuation">.</span><span class="token function">sendAsync</span><span class="token punctuation">(</span>
+          HttpRequest<span class="token punctuation">.</span><span class="token function">newBuilder</span><span class="token punctuation">(</span>TEST_URI<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span>BodyProcessor<span class="token punctuation">.</span><span class="token function">fromString</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          BodyHandler<span class="token punctuation">.</span><span class="token function">asString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">thenApply</span><span class="token punctuation">(</span>r <span class="token operator">-</span><span class="token operator">></span> r<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+CompletableFuture<span class="token punctuation">.</span><span class="token function">allOf</span><span class="token punctuation">(</span>responseFutures<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CompletableFuture</span><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+responseFutures<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>future <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Async response: "</span> <span class="token operator">+</span> future<span class="token punctuation">.</span><span class="token function">getNow</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+Map<span class="token operator">&lt;</span>HttpRequest<span class="token punctuation">,</span> CompletableFuture<span class="token operator">&lt;</span>HttpResponse<span class="token operator">&lt;</span>String<span class="token operator">>>></span> responses <span class="token operator">=</span>
+  client<span class="token punctuation">.</span><span class="token function">sendAsync</span><span class="token punctuation">(</span>
+    HttpRequest<span class="token punctuation">.</span><span class="token function">newBuilder</span><span class="token punctuation">(</span>TEST_URI<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span>BodyProcessor<span class="token punctuation">.</span><span class="token function">fromString</span><span class="token punctuation">(</span>TEST_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    MultiProcessor<span class="token punctuation">.</span><span class="token function">asMap</span><span class="token punctuation">(</span>request <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>BodyHandler<span class="token punctuation">.</span><span class="token function">asString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+responses<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> responseFuture<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Async response: "</span> <span class="token operator">+</span> responseFuture<span class="token punctuation">.</span><span class="token function">getNow</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="More-Concurrency-Updates-reactive-stream"><a href="#More-Concurrency-Updates-reactive-stream" class="headerlink" title="More Concurrency Updates (reactive stream)"></a>More Concurrency Updates (reactive stream)</h3><ul>
+<li>CompletableFuture  개선</li>
+<li>reactive stream 도입<ul>
+<li>게시자, 구독자, 구독, 프로세서</li>
+</ul>
+</li>
+<li>java.util.concurrent.Flow 패키지 추가</li>
+</ul>
+<p>Reactive Streams 표준 구현은 <a href="https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html" target="_blank" rel="noopener">java.util.concurrent.Flow</a> 클래스에 있으며 <code>Flow</code>클래스 내에 정적 인터페이스로 번들로 제공</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Flow</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token function">Flow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 인스턴스 생성 불가</span>
+
+    <span class="token annotation punctuation">@FunctionalInterface</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">interface</span> <span class="token class-name">Publisher</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">subscribe</span><span class="token punctuation">(</span>Subscriber<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> subscriber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">interface</span> <span class="token class-name">Subscriber</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSubscribe</span><span class="token punctuation">(</span>Subscription subscription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onNext</span><span class="token punctuation">(</span>T item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Throwable throwable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onComplete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">interface</span> <span class="token class-name">Subscription</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">interface</span> <span class="token class-name">Processor</span><span class="token operator">&lt;</span>T<span class="token punctuation">,</span>R<span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">Subscriber</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> Publisher<span class="token operator">&lt;</span>R<span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>게시자 구현이 포함되어 있는 <code>SubmissionPublisher</code></p>
+<ul>
+<li><code>submit(T item)</code>메서드를 사용하여 구독자에게 푸시 할 항목을 허용하는 단순한 게시자 역할</li>
+<li><code>submit</code>메서드를 실행하면 구독자에게 비동기적으로 푸시</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrintSubscriber</span> <span class="token keyword">implements</span> <span class="token class-name">Subscriber</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Subscription subscription<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSubscribe</span><span class="token punctuation">(</span>Subscription subscription<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>subscription <span class="token operator">=</span> subscription<span class="token punctuation">;</span>
+        subscription<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onNext</span><span class="token punctuation">(</span>Integer item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Received item: "</span> <span class="token operator">+</span> item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        subscription<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Throwable error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Error occurred: "</span> <span class="token operator">+</span> error<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onComplete</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"PrintSubscriber is complete"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SubmissionPublisherExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        SubmissionPublisher<span class="token operator">&lt;</span>Integer<span class="token operator">></span> publisher <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SubmissionPublisher</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        publisher<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PrintSubscriber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Submitting items..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            publisher<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        publisher<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/*
+Submitting items...
+Received item: 0
+Received item: 1
+Received item: 2
+Received item: 3
+Received item: 4
+Received item: 5
+Received item: 6
+Received item: 7
+Received item: 8
+Received item: 9
+PrintSubscriber is complete
+*/</span>
+</code></pre>
+<p>구독자 내 <code>Subscription</code>에서 <code>onSubscribe</code>메소드 에 전달 된 객체를 캡처하여 <code>Subscription</code> 나중에 해당 객체와 상호작용 할 수 있습니다.( <code>subscription.request(1)</code>호출)</p>
+<p><code>onNext</code>메소드 내에서 게시자가 항목 처리를 완료하자마자 다른 항목을 수락 할 준비가 되었음을 게시자에게 알립니다.</p>
+<p> <code>SubmissionPublisher</code>와  <code>PrintSubscriber</code>를 인스턴스화하고 후자를 전자에 구독한다. 구독이 설정되면 게시자에게 0에서 9까지의 값을 제출하고 구독자에게 값을 비동기 적으로 푸시합니다. 그런 다음 구독자는 값을 표준 출력하여 각 항목을 처리하고 다른 값을 받아 들일 준비가되었음을 구독에 알립니다. 그런 다음 비동기 전송이 완료 될 수 있도록 1 초 동안 주 스레드를 일시 중지합니다. <code>submit</code> 메소드가 제출 된 항목을 비동기 적으로 구독자에게 푸시하기 때문에 이는 매우 중요한 단계입니다. 따라서 비동기 작업이 완료 될 때까지 상당한 시간을 제공해야합니다. 마지막으로 게시자를 닫고 구독자에게 가입이 완료되었음을 알립니다.</p>
+<p>프로세서를 도입하고 원래의 게시자와 구독자를이 프로세서와 연결할 수 있습니다. 수신 된 값을 10 씩 증가시키고 증가 된 값을 구독자에게 푸시 (push)하는 프로세서를 생성합니다.</p>
+<p>각각의 푸시된 값은 10씩 증가하며, 프로세서에 의해 수신된 이벤트(오류 수신 또는 완료 등)는 가입자에게 전달되며, 결과적으로 <code>PlusTenProcessor</code>와 <code>PrintSubscriber</code> 에 대해 완료된 메시지가 표시된다.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PlusTenProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">SubmissionPublisher</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">Subscriber</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Subscription subscription<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSubscribe</span><span class="token punctuation">(</span>Subscription subscription<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>subscription <span class="token operator">=</span> subscription<span class="token punctuation">;</span>
+        subscription<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onNext</span><span class="token punctuation">(</span>Integer item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">submit</span><span class="token punctuation">(</span>item <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        subscription<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Throwable error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        error<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">closeExceptionally</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onComplete</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"PlusTenProcessor completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SubmissionPublisherExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        SubmissionPublisher<span class="token operator">&lt;</span>Integer<span class="token operator">></span> publisher <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SubmissionPublisher</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        PlusTenProcessor processor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PlusTenProcessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        PrintSubscriber subscriber <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintSubscriber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        publisher<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>processor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        processor<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>subscriber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Submitting items..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            publisher<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        publisher<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/*
+Submitting items...
+Received item: 10
+Received item: 11
+Received item: 12
+Received item: 13
+Received item: 14
+Received item: 15
+Received item: 16
+Received item: 17
+Received item: 18
+Received item: 19
+PlusTenProcessor completed
+PrintSubscriber is complete
+*/</span>
+</code></pre>
+<h2 id="Convenience-Factory-Methods-for-Collections"><a href="#Convenience-Factory-Methods-for-Collections" class="headerlink" title="Convenience Factory Methods for Collections"></a>Convenience Factory Methods for Collections</h2><p>불변 Collection 메소드가 생겼습니다.</p>
+<p>예전에는 아래와 같이 불편하게 사용해야 했습니다.</p>
+<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">></span> band <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+band<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+band<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Steve"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+band<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Adrian"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+band<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Janick"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+band<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Nicko"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+band <span class="token operator">=</span> Collections<span class="token punctuation">.</span><span class="token function">unmodifiableList</span><span class="token punctuation">(</span>band<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//stream</span>
+List<span class="token operator">&lt;</span>String<span class="token operator">></span> band <span class="token operator">=</span> Collections
+  <span class="token punctuation">.</span><span class="token function">unmodifiableList</span><span class="token punctuation">(</span>Stream<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span><span class="token string">"Steve"</span><span class="token punctuation">,</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span><span class="token string">"Nicko"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>불변의 Collection이란 생성한 Collection을 수정할 수 없는 것을 말합니다.</p>
+<ul>
+<li><code>java.util</code> 패키지는 <code>package-private ImmutableCollections</code> 클래스로 구성되어 있으며 불변 기능을 제공하는 클래스가 있습니다.</li>
+<li>클래스의 인스턴스는 이미 존재하는 인터페이스의 정적 팩토리 메소드를 사용하여 만들어집니다.</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>불변의리스트에는 추상 기본 클래스  <code>AbstractImmutableList&lt;E&gt;</code> 와 4 개의 구현이 있습니다.</p>
+<ul>
+<li><code>List0&lt;E&gt;</code> </li>
+<li><code>List1&lt;E&gt;</code> </li>
+<li><code>List2&lt;E&gt;</code> </li>
+<li><code>ListN&lt;E&gt;</code> </li>
+</ul>
+<p>이러한 각 유형은 작성하는 데 사용되는 요소의 수에 해당합니다. <code>java.util.List</code> 인터페이스에는 위의 구현을 사용하여 불변의 객체를 생성하는 12가지 정적 팩토리 메소드가 있습니다.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>E e1<span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>E e1<span class="token punctuation">,</span> E e2<span class="token punctuation">)</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>E e1<span class="token punctuation">,</span> E e2<span class="token punctuation">,</span> E e3<span class="token punctuation">,</span> E e4<span class="token punctuation">,</span> E e5<span class="token punctuation">,</span> E e6<span class="token punctuation">,</span> E e7<span class="token punctuation">,</span> E e8<span class="token punctuation">,</span> E e9<span class="token punctuation">,</span> E e10<span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>E<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> elements<span class="token punctuation">)</span>
+</code></pre>
+<p>아래의 메소드를 사용하면 <code>UnsupportedOperationException</code>가 발생합니다.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span>  <span class="token function">add</span> <span class="token punctuation">(</span> E  e <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span>  <span class="token function">addAll</span> <span class="token punctuation">(</span> Collection <span class="token operator">&lt;</span><span class="token operator">?</span>  <span class="token keyword">extends</span>  <span class="token class-name">E</span> <span class="token operator">></span>  c <span class="token punctuation">)</span><span class="token punctuation">;</span>
+부울  <span class="token function">addAll</span> <span class="token punctuation">(</span> <span class="token keyword">int</span>  index <span class="token punctuation">,</span> Collection <span class="token operator">&lt;</span><span class="token operator">?</span>  <span class="token keyword">extends</span>  <span class="token class-name">E</span> <span class="token operator">></span>  c <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span>     <span class="token function">clear</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+부울  <span class="token function">remove</span> <span class="token punctuation">(</span> Object  o <span class="token punctuation">)</span><span class="token punctuation">;</span>
+부울  <span class="token function">removeAll</span> <span class="token punctuation">(</span> Collection <span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span>  c <span class="token punctuation">)</span><span class="token punctuation">;</span>
+부울  <span class="token function">removeIf</span> <span class="token punctuation">(</span> 술어 <span class="token operator">&lt;</span><span class="token operator">?</span>  <span class="token keyword">super</span>  E <span class="token operator">></span>  필터 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span>     <span class="token function">replaceAll</span> <span class="token punctuation">(</span> UnaryOperator <span class="token operator">&lt;</span> E <span class="token operator">></span>  연산자 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span>  <span class="token function">retainAll</span> <span class="token punctuation">(</span> Collection <span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span>  c <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span>     <span class="token function">sort</span> <span class="token punctuation">(</span> Comparator <span class="token operator">&lt;</span><span class="token operator">?</span>  <span class="token keyword">super</span>  E <span class="token operator">></span>  c <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>내용을 불변하는것 외에도  <code>null</code> 값의 유효성도 체크합니다. 아래의 코드는 <code>NullPointerException</code>이 발생합니다.</p>
+<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">></span> band <span class="token operator">=</span> List<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span><span class="token string">"Steve"</span><span class="token punctuation">,</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>아래는 불변 List를 만드는 예제입니다.</p>
+<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">></span> band <span class="token operator">=</span> List<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span><span class="token string">"Steve"</span><span class="token punctuation">,</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span><span class="token string">"Nicko"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p><code>ist</code> 인터페이스와 비슷하게 구현되며. 추상 기본 클래스  <code>AbstractImmutableSet&lt;E&gt;</code> 와 네 가지 구현이 있습니다.</p>
+<ul>
+<li><code>Set0&lt;E&gt;</code> </li>
+<li><code>Set1&lt;E&gt;</code> </li>
+<li><code>Set2&lt;E&gt;</code> </li>
+<li><code>SetN&lt;E&gt;</code> </li>
+</ul>
+<p><code></code>java.util.List` 인터페이스에는 위의 구현을 사용하여 불변의 객체를 생성하는 12가지 정적 팩토리 메소드가 있습니다.</p>
+<p>내용을 불변하는것 외에도  <code>null</code> 값의 유효성도 체크합니다. 아래의 코드는 <code>NullPointerException</code>이 발생합니다.</p>
+<pre class=" language-java"><code class="language-java">Set<span class="token operator">&lt;</span>String<span class="token operator">></span> band <span class="token operator">=</span> Set<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span><span class="token string">"Steve"</span><span class="token punctuation">,</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>List와 다른 점은 중복된 값을 넣으려고 하면 <code>IllegalArgumentException</code>이 발생합니다.</p>
+<pre class=" language-java"><code class="language-java">Set<span class="token operator">&lt;</span>String<span class="token operator">></span> guitarists <span class="token operator">=</span> Set<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>아래는 불변 Set을 만드는 예제입니다.</p>
+<pre class=" language-java"><code class="language-java">Set<span class="token operator">&lt;</span>String<span class="token operator">></span> band <span class="token operator">=</span> Set<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span><span class="token string">"Steve"</span><span class="token punctuation">,</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span><span class="token string">"Nicko"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>불변의 객체를  <code>java.util.Map</code> 인터페이스의 static 팩토리 메소드를 사용하여 만들 수 있습니다. .</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">entry</span><span class="token punctuation">(</span>K k<span class="token punctuation">,</span> V v<span class="token punctuation">)</span>
+</code></pre>
+<p>불변의 <code>Map</code>에는 <code>AbstractImmutableMap&lt;K, V&gt;</code> 3 개의 구현을 가지는 추상 기본 클래스가 있습니다   .</p>
+<ul>
+<li><code>Map0&lt;K, V&gt;</code></li>
+<li><code>Map1&lt;K, V&gt;</code></li>
+<li><code>MapN&lt;K, V&gt;</code></li>
+</ul>
+<p><code>java.util.Map</code> 인터페이스 내부에는 다음과 같은 팩토리 메소드가  있습니다.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>K k1<span class="token punctuation">,</span> V v1<span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>K k1<span class="token punctuation">,</span> V v1<span class="token punctuation">,</span> K k2<span class="token punctuation">,</span> V v2<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">of</span><span class="token punctuation">(</span>K k1<span class="token punctuation">,</span> V v1<span class="token punctuation">,</span> K k2<span class="token punctuation">,</span> V v2<span class="token punctuation">,</span> K k3<span class="token punctuation">,</span> V v3<span class="token punctuation">,</span> K k4<span class="token punctuation">,</span> V v4<span class="token punctuation">,</span>
+                           K k5<span class="token punctuation">,</span> V v5<span class="token punctuation">,</span> K k6<span class="token punctuation">,</span> V v6<span class="token punctuation">,</span> K k7<span class="token punctuation">,</span> V v7<span class="token punctuation">,</span> K k8<span class="token punctuation">,</span> V v8<span class="token punctuation">,</span> 
+                           K k9<span class="token punctuation">,</span> V v9<span class="token punctuation">,</span> K k10<span class="token punctuation">,</span> V v10<span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> Map<span class="token operator">&lt;</span>K<span class="token punctuation">,</span> V<span class="token operator">></span> <span class="token function">ofEntries</span><span class="token punctuation">(</span>Entry<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">K</span><span class="token punctuation">,</span> <span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> entries<span class="token punctuation">)</span>
+</code></pre>
+<p><code>List</code>와 <code>Set</code>과는 다르게 최대 10개의 요소를 포함하는 불변 객체를 만들 수 있습니다.</p>
+<p>아래의 메소드를 사용하면 <code>UnsupportedOperationException</code>가 발생합니다.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+V <span class="token function">compute</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> BiFunction<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span> rf<span class="token punctuation">)</span>
+V <span class="token function">computeIfAbsent</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> Function<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span> mf<span class="token punctuation">)</span>
+V <span class="token function">computeIfPresent</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> BiFunction<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span> rf<span class="token punctuation">)</span>
+V <span class="token function">merge</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> V value<span class="token punctuation">,</span> BiFunction<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span> rf<span class="token punctuation">)</span>
+V <span class="token function">put</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> V value<span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">putAll</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">K</span><span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span> m<span class="token punctuation">)</span>
+V <span class="token function">putIfAbsent</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> V value<span class="token punctuation">)</span>
+V <span class="token function">remove</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span>
+<span class="token keyword">boolean</span> <span class="token function">remove</span><span class="token punctuation">(</span>Object key<span class="token punctuation">,</span> Object value<span class="token punctuation">)</span>
+V <span class="token function">replace</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> V value<span class="token punctuation">)</span>
+<span class="token keyword">boolean</span> <span class="token function">replace</span><span class="token punctuation">(</span>K key<span class="token punctuation">,</span> V oldValue<span class="token punctuation">,</span> V newValue<span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">replaceAll</span><span class="token punctuation">(</span>BiFunction<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> K<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">super</span> V<span class="token punctuation">,</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">V</span><span class="token operator">></span> f<span class="token punctuation">)</span>
+</code></pre>
+<p>불변의 <code>Map</code>을 만드는 것과 상관 없이 Key,Value또는 전체 요소가 null인 경우에는 인스턴스화 할 수 없습니다. 아래의 예제들은 <code>NullPointer</code>를 던지는 코드입니다.</p>
+<pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>null<span class="token punctuation">,</span> 59L<span class="token punctuation">,</span> <span class="token string">"Steve"</span><span class="token punctuation">,</span> 61L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token string">"Steve"</span><span class="token punctuation">,</span> 61L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">ofEntries</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">)</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>중복값을 가지는 Map을 생성하면 <code>IllegalArgumentException</code>가 발생합니다.</p>
+<pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">,</span> <span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">ofEntries</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                      Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>아래는 불변 Map을 만드는 예제입니다.</p>
+<pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">,</span> <span class="token string">"Steve"</span><span class="token punctuation">,</span> 61L<span class="token punctuation">,</span> <span class="token string">"Dave"</span><span class="token punctuation">,</span> 60L<span class="token punctuation">,</span>
+                               <span class="token string">"Adrian"</span><span class="token punctuation">,</span> 60L<span class="token punctuation">,</span> <span class="token string">"Janick"</span><span class="token punctuation">,</span> 60L<span class="token punctuation">,</span> <span class="token string">"Nicko"</span><span class="token punctuation">,</span> 65L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> age <span class="token operator">=</span> Map<span class="token punctuation">.</span><span class="token function">ofEntries</span><span class="token punctuation">(</span>Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Bruce"</span><span class="token punctuation">,</span> 59L<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                      Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Steve"</span><span class="token punctuation">,</span> 61L<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                      Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Dave"</span><span class="token punctuation">,</span> 60L<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                      Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Adrian"</span><span class="token punctuation">,</span> 60L<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                      Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Janick"</span><span class="token punctuation">,</span> 60L<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                      Map<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"Nicko"</span><span class="token punctuation">,</span> 65L<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h3><p>편리하게 불변의 객체를 만들 수 있고 Null과 중복 삽입을 사전에 방지할 수 있는 유용한 기능입니다.</p>
+<h2 id="Reactive-Streams"><a href="#Reactive-Streams" class="headerlink" title="Reactive Streams"></a>Reactive Streams</h2><p>Java 9 에서 Reactive Streams API가 추가되었습니다.</p>
+<ul>
+<li>Reactive Streams 추가<ul>
+<li>publish-subscribe 프레임 워크를 지원하는 인터페이스</li>
+</ul>
+</li>
+<li>reactive stream API <ul>
+<li>java.util.concurrent.Flow</li>
+<li>java.util.concurrent.Flow.Publisher</li>
+<li>java.util.concurrent.Flow.Subscription</li>
+<li>java.util.concurrent.Flow.Subscriber</li>
+<li>java.util.concurrent.Flow.Processor</li>
+</ul>
+</li>
+</ul>
+<p>리액티브 프로그래밍이란 무엇일까요?<br>많은 응용 프로그램에서 데이터는 거의 실시간으로 처리됩니다. 대부분의 경우  데이터가 있을 때를  미리 알 수 없습니다. 이러한 비동기식 데이터 처리를 용이하게하기 위해  능률적인 방법을 사용해야합니다.</p>
+<p>Flow API (및 Reactive Streams API)는 Iterator 및 Observer 패턴의 아이디어를 조합 한 것으로 볼 수 있습니다.</p>
+<p>자세한 내용은 <a href="https://ahea.wordpress.com/2017/02/02/iterable%ec%99%80-observable%ec%9d%98-%ea%b0%9c%eb%85%90/" target="_blank" rel="noopener">여기서</a> 확인할 수 있습니다.</p>
+<p><img src="/images/java9/flow.png" alt=""></p>
+<p>Reactive Streams 인터페이스의 표준 Java 소스는 java.util.concurrent.Flow 클래스에 있으며 Flow클래스 내에 정적 인터페이스로 제공됩니다 . JavaDoc이 제거되면 Flow클래스는 다음과 같이 정의됩니다.<br>Observer패턴에서 문제가 있다는 부분이 onError와 onComplete로 해결됩니다.에러가 난다면 onError, 다 끝났다면 onComplete가 호출됩니다.<br>리 액티브 스트림은 (1) 게시자, (2) 구독자, (3) 구독 및 (4) 프로세서의 네 가지 기본 엔터티로 구성됩니다.</p>
+<h3 id="게시자-Publishers-구독자-Subscriber"><a href="#게시자-Publishers-구독자-Subscriber" class="headerlink" title="게시자(Publishers), 구독자(Subscriber)"></a>게시자(Publishers), 구독자(Subscriber)</h3><p><img src="/images/java9/ReactiveStreams_1.png" alt=""></p>
+<p>게시자, 구독자 및 구독(Publishers, Subscribers, and Subscriptions) 의 구조에 대해 알아보겠습니다.<br>Reactive Programming 모델에는 게시자와 구독자가 있습니다. 게시자는 구독자가 비동기 적으로 구독하는 데이터 스트림을 게시합니다.<br>게시자와 구독자 간의 양방향 연결을 <strong>구독</strong>이라고합니다.<br>구독자가 게시자를 구독하면 게시자는 구독을 구독자에게 알리고 구독자가 구독에 대한 참조를 저장할 수있게합니다. 이 통지 프로세스가 완료되면 구독자는 게시자에게 항목을 받을 준비가 되었음을 알릴 수 있습니다</p>
+<p><img src="/images/java9/subscriber.png" alt=""></p>
+<p>그중에서 게시자와 구독자에 대한 예제를 통해 간단히 살펴보겠습니다.<br>onSubscribe는 최초 1번만 호출되는 메소드onNext는 기존 Observer에서 update와 같은 역활<br>Java 버전에는 게시자 구현이 포함되어 SubmissionPublisher있습니다. 이 SubmissionPublisher클래스는 submit(T item)메서드를 사용하여 구독자에게 푸시 할 항목을 허용하는 단순한 게시자 역할을합니다 . 항목이 submit 메서드에 제출 되면 다음과 같이 구독자에게 비동기 적으로 푸시됩니다.<br>구독이 설정되면 값 0을 9게시자에게 제출 하고 구독자에게 값을 비동기 적으로 푸시합니다. 그런 다음 구독자는 값을 표준 출력하고 각 항목을 처리하고 다른 값을 받아 들일 준비가되었음을 구독에 알립니다. 그런 다음 비동기 전송이 완료 될 수 있도록 1 초 동안 주 스레드를 일시 중지합니다. 이 submit 메서드는 제출 된 항목을 구독자에게 푸시합니다.<br>아래 그림과 같이 출력되는것을 확인할 수 있습니다.</p>
+<p><img src="/images/java9/subscriber2.png" alt=""></p>
+<h3 id="프로세서-Processor"><a href="#프로세서-Processor" class="headerlink" title="프로세서(Processor)"></a><strong>프로세서(Processor)</strong></h3><p><img src="/images/java9/ReactiveStreams_3.png" alt=""></p>
+<p>엔터티가 게시자와 구독자 인 경우 이를 프로세서 라고합니다 . 프로세서는 일반적으로 다른 게시자와 구독자 (둘 중 하나가 다른 프로세서 일 수 있음) 간의 중개자 역할을하여 데이터 스트림에서 일부 변형을 수행합니다.<br>예를 들어 구독자로 전달하기 전에 일부 조건과 일치하는 항목을 필터링하는 프로세서를 만들 수 있습니다. 프로세서의 시각적 표현은 그림과 같습니다.</p>
+<p><img src="/images/java9/processer.png" alt=""></p>
+<p><img src="/images/java9/processer1.png" alt=""></p>
+<p>프로세서를 추가하는 예제입니다.프로세서는 구독자로 전달하기 전에 항목을 필터링할 수 있다고 말씀 드렸습니다.소스를 보시면 onNext메소드에서 넘겨온 item필드에 대해 10씩 증가하였습니다.<br>프로세서를 추가하는 방법은 프로세서 객체를 생성 후 구독자를 추가합니다.</p>
+<p><img src="/images/java9/processer2.png" alt="img"></p>
+<p>10씩 증가되서 출력된 부분을 확인하실 수 있으며 프로세서가 먼저 종료 된것을 확인 할 수 있습니다.</p>
+<h2 id="Project-Jigsaw"><a href="#Project-Jigsaw" class="headerlink" title="Project Jigsaw"></a><strong>Project Jigsaw</strong></h2><p><img src="/images/java9/module.png" alt=""></p>
+<p>Java9에서 크게 달라진점 중 하나인 모듈 시스템으로 자신만의 모듈을 만들수 있습니다</p>
+<p>Java 플랫폼의 모듈화와 일반 모듈 시스템의 도입 인 Project Jigsaw는 Java 9에 포함되었습니다. java9에서 적용된 모듈에 대해 알아보겠습니다.모듈화는 구성 요소 간의 느슨한 커플 링 구성 요소 간의 종속성을 명확히하고강력한 캡슐화를 사용한 숨겨진 구현을 하는 것을달성하는 데 도움이되는 설계 원칙입니다. </p>
+<p><img src="/images/java9/module_JAVA8.png" alt=""></p>
+<p><img src="/images/java9/module_JAVA9.png" alt=""></p>
+<p>Java Home 폴더에 bin, jre, lib 등의 디렉토리를 볼 수 있습니다. JDK 9에는 JRE가 포함되어 있지 않습니다.  JDK 9에서는 JRE가 별도의 배포 폴더로 분리됩니다. JDK 9 소프트웨어에는 “jmods”라는 새 폴더가 있습니다.  Java 9 모듈 집합을 포함합니다. JDK 9에서는 rt.jar이없고 Tools.jar이 없습니다.</p>
+<h3 id="Module-System이-필요한-이유"><a href="#Module-System이-필요한-이유" class="headerlink" title="Module System이 필요한 이유"></a><strong>Module System이 필요한 이유</strong></h3><p>왜 모듈성이 필요한가? </p>
+<ul>
+<li>작은 장치가 불필요하게 전체 JDK를 실행하지 않도록합니다.</li>
+<li>작은 컴퓨터 디바이스에서 경량화하여 효과적으로 사용해야합니다. </li>
+<li>캡슐화시 결함을 제거합니다. Java 9에서는 기본적으로 모든 패키지는 모듈 비공개이기 때문에 public 선언으로 module-info.java로 반출되지 않으면 더 이상 볼 수 없습니다. 의존성 (컴파일 시간과 런타임 모두)을 검사합니다. 리플렉션을 사용해도 런타임 때 액세스 할 수 없습니다. </li>
+</ul>
+<p>모듈화는 언어 레벨에서 모듈간의 의존성을 알 수 있으니 애플리케이션이 사용하는 모듈만 모아서 런타임 환경(이미지)를 만들 수 있습니다.필요한 모듈만으로 경량화된 이미지를 만들기 위함입니다</p>
+<h3 id="Module화-된-JDK"><a href="#Module화-된-JDK" class="headerlink" title="Module화 된 JDK"></a><strong>Module화 된 JDK</strong></h3><p>모듈화 된 JDK를 구조를 살펴보겠습니다.그래프 하단에 java.base가 있습니다. 생성하는 모든 모듈 은 java.lang.Object 의 암시적인 확장과 유사하게 선언 여부에 관계없이 java.base를 읽습니다<br>JDK의 모듈화는 사용하려는 Java Runtime의 모듈을 지정할 수 있음을 의미합니다.</p>
+<h2 id="Private-Interface-Method"><a href="#Private-Interface-Method" class="headerlink" title="Private Interface Method"></a><strong>Private Interface Method</strong></h2><p><img src="/images/java9/private-method.png" alt=""></p>
+<p>JAVA8 에서는 특정 기능을 처리하는 내부method 일뿐인데도 외부에 공개되는 public method 로 만들어야 하는 단점을 가지고 있었습니다그러한 요구 사항과 interface를 구현하는 다른 interface 또는 class가 해당 method에 액세스하거나 상속 할수 있는것을 원하지 않는 요구사항이 있다.Java9 Private Interface Method 에서는 <strong>interface 에 private method / private static method라는 새로운 기능을 제공</strong>하여 문제를 해결한다. 이제 중복 코드를 피하고 interface에 대한 캡슐화를 유지 할 수 있다.</p>
+<h2 id="try-with-resource-향상"><a href="#try-with-resource-향상" class="headerlink" title="try-with-resource 향상"></a><strong>try-with-resource 향상</strong></h2><p><img src="/images/java9/try1.png" alt=""></p>
+<p><img src="/images/java9/try2.png" alt=""></p>
+<p>기존의 java7 부터 제공된 try-with-resource 구문이 불편함이 많았습니다.Try-With-Resources 외부에서 선언 된 리소스를 사용할 수 없습니다.(JAVA7,8)final or effectively final이 적용되어 참조 변수를 구문에 바로 사용할 수 있게 되었습니다.</p>
+<h2 id="Improve-Diamond-Operator"><a href="#Improve-Diamond-Operator" class="headerlink" title="Improve Diamond Operator"></a><strong>Improve Diamond Operator</strong></h2><p>JAVA 7 <img src="/images/java9/diamond1.png" alt=""></p>
+<p>JAVA 9 <img src="/images/java9/diamond2.png" alt=""> </p>
+<p>Java7 에는 코드를 보다 읽기 쉽게 만드는데 도움되는 “&lt;&gt;”(다이아몬드 연산자) Diamond Operator 라는 새로운 기능이 있었지만 <strong>익명 클래스(Anonymous Inner Class)에는 제한적</strong>이었다.<br><strong>이제는 익명 클래스에서  Diamond Operator 를 사용할수 있습니다.</strong></p>
+<h2 id="Stream-Improvements"><a href="#Stream-Improvements" class="headerlink" title="Stream Improvements"></a><strong>Stream Improvements</strong></h2><p>Java 8에는 개발자가 일련의 객체에서 집계 연산을 수행하는 데 도움이되는 Streams가 도입되었습니다. Java 9 에서는  <strong>4가지</strong> 새로운 추가 메소드를 사용하여 Stream 에서 반복에 대한 제어를 못함에 어려운 부분이 많았던 부분을 해소했습니다.<br>기본적으로 predicate functional interface를 변수로 제공하고 있습니다.</p>
+<h3 id="takewhile"><a href="#takewhile" class="headerlink" title="takewhile"></a>takewhile</h3><p><img src="/images/java9/takewhile.png" alt=""></p>
+<p>takewhile은 false를 리턴 할 때까지 모든 값을 취합니다.출력된것을 보시면 빈값이 있기 전인 abc가 출력된것을 확인할 수 있습니다.</p>
+<h3 id="dropwhile"><a href="#dropwhile" class="headerlink" title="dropwhile"></a>dropwhile</h3><p><img src="/images/java9/dropwhile.png" alt=""></p>
+<p>dropWhile 메소드는  true를 리턴 할 때까지 시작시 모든 값을 버립니다. 지정된 조건과 일치하는 요소를 삭제 한 후에 이 스트림의 나머지 요소로 구성된 스트림을 리턴합니다.</p>
+<h3 id="iterate"><a href="#iterate" class="headerlink" title="iterate"></a>iterate</h3><p><img src="/images/java9/iterate.png" alt=""></p>
+<p>iterate매개 변수로 hasNext 조건자를 갖습니다. iterate 메소드는 이제 hasNext 조건자에서 false를 반환하면 루프를 중지시킵니다. 2부터 10보다 작은 수 까지 2씩 증가 시키는 예제를 만들었습니다. 2,4,6,8이 출력된것을 확인할 수 있습니다.</p>
+<h3 id="ofNullable"><a href="#ofNullable" class="headerlink" title="ofNullable"></a>ofNullable</h3><p><img src="/images/java9/ofNullable.png" alt=""></p>
+<p>NullPointerException을 방지하고 스트림에 대한 null 검사를 방지하기 위해 ofNullable 메서드가 도입되었습니다. 이 메소드는 단일 요소가 포함 된 순차적 스트림을 리턴하고, 그렇지 않으면 null이 아닌 경우 빈 스트림을 리턴합니다.<br>출력을 보면 값이 존재 할때는 1이 없을때는 0이 출력된것을 보실수 있습니다.</p>
+<h2 id="Optional-class-Stream-Implementation"><a href="#Optional-class-Stream-Implementation" class="headerlink" title="Optional class Stream Implementation"></a><strong>Optional class Stream Implementation</strong></h2><p>때때로 우리는 Optional이 비어 있을 때 Optional을 반환하는 다른 액션을 실행하기를 원합니다 .  Java9에서는 Optional 클래스에 대해 세 가지 유용한 메소드를 추가하였습니다. </p>
+<h3 id="of"><a href="#of" class="headerlink" title="of()"></a>of()</h3><p><img src="/images/java9/of.png" alt=""></p>
+<p>of() 메소드는 orElseGet()나 orElse()와 달리 Optional 객체를 리턴하고 싶을 때 사용합니다.</p>
+<h3 id="ifPresentOrElse"><a href="#ifPresentOrElse" class="headerlink" title="ifPresentOrElse()"></a>ifPresentOrElse()</h3><p><img src="/images/java9/ifPresentOrElse.png" alt=""></p>
+<p>기존의 ifPresent() 메서드는 Optional 객체가 값을 담고 있을 때 처리할 때 사용했습니다. ifPresentOrElse() 메서드는 Optional 객체가 비어있을 경우 처리할 내용까지 정의할 수 있습니다.</p>
+<h3 id="stream"><a href="#stream" class="headerlink" title="stream()"></a>stream()</h3><p><img src="/images/java9/stream.png" alt=""></p>
+<p>Stream() 메소드는 Optional 객체를 Stream 객체로 변환하기 위해서 사용합니다.비어있는 Optonal 객체는 제외하고 이름들을 List 객체로 변환하는 코드입니다.</p>
+<h2 id="Local-Variable-Type-Inference-JDK10"><a href="#Local-Variable-Type-Inference-JDK10" class="headerlink" title="Local-Variable Type Inference(JDK10)"></a><strong>Local-Variable Type Inference</strong>(JDK10)</h2><p>자바 9까지는 로컬 변수의 타입을 명시 적으로 언급하고 그것을 초기화하는 데 사용 된 이니셜 라이저와 호환되는지 확인해야했습니다.</p>
+<p><img src="/images/java9/var.png" alt=""></p>
+<p>자바10에서는로컬변수를 선언할때 타입추론을 이용하여 명시적으로 타입선언 없이도 변수를 선언할수 있게 되었습니다.<br>이 기능은 코드를 줄이는 데 도움이 될거같습니다.</p>
+<h3 id="컴파일-오류"><a href="#컴파일-오류" class="headerlink" title="컴파일 오류"></a><strong>컴파일 오류</strong></h3><p><img src="/images/java9/varCompile.png" alt=""></p>
+<p>변수의 타입은 컴파일시에 추론되며 나중에 변경할 수 없습니다.<br>멤버 변수, 메서드 매개 변수 형식 등에는 사용할 수 없습니다.<br>앞에서 언급했듯이, var 는 이니셜 라이저 없이null로 초기화하면 에러가 발생합니자람다 식은 명시 적 대상 유형을 필요로하므로 var을 사용할 수 없습니다. 배열 이니셜 라이저도 마찬가지입니다.</p>
+<p>이 기능은 이니셜 라이저가있는 로컬 변수에서만 사용할 수 있습니다. </p>
+<h3 id="잘-사용-하기"><a href="#잘-사용-하기" class="headerlink" title="잘 사용 하기"></a>잘 사용 하기</h3><p>var를 합법적으로 사용될 수있는 상황이 있지만 그렇게 하는 것이 좋지 않을 수 있는 경우가 있습니다<br>예를 들어, 코드가 읽기 어렵게 될 수있는 상황이 있습니다.</p>
+<p><img src="/images/java9/var1.png" alt=""></p>
+<p>여기서는 var를 합법적으로 사용하더라도 코드를 읽을 수 없게 만드는 메소드 호출에 의해 반환되는 유형을 이해하기 어렵게 됩니다.</p>
+<p><img src="/images/java9/var2.png" alt=""></p>
+<p>Java 7에서 소개 된 다이아몬드 연산자와 함께 사용하면 Object로 타입으로 반환됩니다. 원하는 타입의 유형으로 선언하는것이 좋습니다.</p>
+<h2 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h2><ul>
+<li><a href="http://www.publickey1.jp/2018/java101112b.gif" target="_blank" rel="noopener">http://www.publickey1.jp/2018/java101112b.gif</a></li>
+<li><a href="https://pbs.twimg.com/media/DOGTWsrXcAA_7H8?format=jpg&amp;name=small" target="_blank" rel="noopener">https://pbs.twimg.com/media/DOGTWsrXcAA_7H8?format=jpg&amp;name=small</a></li>
+<li><a href="https://openjdk.java.net/projects/jdk9/" target="_blank" rel="noopener">https://openjdk.java.net/projects/jdk9/</a></li>
+<li><a href="https://dzone.com/articles/an-introduction-to-http2-support-in-java-9" target="_blank" rel="noopener">https://dzone.com/articles/an-introduction-to-http2-support-in-java-9</a></li>
+<li><a href="https://dzone.com/articles/reactive-streams-in-java-9" target="_blank" rel="noopener">https://dzone.com/articles/reactive-streams-in-java-9</a></li>
+<li><a href="https://www.journaldev.com/20723/java-9-reactive-streams" target="_blank" rel="noopener">https://www.journaldev.com/20723/java-9-reactive-streams</a></li>
+<li><a href="https://openjdk.java.net/projects/jigsaw/spec/sotms/" target="_blank" rel="noopener">https://openjdk.java.net/projects/jigsaw/spec/sotms/</a></li>
+<li><a href="https://dzone.com/articles/java-9-modularity-jigsaw" target="_blank" rel="noopener">https://dzone.com/articles/java-9-modularity-jigsaw</a></li>
+<li><a href="https://howtoprogram.xyz/2017/10/19/java-9-http-2-client-api-example/" target="_blank" rel="noopener">https://howtoprogram.xyz/2017/10/19/java-9-http-2-client-api-example/</a></li>
+<li><a href="https://howtodoinjava.com/java9/java9-private-interface-methods/" target="_blank" rel="noopener">https://howtodoinjava.com/java9/java9-private-interface-methods/</a></li>
+<li><a href="https://twitter.com/java/status/928185028714160128/photo/1?ref_src=twsrc^tfw|twcamp^tweetembed|twterm^928185028714160128&amp;ref_url=https%3A%2F%2Ffuturecreator.github.io%2F2018%2F09%2F29%2Fjava-11-released%2F" target="_blank" rel="noopener">https://twitter.com/java/status/928185028714160128/photo/1?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E928185028714160128&amp;ref_url=https%3A%2F%2Ffuturecreator.github.io%2F2018%2F09%2F29%2Fjava-11-released%2F</a></li>
+<li><a href="https://www.journaldev.com/13106/java-9-moduleshttps://blog.codecentric.de/en/2015/11/first-steps-with-java9-jigsaw-part-1/" target="_blank" rel="noopener">https://www.journaldev.com/13106/java-9-moduleshttps://blog.codecentric.de/en/2015/11/first-steps-with-java9-jigsaw-part-1/</a></li>
+<li><a href="https://devahea.github.io/2017/02/02/iterable-ec-99-80-observable-ec-9d-98-ea-b0-9c-eb-85-90/">https://devahea.github.io/2017/02/02/iterable-ec-99-80-observable-ec-9d-98-ea-b0-9c-eb-85-90/</a></li>
+</ul>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/04/23/Java9/" class="b-link-green">JAVA8말고 JAVA9를 사용해볼까</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <div class=" col s12 m6 l12" data-aos="zoom-in-up">
+                                        <div class="card frind-card8">
+                                            <div class="frind-ship">
+                                                <div class="title">
+                                                    <img src="http://devahea.github.io/friends/image/김형진.JPG" alt="img">
+                                                    <div style="margin-left: 20px;">
+                                                        <h1 class="friend-name" style="font-size: 1.5rem;     margin: 15px 0 22px -5px;">김형진</h1>
+                                                        <p>JAVA개발자로 일하고 있으며 새로운 기술을 배우는 것을 좋아하고 리팩토링과 개발자의 성장에 대해 관심이 많은 개발자입니다.</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/04/30/5G-초연결시대에-웹-HTTP의-대안은-QUIC/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="5G 초연결시대에 웹 HTTP의 대안은 QUIC?">
+                        
+                        <span class="card-title">5G 초연결시대에 웹 HTTP의 대안은 QUIC?</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">QUIC 소개QUIC (Quick UDP Internet Connection)구글에서 QUIC라는 프로토콜 설계하였고 2013년 6월 공개 했다.
+국제 인터넷 표준화 기구 (IETF)에 QUIC 프로토콜 표준화를 제</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/QUIC/" target="_blank">
+                        <span class="chip bg-color">QUIC</span>
+                    </a>
+                    
+                    <a href="/tags/HTTP-3/" target="_blank">
+                        <span class="chip bg-color">HTTP/3</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/22/amqp-프로토콜-원리/">
+                    <div class="card-image">
+                        
+                        <img src="https://paolopatierno.files.wordpress.com/2018/01/header-e1514835848967.png?w=665&amp;h=300" class="responsive-img" alt="MQ와 amqp 프로토콜 원리에 대하여">
+                        
+                        <span class="card-title">MQ와 amqp 프로토콜 원리에 대하여</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">프로젝트를 하면서 rabbitmq, activemq 등 뒤에 MQ라고 붙은 단어들을 많이 들었다.
+메시지 큐를 알아보기 전에 어디에서 쓰이는지 먼저 알아보자.
+일단 카카오 메시징 서버 직군에서 지원 자격중에 MQ에 </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Message-Queue/" target="_blank">
+                        <span class="chip bg-color">Message Queue</span>
+                    </a>
+                    
+                    <a href="/tags/AMQP/" target="_blank">
+                        <span class="chip bg-color">AMQP</span>
+                    </a>
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                    <a href="/tags/MQ/" target="_blank">
+                        <span class="chip bg-color">MQ</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,968 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hadoop 이란 (20170329), Java, Spring, Reactive">
+    <meta name="description" content="꼭 알아야해까진 아니여서 간략하게 읽을 수 있도록 정리 하고, 추후 글 추가 및 수정으로 공부한 내용을 올리겠습니다.
+1. Bigdata 란
+서버 한 대로 처리할 수 없는 규모의 데이터
+
+
+아마존의 data scie">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hadoop 이란 (20170329) | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Hadoop 이란 (20170329)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2017-03-29
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>꼭 알아야해까진 아니여서 간략하게 읽을 수 있도록 정리 하고, 추후 글 추가 및 수정으로 공부한 내용을 올리겠습니다.</p>
+<h3 id="1-Bigdata-란"><a href="#1-Bigdata-란" class="headerlink" title="1. Bigdata 란"></a>1. Bigdata 란</h3><blockquote>
+<p>서버 한 대로 처리할 수 없는 규모의 데이터</p>
+</blockquote>
+<ul>
+<li>아마존의 data scientist의 존 라우저가 2012년 아마존 클라우드 컨퍼런스에서 정의한 말</li>
+<li>가지고 있는 데이터를 제대로 처리하기 위해 분산 화ㄴ경이 필요하느냐에 포커스를 둔 정의</li>
+</ul>
+<p>경영 컨설팅 회사들은 20TB를 빅데이터의 기준점이라 말하며, 3V라는 정의(현재는 4V라고도 함)를 내새웁니다.</p>
+<ol>
+<li>Volume(규모) : 데이터의 크기</li>
+<li>Velocity(속도) : 데이터가 얼마나 빠르게 생성되는지</li>
+<li>Variety(다양성) : 데이터가 구조화/비구조화된 데이터를 다 포함하는지 여부</li>
+<li>Variability(변동성) : Variety와 연관된 것으로 데이터의 형태가 아예 알려져 있지 않은지 아니면 급변하는지 여부</li>
+</ol>
+<h3 id="2-Bigdata-예"><a href="#2-Bigdata-예" class="headerlink" title="2. Bigdata 예"></a>2. Bigdata 예</h3><ul>
+<li>웹 검색엔진 데이터</li>
+<li>웹 페이지 데이터</li>
+<li><p>검색어 로그와 클릭 로그 데이터</p>
+<ul>
+<li><a href="https://trends.google.com/trends/" target="_blank" rel="noopener">https://trends.google.com/trends/</a></li>
+<li><a href="https://translate.google.com" target="_blank" rel="noopener">https://translate.google.com</a></li>
+</ul>
+</li>
+<li><p>디바이스에서 생성되는 데이터</p>
+<ul>
+<li>스마트폰의 TV, 전화, 위치 정보, 앱 다운 등 (시스코에 따르면 2015년에 생성되는 데이터만 6.3ExaByte)</li>
+<li>보잉 제트엔진(비행기 엔진)의 경우 매 30분마다 10TB의 데이터를 생성</li>
+<li>스마트 미터 (전기사용량을 측정)</li>
+<li>강우량이나 풍량 같은 날씨를 관측하는 센서</li>
+</ul>
+</li>
+<li><p>소셜미디어의 데이터</p>
+<ul>
+<li>페이스북 / 트위터 등</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Hadoop의-역사"><a href="#3-Hadoop의-역사" class="headerlink" title="3. Hadoop의 역사"></a>3. Hadoop의 역사</h3><ol>
+<li>웹 검색 엔진인 아파치 너치(Apache Nutch)의 일부 - 창시자 : 더그 커팅</li>
+<li>웹 사이트를 크롤하고 색인하는 소프트웨어와 서버와 데이터의 관리가 필요</li>
+<li>Nutch는 2002년에 개발 시작하였지만 수십 억 웹 페이지로 확장될 수 없었음.</li>
+<li>2003년 GFS(Google File System)라는 구글 분산 파일시스템의 아키텍처가 기술된 논문 공개</li>
+<li>2004년 NDFS(Nutch Distributed File System)을 오픈소스로 구현</li>
+<li>2004년 구글의 MapReduce를 소개하는 논문 출판</li>
+<li>2005년초 너치에 맵리듀스를 구현, 2005년 중반까지 주요 너치 알고리즘이 MapReduce + NDFS 를 사용하기 위해 포팅</li>
+<li>NDFS + MapReduce는 검색 분야 외의 여러 분야에서 응용</li>
+<li>2006년 2월에 NDFS + MapReduce는 하둡이라고 명명된 독립 서브 프로젝트를 구성하기 위해 너치 밖으로 빠져나옴 (이때, NDFS를 HDFS로 이름을 변경)</li>
+<li>비슷한 시기에 더그 커팅은 야후에 합류</li>
+<li>2008년 2월 웹 규모의 시스템으로 전환하기 위해 전용 팀과 리소스를 제공</li>
+<li>이후 하둡은 야후 뿐만 아니라 다양한 회사에서 사용</li>
+<li>대기업 벤더인 EMC, IBM, MS, Oracle, Cloudera, Hortonworks, MapR 같은 하둡 전문 기업이 하둡을 배포</li>
+</ol>
+<h3 id="4-Hadoop-기반의-빅데이터-처리"><a href="#4-Hadoop-기반의-빅데이터-처리" class="headerlink" title="4. Hadoop 기반의 빅데이터 처리"></a>4. Hadoop 기반의 빅데이터 처리</h3><ul>
+<li>데이터 수집 : 수집 후 분산 파일 시스템에 저장 (Flume, Chukwa, Kafka)</li>
+<li><p>데이터 저장 및 처리 : MapReduce</p>
+<ul>
+<li>하둡은 기본적으로 큰 데이터릐 배치 프로세싱에 적합하고, 실시간으로 데이터를 분석하는 용도로 사용하기에는 버겁다는 점</li>
+</ul>
+</li>
+<li><p>처리데이터 액세스 모듈</p>
+<ul>
+<li>기존 관계형 데이터베이스 : sqoop( RDB to HDFS or HDFS to RDB )</li>
+<li>NoSQL : HBase, Cassandra, MongoDB</li>
+<li>검색 엔진 : Lucene, Solr, ElasticSearch</li>
+</ul>
+</li>
+<li><p>데이터의 분포 등을 보여주는 시각화 : Matlab, R(R-Hadoop), (Datameer, Pentaho 의 제품)</p>
+<ul>
+<li>R-Hadoop 이란 RMR(R-MapReduce), RHDFS, RHBase등 하둡 기반 기술들에 R 인터페이스를 접목한 프로젝트</li>
+</ul>
+</li>
+<li><p>작업 워크플로우 관리 정의 모듈 : Cascading, Oozie, Azkaban, Ambrose</p>
+</li>
+</ul>
+<p>Oozie : xml로 잡들을 어떻게 이어서 실행할지 설정 Cascading :자바 API를 통해 설정 Azkaban : 링크드인 내부에서 사용하는 워크플로우 관리 오픈소스 툴 Ambrose : 트위터 내부에서 사용하는 워크플로우 툴을 오픈소스 화</p>
+<h3 id="5-Hadoop의-특징"><a href="#5-Hadoop의-특징" class="headerlink" title="5. Hadoop의 특징"></a>5. Hadoop의 특징</h3><ul>
+<li>오픈소스 : 무료</li>
+<li>스케일 아웃<ul>
+<li>단, 스케일 업이 어느정도 적용된 스케일 아웃</li>
+<li>너무 낮은 사양을 사용할 경우 공간적 제약이 너무 심함</li>
+<li>서버 수를 어느정도 늘린 후에는 서버의 스펙을 올리는 편</li>
+</ul>
+</li>
+<li>병렬처리를 가능하게 해주는 단순한 데이터 모델<ul>
+<li>MapReduce 프로그래밍 특징 상 데이터는 다음과 같아야 합니다.<ul>
+<li>데이터는 레코드의 집합</li>
+<li>각 레코드는 Key와 Value를 갖는다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>오프라인 배치 프로세싱에 최적화<ul>
+<li>Hadoop은 오프라인 배치를 처리하는데 적합한 framework</li>
+<li>현재는 Spark, Storm, Kafka 등으로 오프라인 배치라는 제약이 약해짐.</li>
+</ul>
+</li>
+<li>불편 파일만 저장<ul>
+<li>파일은 HDFS의 업로드 후에는 내용을 변경하지 않는다는 가정</li>
+</ul>
+</li>
+<li>NameNode<ul>
+<li>파일 시스템의 namespace를 namenode의 메모리상에서 관리하기 때문에 Hadoop의 저장할 수 있는 파일과 디렉토리의 개수는 namenode의 제약을 받는다.</li>
+<li>SPOF(Single Point Of Failure)<ul>
+<li>이는 Secondary NameNode를 구성하면 NameNode의 데이터를 주기적으로 백업함으로써 어느정도 해결 할수 있다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>1차적인 글은 이걸로 마치겠습니다. 이론적인 내용이 많아 <a href="http://book.naver.com/bookdb/book_detail.nhn?bid=7217333" target="_blank" rel="noopener">하둡 완벽 가이드 클라우드 컴퓨팅 구축을 위한 실전 안내서</a> 와 <a href="http://book.naver.com/bookdb/book_detail.nhn?bid=7141828" target="_blank" rel="noopener">Do it! 직접 해보는 하둡 프로그래밍</a>의 책을 많이 참조 하였습니다. 이후 추가 및 수정할 내용이 있으면 바로 바로 수정해서 올리겠습니다.</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2017/03/29/hadoop-ec-9d-b4-eb-9e-80-20170329/" class="b-link-green">Hadoop 이란 (20170329)</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2017/04/14/hadoop-architecture-20170414/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hadoop architecture (20170414)">
+                        
+                        <span class="card-title">Hadoop architecture (20170414)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Hadoop 이란 HDFS + MapReduce로 구성되어 있습니다. (이전 글  : https://ahea.wordpress.com/2017/03/29/hadoop-eco-system-정리-1-20170329/ )</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-04-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/03/20/1-ed-9a-8c-ea-b3-b5-ea-b0-9c-ec-8a-a4-ed-84-b0-eb-94-94-reactive-programming/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="1회 공개 스터디 reactive programming">
+                        
+                        <span class="card-title">1회 공개 스터디 reactive programming</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">https://www.slideshare.net/sunghyunroh12/ahea-study-reactive-programming
+</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-03-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/공개스터디/" class="post-category" target="_blank">
+                                    공개스터디
+                                </a>
+                            
+                            <a href="/categories/공개스터디/java/" class="post-category" target="_blank">
+                                    java
+                                </a>
+                            
+                            <a href="/categories/공개스터디/java/reactive/" class="post-category" target="_blank">
+                                    reactive
+                                </a>
+                            
+                            <a href="/categories/공개스터디/java/reactive/spring/" class="post-category" target="_blank">
+                                    spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

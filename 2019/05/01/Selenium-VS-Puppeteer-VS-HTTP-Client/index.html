@@ -1,0 +1,1077 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Selenium VS Puppeteer VS HTTP Client, Java, Spring, Reactive">
+    <meta name="description" content="Selenium VS Puppeteer VS HTTP Client 대해 알아볼 예정 입니다.각각의 특징은 무엇인지 알아 보겠습니다.
+Selenium
+Selenium이란 Web Browser 자동화를 위해 태어 났으며">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Selenium VS Puppeteer VS HTTP Client | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Selenium VS Puppeteer VS HTTP Client
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HeadlessBrowser/" target="_blank">
+                                <span class="chip bg-color">HeadlessBrowser</span>
+                            </a>
+                        
+                            <a href="/tags/Chrome/" target="_blank">
+                                <span class="chip bg-color">Chrome</span>
+                            </a>
+                        
+                            <a href="/tags/headless/" target="_blank">
+                                <span class="chip bg-color">headless</span>
+                            </a>
+                        
+                            <a href="/tags/javascript/" target="_blank">
+                                <span class="chip bg-color">javascript</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                WEB
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-05-01
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Selenium VS Puppeteer VS HTTP Client 대해 알아볼 예정 입니다.<br>각각의 특징은 무엇인지 알아 보겠습니다.</p>
+<h3 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h3><p><img src="https://user-images.githubusercontent.com/6037055/57007275-527b2200-6c22-11e9-9ec6-3938285bbc67.png" alt="Selenium HomePage"></p>
+<p>Selenium이란 <code>Web Browser 자동화</code>를 위해 태어 났으며, 보통 <code>Cross Browser Test</code>와 <code>UI Test</code>에 활용 합니다.</p>
+<p>Selenium 에서 오픈 중인 프로젝트는</p>
+<ul>
+<li>Selenium-WebDriver : 로컬 또는 원격 시스템에서 브라우저를 기본적으로 구동 할 수 있습니다.</li>
+<li>Selenium-Grid : 여러 서버에서 동시에 여러 테스트를 실행하여 여러 브라우저 나 운영 체제를 테스트하는 데 걸리는 시간을 줄여 Selenium Remote Control을 다른 수준으로 끌어 올립니다.</li>
+<li>Selenium IDE : 브라우저에서 테스트를 기록하고 재생할 수있게 해주는 Chrome 및 Firefox 확장 기능입니다.</li>
+<li>Selenium Remote Control : 거의 모든 프로그래밍 언어와 테스트 프레임 워크를 사용하여 웹 브라우저를 로컬 또는 다른 컴퓨터에서 제어 할 수있는 클라이언트 / 서버 시스템입니다.<br><img src="https://seleniumhq.github.io/docs/images/test_framework.png" alt="Selenium Ecosystem 활용"></li>
+</ul>
+<p>이 존재 하며, 자세한건 사이트에서 직접 참조 바람<br><a href="https://www.seleniumhq.org/projects/" target="_blank" rel="noopener">https://www.seleniumhq.org/projects/</a></p>
+<p>Cross Browser Test와 UI Test에 주로 이용되는 프로젝트는 <code>Selenium-WebDriver</code>이며, 이는 <a href="https://w3c.github.io/webdriver/" target="_blank" rel="noopener">W3스펙에 의한 WebDriver</a> 구현체를 쉽게 사용하게 추상화하여 여러 WebDriver를 지원하고 프로그래밍이 가능한 Web Browser를 제공 함</p>
+<p>Selenium-Webdriver는 다양한 언어를 지원하기 위해 라이브러리를 제공 합니다.</p>
+<ul>
+<li>Java</li>
+<li>C#</li>
+<li>Javascript(Node.js)</li>
+<li>Python</li>
+</ul>
+<p>Spring 진영에서는 End-To-End Test 지원을 위한 Spring MVC Test중 Selenium을 사용 할 수 있습니다.<br><a href="https://docs.spring.io/spring-test-htmlunit/docs/current/reference/html5/" target="_blank" rel="noopener">https://docs.spring.io/spring-test-htmlunit/docs/current/reference/html5/</a></p>
+<pre class=" language-java"><code class="language-java"># Spring MVC Test 코드<span class="token punctuation">(</span>HtmlUnit을 활용<span class="token punctuation">)</span>
+<span class="token function">assertThat</span><span class="token punctuation">(</span>newMessagePage<span class="token punctuation">.</span><span class="token function">getUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">endsWith</span><span class="token punctuation">(</span><span class="token string">"/messages/123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String id <span class="token operator">=</span> newMessagePage<span class="token punctuation">.</span><span class="token function">getHtmlElementById</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">assertThat</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEqualTo</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String summary <span class="token operator">=</span> newMessagePage<span class="token punctuation">.</span><span class="token function">getHtmlElementById</span><span class="token punctuation">(</span><span class="token string">"summary"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">assertThat</span><span class="token punctuation">(</span>summary<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEqualTo</span><span class="token punctuation">(</span><span class="token string">"Spring Rocks"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String text <span class="token operator">=</span> newMessagePage<span class="token punctuation">.</span><span class="token function">getHtmlElementById</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">assertThat</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEqualTo</span><span class="token punctuation">(</span><span class="token string">"In case you didn't know, Spring Rocks!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="지원하는-드라이버들-2019-04-28-기준"><a href="#지원하는-드라이버들-2019-04-28-기준" class="headerlink" title="지원하는 드라이버들 (2019.04.28 기준)"></a>지원하는 드라이버들 (2019.04.28 기준)</h4><table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Maintainer</th>
+<th>Versions Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chromium</td>
+<td><a href="https://sites.google.com/a/chromium.org/chromedriver/" target="_blank" rel="noopener">Chromium</a></td>
+<td>All versions</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td><a href="https://github.com/mozilla/geckodriver" target="_blank" rel="noopener">Mozilla</a></td>
+<td>54 and newer</td>
+</tr>
+<tr>
+<td>Internet Explorer</td>
+<td>Selenium</td>
+<td>6 and newer</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>Opera <a href="https://github.com/operasoftware/operachromiumdriver" target="_blank" rel="noopener">Chromium</a> / <a href="https://github.com/operasoftware/operaprestodriver" target="_blank" rel="noopener">Presto</a></td>
+<td>10.5 and newer</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td><a href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/" target="_blank" rel="noopener">Apple</a></td>
+<td>10 and newer</td>
+</tr>
+</tbody>
+</table>
+<p>selenium-webdriver를 공부하기 위한 예제<br><code>크롬</code>과 <code>파이어폭스</code> 2가지 <code>webdriver를 받아 구글 검색 예제</code>를 작성<br>자세한 내용은 아래의 링크를 참조 바람.<br><a href="https://seleniumhq.github.io/selenium/docs/api/javascript/index.html" target="_blank" rel="noopener">https://seleniumhq.github.io/selenium/docs/api/javascript/index.html</a></p>
+<h3 id="Puppeteer"><a href="#Puppeteer" class="headerlink" title="Puppeteer"></a>Puppeteer</h3><p><img src="https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png" alt="Puppeteer"></p>
+<p>Puppeteer는 Headless Chrome Node.js API입니다. Puppeteer는 Chrome과 통신하기 위해 <code>Chrome DevTools Protocol</code>를 사용 하며, Chrome Devtools의 모든 기능을 Node.js에서 사용 가능하게 해줍니다. 개인적으로 API 호출 하나하나가 Browser를 사용하듯이 직관적이라고 느꼇습니다.<br><a href="https://pptr.dev" target="_blank" rel="noopener">Puppeteer API DOC</a><br><a href="https://chromedevtools.github.io/devtools-protocol/" target="_blank" rel="noopener">Chrome DevTools Protocol Viewer</a><br><a href="https://github.com/transitive-bullshit/awesome-puppeteer" target="_blank" rel="noopener">Awesome Puppeteer(활용 예제 모음)</a></p>
+<p>Puppeteer 특징은 다음과 같습니다.</p>
+<ul>
+<li>페이지의 스크린 샷과 PDF를 생성</li>
+<li>SPA (Single Page Application)를 크롤링하고 사전 렌더링 된 내용 (즉, “SSR”(Server-Side Rendering))을 생성</li>
+<li>Form 테스트, UI 테스트, 키보드 입력 등 자동화</li>
+<li>최신 JavaScript 및 브라우저 기능을 사용하여 테스트</li>
+<li>사이트 의 타임 라인 추적 을 캡처하여 성능 문제를 진단</li>
+<li>Chrome 확장 프로그램을 테스트</li>
+</ul>
+<h4 id="Chrome-DevTools-Protocol"><a href="#Chrome-DevTools-Protocol" class="headerlink" title="Chrome DevTools Protocol"></a>Chrome DevTools Protocol</h4><p>DevTools Protocol는 Chrome을 직접 사용 할 수있는 프로토콜이며 다양한 언어의 라이브러리가 존재 하지만, Puppeteer처럼 구글에서 관리되는 프로젝트가 아닙니다.<br>다른 언어의 라이브러리는 <a href="https://github.com/ChromeDevTools/awesome-chrome-devtools" target="_blank" rel="noopener">Awesome chrome-devtools</a> 참조 하세요</p>
+<h3 id="HTTP-Client"><a href="#HTTP-Client" class="headerlink" title="HTTP Client"></a>HTTP Client</h3><p>리눅스에서 사용하는 curl, wget등이 있으며 각각 지원언어에 따른 HTTP Client들이 존재 합니다.<br>HTTP를 사용하기에 가장 간단한 방법이며 Web의 정보를 쉽게 취득 할 수 있습니다.</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 구글 뉴스 스크래핑</span>
+curl https://news.google.com/?tab<span class="token operator">=</span>wn<span class="token operator">&amp;</span>hl<span class="token operator">=</span>ko<span class="token operator">&amp;</span>gl<span class="token operator">=</span>KR<span class="token operator">&amp;</span>ceid<span class="token operator">=</span>KR:ko <span class="token operator">></span> google_news.html
+</code></pre>
+<h2 id="비교"><a href="#비교" class="headerlink" title="비교"></a>비교</h2><table>
+<thead>
+<tr>
+<th>종류</th>
+<th>속도</th>
+<th>Community</th>
+<th>API DOC(주관적임)</th>
+<th>지원 언어</th>
+<th>Javascript 실행</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Selenium-Webdriver</td>
+<td>보통</td>
+<td>활발</td>
+<td>보통</td>
+<td>Java, C#. Python, Javascript(Node.js)</td>
+<td>O </td>
+</tr>
+<tr>
+<td> Puppeteer</td>
+<td>빠름</td>
+<td>적음</td>
+<td>좋음</td>
+<td>Javascript(Node.js)</td>
+<td>O</td>
+</tr>
+<tr>
+<td> HTTP Client</td>
+<td>매우빠름</td>
+<td>활발</td>
+<td>?</td>
+<td>다양</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<h3 id="속도"><a href="#속도" class="headerlink" title="속도"></a>속도</h3><h4 id="HTTP-Client-1"><a href="#HTTP-Client-1" class="headerlink" title="HTTP Client"></a>HTTP Client</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> https <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'https'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+https<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'https://news.google.com/?tab=wn&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko'</span><span class="token punctuation">,</span> res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    res<span class="token punctuation">.</span><span class="token function">setEncoding</span><span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p> <img src="https://user-images.githubusercontent.com/6037055/57009725-6e3af400-6c33-11e9-9dd7-ab6bd88d8a34.png" alt="Node.js HTTP Client"></p>
+<h4 id="Selenium-1"><a href="#Selenium-1" class="headerlink" title="Selenium"></a>Selenium</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'chromedriver'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span>Builder<span class="token punctuation">,</span> By<span class="token punctuation">,</span> Key<span class="token punctuation">,</span> until<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'selenium-webdriver'</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span>browserName<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> driver <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">new</span> <span class="token class-name">Builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forBrowser</span><span class="token punctuation">(</span><span class="token string">'chrome'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> driver<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'https://news.google.com/?tab=wn&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> driver<span class="token punctuation">.</span><span class="token function">quit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/6037055/57700429-f0e09c00-7694-11e9-8795-b4ad84cf6939.png" alt="Node.js Selenium-WebDriver"></p>
+<h4 id="Puppeteer-1"><a href="#Puppeteer-1" class="headerlink" title="Puppeteer"></a>Puppeteer</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> puppeteer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'puppeteer'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> browser <span class="token operator">=</span> <span class="token keyword">await</span> puppeteer<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>headless<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> page <span class="token operator">=</span> <span class="token keyword">await</span> browser<span class="token punctuation">.</span><span class="token function">newPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">goto</span><span class="token punctuation">(</span><span class="token string">'https://news.google.com/?tab=wn&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko'</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> browser<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p> <img src="https://user-images.githubusercontent.com/6037055/57009934-b73f7800-6c34-11e9-8d7b-5a2368b48bc8.png" alt="Node.js Puppeteer(No Headless)"><br> <img src="https://user-images.githubusercontent.com/6037055/57009979-fbcb1380-6c34-11e9-9cb3-73c450e66cbd.png" alt="Node.js Puppeteer(Headless)"></p>
+<h4 id="시간-정리"><a href="#시간-정리" class="headerlink" title="시간 정리"></a>시간 정리</h4><ol>
+<li>HTTP Client <code>0.11초</code></li>
+<li>Puppeteer(Headless) <code>0.66초</code></li>
+<li><p>Selenium, Puppeteer(No Headless) <code>1.56초</code> </p>
+<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><blockquote>
+<ul>
+<li>단순 HTML Content만 Scraping 할 경우 HTTP Client 추천</li>
+<li>크로스 브라우저 UI 테스트가 필요할 경우 와 다양한 지원을 원하면 Selenium 추천</li>
+<li>로그인과 Javascript 구동, SPA의 스크래핑이 필요하고 Chrome의 DevTools 기능을 사용 하고 싶을 경우 Puppeteer(DevTools Protocol) 추천</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>P.S<br><a href="https://github.com/transitive-bullshit/awesome-puppeteer" target="_blank" rel="noopener">Puppeteer 프로젝트들(Awesome Puppeteer)</a>을 살펴 보는 와중에 눈에 띄는 재미있는 프로젝트를 2개 발견 하였습니다.</p>
+<ul>
+<li><a href="https://github.com/thomasdondorf/puppeteer-cluster" target="_blank" rel="noopener">puppeteer-cluster</a> - Worker를 생성해 CPU자원을 최대한 사용가능(모니터링 지원)</li>
+<li><a href="https://github.com/checkly/puppeteer-recorder" target="_blank" rel="noopener">puppeteer-recorder</a> - 크롬 확장프로그램으로 녹화 기능을 통해 Puppeteer Node.js Script를 생성</li>
+</ul>
+<blockquote>
+<p>StackOverflow<br>Webdriver VS Devtools에 대해서 비교 해놓음<br><a href="https://stackoverflow.com/questions/50939116/what-is-the-difference-between-webdriver-and-devtool-protocol" target="_blank" rel="noopener">https://stackoverflow.com/questions/50939116/what-is-the-difference-between-webdriver-and-devtool-protocol</a></p>
+</blockquote>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/05/01/Selenium-VS-Puppeteer-VS-HTTP-Client/" class="b-link-green">Selenium VS Puppeteer VS HTTP Client</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <div class=" col s12 m6 l12" data-aos="zoom-in-up">
+                                        <div class="card frind-card3">
+                                            <div class="frind-ship">
+                                                <div class="title">
+                                                    <img src="http://devahea.github.io/friends/image/김종인.jpg" alt="img">
+                                                    <div style="margin-left: 20px;">
+                                                        <h1 class="friend-name" style="font-size: 1.5rem;     margin: 15px 0 22px -5px;">김종인</h1>
+                                                        <p>Java로 생명을 연장하고 있는 개발자 입니다. <br>오픈소스 활용에 관심이 많으며 이것저것 다 해볼려 노력 하고 있습니다.</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/07/03/2019하반기-스터디-주제-공유/">
+                    <div class="card-image">
+                        
+                        <img src="https://spectator.imgix.net/content/uploads/2017/12/iStock-827158860.jpg?auto=compress,enhance,format&amp;crop=faces,entropy,edges&amp;fit=crop&amp;w=820&amp;h=550" class="responsive-img" alt="2019하반기 스터디 주제 공유">
+                        
+                        <span class="card-title">2019하반기 스터디 주제 공유</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">2019 하반기 스터디 주제는 생산성 입니다
+소프트웨어 개발에 있어 다양한 생산성을 관점으로 주제를 선정해주세요
+
+devops
+배포 자동화
+작업 시간을 줄일수 있는 다양한 라이브러리나 프레임워크
+이외에 다양하게 개발</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/공지/" class="post-category" target="_blank">
+                                    공지
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/공지/" target="_blank">
+                        <span class="chip bg-color">공지</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/05/01/WebDriver-VS-DevTools-Protocol/">
+                    <div class="card-image">
+                        
+                        <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="WebDriver VS DevTools Protocol">
+                        
+                        <span class="card-title">WebDriver VS DevTools Protocol</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">WebDriverWeb Browser 자동화를 위해 태어 났으며, 보통 Cross Browser Test와 UI Test에 활용 합니다. WebDriver는 W3에서 정의한 WebDriver 스펙에 맞춰 각 브라우저</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HeadlessBrowser/" target="_blank">
+                        <span class="chip bg-color">HeadlessBrowser</span>
+                    </a>
+                    
+                    <a href="/tags/Chrome/" target="_blank">
+                        <span class="chip bg-color">Chrome</span>
+                    </a>
+                    
+                    <a href="/tags/headless/" target="_blank">
+                        <span class="chip bg-color">headless</span>
+                    </a>
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

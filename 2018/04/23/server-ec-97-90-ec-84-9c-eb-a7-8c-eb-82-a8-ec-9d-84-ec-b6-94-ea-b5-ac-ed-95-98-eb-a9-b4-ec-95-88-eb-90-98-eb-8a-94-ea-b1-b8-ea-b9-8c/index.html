@@ -1,0 +1,888 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까, Java, Spring, Reactive">
+    <meta name="description" content="강진우님의 리눅스 커널 이야기를 읽고 직접 실습을 하며 정리한 내용 입니다.
+도입사람과 사람사이 예의가 정말 중요 합니다. 서버에서 동작하는 서비스들 한테도 마찬가지인데요. 이 글에서는서버에서 돌아가는 서비스들의 관">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        2018 세미나 - Server에서 만남을 추구하면 안되는 걸까
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/공개스터디/" class="post-category" target="_blank">
+                                공개스터디
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-04-23
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>강진우님의 리눅스 커널 이야기를 읽고 직접 실습을 하며 정리한 내용 입니다.</p>
+<h1 id="도입"><a href="#도입" class="headerlink" title="도입"></a>도입</h1><p>사람과 사람사이 예의가 정말 중요 합니다. 서버에서 동작하는 서비스들 한테도 마찬가지인데요. 이 글에서는서버에서 돌아가는 서비스들의 관계와 사람의 관계를 비교해 가면서 설명 하겠습니다.</p>
+<p><img src="https://ahea.files.wordpress.com/2018/04/null.png" alt=""></p>
+<h1 id="1차-웹서비스"><a href="#1차-웹서비스" class="headerlink" title="1차 웹서비스"></a>1차 웹서비스</h1><p><img src="https://ahea.files.wordpress.com/2018/04/null1.png" alt=""> 예제에서 쓰인 웹 서비스는 파이썬 웹 프레임워크인 Flask를 썻으며 DB로는 Key/Value store인 redis를 사용 하였습니다.</p>
+<ol>
+<li><a href="http://localhost:5000/test/1" target="_blank" rel="noopener">http://localhost:5000/test/1</a> 접속</li>
+<li>Flask에서 Redis에 접속하여 Set(1,155030303)를 실행(redis에 데이터 주입)</li>
+<li>Flask에서 Redis에 Get(1)을 하여 데이터 가져오기</li>
+<li>사용자에게 전달</li>
+</ol>
+<p>해당 서비스의 플로우는 총 4단계로 구성 되며 이 예제를 가지고 사용자에게 서비스 가능한 웹서비스를 튜닝 하겠습니다. 사과를 구입할 경우엔 이런식의 플로우로 흘러간다고 예를 들겠습니다. <img src="https://ahea.files.wordpress.com/2018/04/null2.png" alt=""> Flask와 Redis의 사이도 마찬가지인데요</p>
+<p><img src="https://ahea.files.wordpress.com/2018/04/null3.png" alt=""></p>
+<p>위의 그림과 같이 3way-handshake 후에 데이터셋팅을 하고 데이터를 가져오며 4way-handshake를 통해 연결을 끊습니다. 만약에 이작업을 1000명 혹은 10000명이 요청할 경우 <img src="https://ahea.files.wordpress.com/2018/04/null4.png" alt=""> 2가지 문제점이 발생하게 됩니다.</p>
+<ol>
+<li>TCP 연결과 종료에 대한 오버헤드</li>
+<li>local port에 대한 고갈</li>
+</ol>
+<h2 id="여기서-잠깐-local-port란"><a href="#여기서-잠깐-local-port란" class="headerlink" title="여기서 잠깐!!! local port란?"></a>여기서 잠깐!!! local port란?</h2><p><img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-1.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (1)"> <img src="https://ahea.files.wordpress.com/2018/04/null5.png" alt=""> Client가 TCP 소켓 연결시 필요한 port, OS에서 정의 해놓은 local port 범위 안에서 할당 보통 http Request를 날리거나 다른 TCP연결을 할시에 OS에서 ‘IP주소:로컬포트’를 가지고 통신을 하게 됨</p>
+<h2 id="문제점-2가지"><a href="#문제점-2가지" class="headerlink" title="문제점 2가지"></a>문제점 2가지</h2><h3 id="TCP-통신-오버헤드"><a href="#TCP-통신-오버헤드" class="headerlink" title="TCP 통신 오버헤드"></a>TCP 통신 오버헤드</h3><p><img src="https://ahea.files.wordpress.com/2018/04/null6.png" alt=""> 3way-handshake와 4way-handshake를 1000번 10000번 하게 되면 그만큼의 네트워크 자원 낭비가 되기 때문에 계속 연결 되어 있는 상태여야 합니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-9.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (9)"> 아까의 사과 구매 프로세스를 대입해 보면 사과 1000개를 구매 할 때에도 똑같이 1000번을 인사해야 하는 불상사가 생깁니다.</p>
+<h3 id="local-port-고갈의-문제"><a href="#local-port-고갈의-문제" class="headerlink" title="local port 고갈의 문제"></a>local port 고갈의 문제</h3><p><img src="https://ahea.files.wordpress.com/2018/04/null7.png" alt=""> Flask에서 Client가 되므로 지속적으로 local_port를 만들어 내어 나중엔 고갈이 되어 버리는 현상까지 오게 됩니다. 그리고 다시 사용할시엔 timewait지속 시간이 60초 이므로 60초가 지나야 다시 사용 가능 합니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까"> netstat 명령어를 통해 현재 OS의 소켓 상태를 확인 할수 있으며 Flask가 local_port를 무지막지하게 사용한 모습을 보실수 있습니다. <img src="https://ahea.files.wordpress.com/2018/04/null5.png" alt=""> 우분투에서 할당 해 줄수 있는 포트를 ‘sysctl -a | grep local_port’ 명령어로 확인 할수 있습니다. 위의 문제점을 해결할 방법도 2가지가 됩니다.</p>
+<ol>
+<li>net.itv4.tcp_tw_reuse 활성화</li>
+<li>Connection Pool</li>
+</ol>
+<h2 id="해결법-2가지"><a href="#해결법-2가지" class="headerlink" title="해결법 2가지"></a>해결법 2가지</h2><h3 id="net-ipv4-tcp-tw-reuse-활성화"><a href="#net-ipv4-tcp-tw-reuse-활성화" class="headerlink" title="net.ipv4.tcp_tw_reuse 활성화"></a>net.ipv4.tcp_tw_reuse 활성화</h3><p><img src="https://ahea.files.wordpress.com/2018/04/null8.png" alt=""> ‘sysctl -a | grep reuse’명령어를 통해 확인 할수 있으며 0이면 비활성 1이면 활성화 입니다. ‘sysctl -w net.ipv4.tcp_tw_reuse=1’명령어를 입력시 활성화 되며 이 기능은 패킷 소실의 위험이 있습니다. 지금과 같은 형태에서는 비추천 하지만 다른서버에 접속하는 Cilent용 서버일 경우에는 필요 할 수도 있습니다.</p>
+<h3 id="Connection-Pool"><a href="#Connection-Pool" class="headerlink" title="Connection Pool"></a>Connection Pool</h3><p><img src="https://ahea.files.wordpress.com/2018/04/null9.png" alt=""> 다른 해결 방법인 Connection Pool을 만들어 사용 하는 것입니다. 미리 Pool을 만들어 놓고 사용자들이 http Request를 사용시엔 <img src="https://ahea.files.wordpress.com/2018/04/null10.png" alt=""> 이런 식으로 3way-handshake와 4way-handshake가 사라지기 때문에 TCP 맺고 끊음에 대한 오버헤드가 사라지게 됩니다. <img src="https://ahea.files.wordpress.com/2018/04/null11.png" alt=""> 그리고 계속 연결 상태 이므로 로컬 포트도 고정적으로 사용하게 되어서 고갈을 방지 할 수 있습니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-10.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (10)"> 사과 구매를 할때에도 인사를 한번만 할수 있으므로 인사(TCP 연결과 종료)할 수 있으므로 오버헤드를 감소 할수 있습니다.</p>
+<h1 id="2차-웹서비스-Nginx를-추가-해보자"><a href="#2차-웹서비스-Nginx를-추가-해보자" class="headerlink" title="2차 웹서비스 Nginx를 추가 해보자"></a>2차 웹서비스 Nginx를 추가 해보자</h1><p>실질적으로 외부에 서비스하는 웹서비스들은 대부분 앞에 Web Server를 두게 되는데 그이유는 크게 Virtual Host, resource cache, Route등의 이유가 있어 약간의 지연이 있어도 3tier(WebServer-App-DB)로 구성을 하게 됩니다. <img src="https://ahea.files.wordpress.com/2018/04/null12.png" alt=""> 그런데 바로 추가시엔 위와 동일한 현상이 발생하게 됩니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-2.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (2)"> 다시 나타난 2가지 문제점</p>
+<ol>
+<li>TCP 연결과 종료에 대한 오버헤드</li>
+<li>local port에 대한 고갈</li>
+</ol>
+<p><img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-3.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (3)"> <img src="https://ahea.files.wordpress.com/2018/04/null13.png" alt=""> Nginx가 Cilent이며 Flask가 Server인 입장이 되어 위와 동일한 현상이 발생하게 됩니다. 이 문제점도 동일하게 해결법이 2가지가 있습니다.</p>
+<ol>
+<li>net.ipv4.tcp_tw_reuse 활성화</li>
+<li>Keepalive Connections</li>
+</ol>
+<h2 id="Keepalive-Connections-추가"><a href="#Keepalive-Connections-추가" class="headerlink" title="Keepalive Connections 추가"></a>Keepalive Connections 추가</h2><p><img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-4.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (4)"> nginx 설정에서 keepliave만 추가 해주면 됩니다. 자세한 설정은 기본 예제도 많으므로 nginx example을 참조해서 keepalive만 추가 해 줍시다. <img src="https://ahea.files.wordpress.com/2018/04/null14.png" alt=""> 위와 같은 구성도가 되며 Nginx에서 Keepalive Connections를 만들어 관리하게 됩니다. 참고로 time_out 값도 줄수 있어 한번 연결 후에는 몇초 후에 Keepalive를 없앨지 정할 수 있습니다. keepalive를 추가 할때와 안할때의 플로우는 아래와 같습니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-5.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (5)"> <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-6.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (6)"> 보통 한번 http연결시 6~8번의 요청을 하게 된다고 하여 keepalive로 TCP 연결과 종료에 대한 오버헤드를 줄일 수 있습니다. Keepalive 설정 전후의 테스트 결과 입니다. 스트레스 테스트 툴은 <a href="https://www.joedog.org/siege-home/" target="_blank" rel="noopener">siege</a>를 사용 하였습니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-7.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (7)"> TPS가 200이나 차이가 났습니다. <img src="https://ahea.files.wordpress.com/2018/04/2018-ec84b8ebafb8eb8298-serverec9790ec849c-eba78ceb82a8ec9d84-ecb694eab5aced9598eba9b4-ec9588eb9098eb8a94-eab1b8eab98c-8.png" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까 (8)"> netstat를 통해 테스트 후의 time_wait소켓을 살펴보니 8300개의 차이가 발생 하였습니다.</p>
+<h1 id="최종-정리"><a href="#최종-정리" class="headerlink" title="최종 정리"></a>최종 정리</h1><ul>
+<li>서비스 대 서비스로 연결시에는 Connection Pool을 고려해 보자!</li>
+<li>Nginx 사용시 Keepalive사용을 고려해 보자!</li>
+<li>time_wait소켓이 많다는건 나쁘진 않지만 지나치게 많을 경우 살펴 보자!</li>
+</ul>
+<p>출처</p>
+<ul>
+<li>책 ‘리눅스 커널 이야기’ 강진우 지음</li>
+<li>nginx keepalive - <a href="https://www.nginx.com/blog/http-keepalives-and-web-performance/" target="_blank" rel="noopener">https://www.nginx.com/blog/http-keepalives-and-web-performance/</a></li>
+<li>TCP Flags - <a href="http://www.dbguide.net/knowledge.db?cmd=view&amp;boardUid=183652&amp;boardConfigUid=21" target="_blank" rel="noopener">http://www.dbguide.net/knowledge.db?cmd=view&amp;boardUid=183652&amp;boardConfigUid=21</a></li>
+</ul>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/04/23/server-ec-97-90-ec-84-9c-eb-a7-8c-eb-82-a8-ec-9d-84-ec-b6-94-ea-b5-ac-ed-95-98-eb-a9-b4-ec-95-88-eb-90-98-eb-8a-94-ea-b1-b8-ea-b9-8c/" class="b-link-green">2018 세미나 - Server에서 만남을 추구하면 안되는 걸까</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/04/26/msa-1-monolithic-architecture-eb-9e-80/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="[MSA] #1 Monolithic Architecture 란?">
+                        
+                        <span class="card-title">[MSA] #1 Monolithic Architecture 란?</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">요즘은 Microservice Architecture(이하 MSA)가 항상 화두에 올라있는 것 같습니다. 그래서 MSA가 도입된 배경과 갖가지 이슈를 어떻게 해결했는지에 대해 차근차근 써보려고 합니다. Monolit</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-04-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/04/16/2018-ec-84-b8-eb-af-b8-eb-82-98-server-ec-97-90-ec-84-9c-eb-a7-8c-eb-82-a8-ec-9d-84-ec-b6-94-ea-b5-ac-ed-95-98-eb-a9-b4-ec-95-88-eb-90-98-eb-8a-94-ea-b1-b8-ea-b9-8c/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="2018 세미나 - Server에서 만남을 추구하면 안되는 걸까(슬라이드)">
+                        
+                        <span class="card-title">2018 세미나 - Server에서 만남을 추구하면 안되는 걸까(슬라이드)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">일단은 슬라이드 자료만 공유 하겠습니다. 추 후 글 작성을 통해 내용을 보충 하도록 하겠습니다. https://docs.google.com/presentation/d/1KTl5abLuOZ0uWNAKlmyiQpIIRD</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-04-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Lego scrum-진행편, Java, Spring, Reactive">
+    <meta name="description" content="Lego Scrum Game(진행편)#Lego #scrum 지난 어떻게 행사를 준비하게 되었는지 기획편이 포스팅되었습니다 이번 진행편에서는 2018년 6월 9일에 진행한 아해 행사를 통해 진행된 Scrum Game행">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Lego scrum-진행편 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://www.plays-in-business.com/wp-content/uploads/2015/09/lego-scrum-city-2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Lego scrum-진행편
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/lego/" target="_blank">
+                                <span class="chip bg-color">lego</span>
+                            </a>
+                        
+                            <a href="/tags/scrum/" target="_blank">
+                                <span class="chip bg-color">scrum</span>
+                            </a>
+                        
+                            <a href="/tags/agile/" target="_blank">
+                                <span class="chip bg-color">agile</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/agile/" class="post-category" target="_blank">
+                                agile
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-11-08
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Lego-Scrum-Game-진행편"><a href="#Lego-Scrum-Game-진행편" class="headerlink" title="Lego Scrum Game(진행편)"></a>Lego Scrum Game(진행편)</h1><p>#Lego #scrum 지난 어떻게 행사를 준비하게 되었는지 <code>기획편</code>이 포스팅되었습니다 이번 <code>진행편</code>에서는 2018년 6월 9일에 진행한 아해 행사를 통해 진행된 Scrum Game행사의 내용을 공유하고 진행하면서 있었던 내용과 느낌을 회고하려고 합니다</p>
+<hr>
+<p>이번 아해 스크럼 게임은 선릉에 위치한 소프트웨어 마에스트로 센터에서 진행되었습니다 아해 팀원중에 마에스트로 출신이신 분이 계셔서 좋은 기회로 이곳에서 진행하게 되었어요 <img src="http://www.plays-in-business.com/wp-content/uploads/2015/09/lego-scrum-city-2.jpg" alt="마에스트로센터"> 장소를 제공해주신 소프트웨어 마에스트로와 행사날 레고 가지고 뭐하나 봐주시기도 하고 시끄러웠을텐데 마에스트로 9기 연수생님들께 감사드립니다 장소도 매우 넓으며 책상을 저희 맘대로 옮기면서 할수 있어서 좋았던거 같습니다 행사는 다음과 같은 순서로 진행하였습니다</p>
+<ol>
+<li><p>스크럼이 무엇인지 보고</p>
+</li>
+<li><p>팀구성 후 게임한판 하고</p>
+</li>
+<li><p>스크럼 게임 하고</p>
+</li>
+<li><p>게임 후에 다시한번 스크럼이 무엇인지</p>
+</li>
+<li><p>사진찍고 퇴장</p>
+</li>
+</ol>
+<h2 id="스크럼이-무엇인지-보고"><a href="#스크럼이-무엇인지-보고" class="headerlink" title="스크럼이 무엇인지 보고"></a>스크럼이 무엇인지 보고</h2><p>시작은 스크럼이란 무엇인가 아주 간단하게 알아보는 시간을 가졌습니다 스크럼을 설명하기 위해서는 우선 애자일이 무엇인가를 알아야 합니다 애자일 소프트웨어 개발 선언을 통해 기존 워터풀과의 차이를 설명하였습니다 Lego Scrum Game에서는 물론 스크럼 프로세스를 익혀보는 이유도 있지만 팀원간에 커뮤니케이션의 중요성을 강조하고 그 스킬을 익히는 목표도 있습니다</p>
+<h2 id="팀구성-후-게임한판-하고"><a href="#팀구성-후-게임한판-하고" class="headerlink" title="팀구성 후 게임한판 하고"></a>팀구성 후 게임한판 하고</h2><p>팀구성은 Scrum Game에서 중요한 요소중에 하나입니다 팀 구성은 한팀당 4-6명이 적당합니다 총 팀은 5-7팀 (20-25명)이 적당합니다 lego4scrum에서도 그렇게 권장하고 있습니다 저희는 4명 + 지각자(?) 1분씩 해서 4팀이 구성이 되었습니다 팀이 구성되었으면 처음 본 팀원끼리 서로를 파악하고 친해지기 위해 저희는 스파게티 탑 쌓기 게임을 진행했습니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/2.jpg" alt="스파게티탑쌓기1"> <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/3.jpg" alt="스파게티탑쌓기2"> 룰은 이렇습니다 5분동안 마시멜로우(1봉지)와 스파게티면(30개)을 이용해서 가장 높이 탑을 쌓는 팀이 이기는 게임입니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/3.jpg" alt="스파게티탑쌓기3"> <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/4.jpg" alt="스파게티탑쌓기4"> 4분 30초까지는 높게 쌓던 팀이 종료 시간이 다되가면서 탑이 무너지는 안타까운(?) 사고도 있었습니다 사실 이게임은 마시멜로우를 자꾸 만지면 녹아 내려 건물이 무너지고 높게 쌓을수록 스파게티면이 버티지 못하고 부러지는 문제가 있습니다 서로 호흡하면서 높게 쌓는게 포인트입니다 스파게티 탑쌓기를 통해 커뮤니케이션 능력을 서로 확인한 후 그 사람을 스크럼마스터로 뽑았습니다 스크럼마스터는 스프린트가 진행되는 동안 계획과 회고를 진행하고 스프린트동안 팀을 리딩하는 역할을 하게 됩니다 이때 스크럼마스터는 독단적이고 고집이 쎈 독재자가 되서는 안됩니다 이렇게 팀이 구성되고 게임을 한판 했습니다</p>
+<h2 id="스크럼-게임-하고"><a href="#스크럼-게임-하고" class="headerlink" title="스크럼 게임 하고"></a>스크럼 게임 하고</h2><p>본격적인 레고 가지고 노는 시간이 시작되었습니다</p>
+<blockquote>
+<p><em>목표 : 도시만들기</em> 안녕하세요 고객입니다 제가 땅이 좀 있는데 이 땅에 도시를 건설하려고 합니다 여러분은 이제 제가 요구하는 건물들을 지어주세요</p>
+</blockquote>
+<p>우리는 도시를 만들어야 합니다 고객이 무엇을 요구하는지 몇가지 것들을 보겠습니다</p>
+<ul>
+<li>강을 건널 수 있는 다리를 건설하세요</li>
+<li>1층 집을 건설하세요</li>
+<li>2층 집을 건설하세요</li>
+<li>버스 정류장을 건설하세요</li>
+<li>교회를 건설하세요</li>
+</ul>
+<p>이 요구사항 이외에도 많은 종류의 요구사항들이 있습니다</p>
+<h3 id="시작전"><a href="#시작전" class="headerlink" title="시작전"></a>시작전</h3><p>시작 전 단계에서는 저희가 만들어드린 요구사항을 전달해드렸습니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/6.jpg" alt="지도 그리기"> 다들 요구사항을 받고서 무엇이 있나 확인하시고 계십니다 또 어떻게 만들어야 하나 벌써부터 회의가 시작되죠 시작전 해야 할 일은 스크럼 보드와 지도를 그리는 일입니다 <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/10.jpg" alt="지도 그리기"> <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/11.jpg" alt="스크럼보드"> <img src="https://raw.githubusercontent.com/devload/devload.github.io/master/assert/image/ahea_lego_scrum2/9.jpg" alt="지도 그리기"></p>
+<h3 id="게임"><a href="#게임" class="headerlink" title="게임"></a>게임</h3><p>게임은 총 3번의 스프린트로 진행이 되는데요 스프린트는 시작전에 계획을 세우고 스프린트를 진행 후 회고 시간을 가지게 됩니다 팀은 스프린트 시작전 이번 스프린트에서 어떤 건물을 진행할까 <code>계획</code>을 세웁니다(시간 3분) 이때 <code>플래닝 포커</code>를 통해 의견을 취합해야 합니다 시간이 많이 없기 때문에 빠른 의사소통이 중요합니다 <em>플래닝포커에 많은 시간을 쏟도록 스크럼마스터에게 요구했습니다</em> 이때 <code>플래닝 포커</code>가 무엇인지 참가자들에게 잘 설명해야 했습니다 플래닝 포커의 룰은 간단합니다 백로그를 보고 얼마나 걸릴거 같은지 고민 한 후 카드를 함께 공개합니다 그러면 서로 다른 의견으로 갈린다면 다양한 카드 숫자가 나오게 되겠죠 그럼 서로 의견을 교환하며 비슷한 숫자가 나올때까지 플래닝포커를 진행합니다 <a href="https://www.youtube.com/watch?v=0FbnCWWg_NY&amp;t=169s" target="_blank" rel="noopener">Agile in Practice: Planning Poker - YouTube</a> 저희는 scrum time이라는 앱을 통해 진행하였습니다 시작전 플래닝 포커 연습을 했는데요</p>
+<blockquote>
+<p>맥주를 요구르트병에 판다면 개당 얼마일까요?</p>
+</blockquote>
+<p>다양한 의견들이 나왔는데 맥주는 어떤 메이커인지, 요구르트 병의 사이즈는 얼만하지와 같은 요구사항을 명확하게 하기 위한 토론이 주로 이루어졌습니다</p>
+<blockquote>
+<p>QnA 게시판 만들기</p>
+</blockquote>
+<p>연습을 한번 더 했는데요 만약 QnA 게시판을 만든다면 몇분이 걸릴까요 라는 질문입니다 개발자 답게 언어는 무엇으로 할지, 도구, 프레임워크, 테스트와 같은 어떻게 만들것인가에 대한 의견부터 어떤 질문을 하는 게시판인지, 화면은 어떻게 구성되는지와 같은 기획적인 부분까지도 논의가 되었습니다 두번의 연습을 통해 플래닝 포커에 대해 간략하게나마 방식을 배워봤습니다 플래닝 포커를 진행하면서 문제가 되거나 추상적인 요구사항들을 고객에게 질문을 하거나 팀내에서 합의를 통해서 요구사항을 구체적으로 정의합니다 <code>스프린트</code> 시간에는 레고를 조립합니다 팀에서 계획한대로 진행해야 회고 시간에 문제삼지 않을껍니다 독단적으로 일을 하게 되면 회고에서 얘기가 나오겠죠 <code>회고</code>시간에는 진행하면서 좋았던점이나 나빴던점을 토대로 고쳐야 할점이 뭔지 팀원들과 스프린트를 회고하는 시간을 가지게 됩니다</p>
+<h4 id="스프린트1"><a href="#스프린트1" class="headerlink" title="스프린트1"></a>스프린트1</h4><p>첫번째 스프린트에서는 플래닝 포커를 좀더 익히고자 계획 시간을 조금더 길게 드렸습니다 그래도 시간이 부족할거 같아서 게임전 시간에도 플래닝 포커 시간을 좀 드렸습니다 플래닝 포커를 진행하면서 백로그를 선정하고 이번 스프린트에서는 무엇을 진행할지 선택해야 합니다 하지만 주어진 시간은 엄청 짧죠 - 일부러 시간을 적게 드려서 팀내에 스크럼마스터가 선택과 집중을 하는 판단을 이끌어내기 위함입니다 첫번째 스프린트이다보니 아직 진행방식을 이해하지 못해서 어려워하시는 분들도 있고 어떻게 진행할것인지에 대한 방향에 관련한 토론을 하는 팀, 그리고 우선 만들고 보는 팀들이 다양하게 있었습니다 스프린트 시간이 다 될수록 사회자는 일부러 시간을 알려줌으로 해서 압박을 넣어줍니다 첫 회고시간이 되자 레고 조립을 멈추고 팀에서 잘되고 있는 점을 극대화시키고 문제가 있는 프로세스는 회고시간을 통해 고쳐나가는 시간을 가집니다</p>
+<h4 id="스프린트2"><a href="#스프린트2" class="headerlink" title="스프린트2"></a>스프린트2</h4><p>두번째 스프린트부터는 결과물이 나오기 시작합니다. 하지만 변수들이 존재하죠. 스프린트에서는 랜덤으로 2-3명이 병원을 가야 합니다. 그동안은 팀에 참석할수 없죠. 프로젝트를 진행하다 보면 이러한 human managing와 같은 이슈도 등장하게 됩니다. 이를 통해 어려움을 좀 느끼게 하고 싶었는데 없어도 잘 하시더군요 또하나의 변수는 요구사항 변경입니다. 예를 들면 병원의 색상을 통일 시켜주세요, 좌우 대칭으로 건물을 만들어주세요 등등 다양한 요구사항을 추가/변경함으로써 스프린트가 진행이 잘 되지 않도록 하였습니다 이는 회고시간에 큰 영향을 줬습니다. 더이상 우리는 모든 요구사항을 맞출 수 없고 선택과 집중을 하게 됩니다</p>
+<h4 id="스프린트3"><a href="#스프린트3" class="headerlink" title="스프린트3"></a>스프린트3</h4><p>마지막 스프린트에서는 요구사항을 마무리 하고 나머지 선택된 백로그를 완성시켜나갑니다 두번의 스프린트를 진행하고 나서 3번째 스프린트이다 보니 레고를 만지는 손놀림이 아주 빨라진 것을 느낄수 있었습니다. 일정은 다가왔지만 고객은 항상 마지막에 요구사항을 바꾸는 법이죠… 다양한 요구사항을 마지막 스프린트에서도 넣습니다. 하지만 준비가 잘 되어 있는 팀은 요구사항을 잘 받아서 수정하는 팀도 있었고, 요구사항은 애초에 신경도 안쓰고 진행하신 팀들도 있었습니다.(좋은 작전일수도….)</p>
+<h4 id="채점"><a href="#채점" class="headerlink" title="채점"></a>채점</h4><p>세번의 스프린트가 진행되고 나서 흥분된 마음을 가라 앉히기 위해 쉬는 시간을 조금 가졌습니다. 그리고 고객에서 완성된 제품을 판매하는 채점시간이 왔습니다. 실제 프로젝트라면 마지막 시연? 정도가 될거 같습니다 팀에서 아주 재미있게 팀에서 만든 제품들을 다양한 스토리를 이용해서 소개합니다. 특히 유머있고 재치있게 요구사항을 재해석 하는 것들이 포인트였습니다. 고객이 납득만 한다면야.. 채점 결과 투팀이 박빙이였습니다. 한팀은 물량으로 승부한 A팀이였고, 한팀은 요구사항을 모두 충족하고 예술점수를 가져간 B팀이였습니다. 결과적으로 B팀이 점수를 많이 획득함으로써 레고 스크럼이 마무리가 되었습니다. (상품으로 스크럼 카드를 드렸습니다)</p>
+<h3 id="회고"><a href="#회고" class="headerlink" title="회고"></a>회고</h3><p>레고스크럼을 통해 무엇이 좋았고 무엇이 나빴는지, 그리고 무엇을 개선하면 되는지와 같은 기본적인 회고 부터 팀원들끼리 만약 프로젝트에 스크럼을 적용한다면? 이라는 생각을 중심으로 다양한 회고가 진행이 되었습니다</p>
+<h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>아해에서 처음으로 진행한 레고스크럼게임 행사가 마무리 되었습니다. 상당히 나쁘지 않은 피드백을 받았으며 전반적으로 괜찮았다라는 이야기를 듣게 되어 진행자로써 매우 뿌듯했습니다. 우리나라의 IT구조를 얘기할때 하도급,SI와 같은 이야기를 하면서 waterful방식으로만 진행해야 했던 기존 구조를 만약 애자일이나 스크럼과 같은 방식을 도입한다면 좋아질까 라는 질문으로 저는 처음 애자일을 공부하고 스크럼을 보게 되었습니다 꼭 애자일, 스크럼을 하라는 것은 아니지만 이러한 방식도 있다라는 것을 많은 개발자들이 이번 행사를 통해 알아갈수 있는 기회가 되어 매우 만족스럽습니다</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/11/08/lego-scrum-ec-a7-84-ed-96-89-ed-8e-b8/" class="b-link-green">Lego scrum-진행편</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2018/11/08/ms-eb-8f-84-ec-98-a4-ed-94-88-ec-86-8c-ec-8a-a4-ed-95-a9-eb-8b-88-eb-8b-a4/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdr.cz/sites/default/files/microsoft-open-source.jpg" class="responsive-img" alt="MS도 오픈소스 합니다">
+                        
+                        <span class="card-title">MS도 오픈소스 합니다</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Microsoft의 Github인수2018년 6월 5일 Github이 Microsoft에 인수되었습니다. 약 75억 달러, 우리나라 돈으로 약 8조원에 가까운 어마어마한 금액인데요. 이 뉴스가 터지자 sns에서는 다</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/news/" class="post-category" target="_blank">
+                                    news
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/microsoft/" target="_blank">
+                        <span class="chip bg-color">microsoft</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/09/20/ahea-hackday2018-viewer-ed-8c-80-eb-a6-ac-eb-b7-b0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Ahea HackDay2018 - Viewer 팀 리뷰">
+                        
+                        <span class="card-title">Ahea HackDay2018 - Viewer 팀 리뷰</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">https://github.com/devahea/2018hackerton-viewer
+목표화면에 nurikabe를 풀고 있는 진행상황을 출력해준다 팀이 2팀이기 때문에 2개 이상의 퍼즐을 실시간으로 보여줘야 한다
+설</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-09-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

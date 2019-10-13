@@ -1,0 +1,891 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="MS도 오픈소스 합니다, Java, Spring, Reactive">
+    <meta name="description" content="Microsoft의 Github인수2018년 6월 5일 Github이 Microsoft에 인수되었습니다. 약 75억 달러, 우리나라 돈으로 약 8조원에 가까운 어마어마한 금액인데요. 이 뉴스가 터지자 sns에서는 다">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>MS도 오픈소스 합니다 | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdr.cz/sites/default/files/microsoft-open-source.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        MS도 오픈소스 합니다
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/microsoft/" target="_blank">
+                                <span class="chip bg-color">microsoft</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/news/" class="post-category" target="_blank">
+                                news
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2018-11-08
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Microsoft의-Github인수"><a href="#Microsoft의-Github인수" class="headerlink" title="Microsoft의 Github인수"></a>Microsoft의 Github인수</h1><p>2018년 6월 5일 Github이 Microsoft에 인수되었습니다. 약 75억 달러, 우리나라 돈으로 약 8조원에 가까운 어마어마한 금액인데요. 이 뉴스가 터지자 sns에서는 다양한 반응이 있었습니다. 흥미로웠던건 Google도 아닌 하필 Microsoft가 인수를 해서 왜 Github을 망하게 하려고 하나… 라는 부정적인 반응이 많았습니다. 많은 개발자들이 Gitlab이나 bitburket으로 망명을 하는 github이탈자들이 생기기 시작했습니다 gitlab같은 경우 github에서 gitlab으로 마이그레이션하는 동영상을 공개하며 아주 발빠르게 행동하고 있습니다 <a href="https://www.youtube.com/watch?v=VYOXuOg9tQI" target="_blank" rel="noopener">Migrating from GitHub to GitLab - YouTube</a> 깃헙에서 비트버킷으로 옮기는 10가지 이유 <a href="https://blog.bitbucket.org/2018/06/04/10-reasons-teams-switching-github-bitbucket-microsoft-acquisition/" target="_blank" rel="noopener">10 reasons why teams are switching from GitHub to Bitbucket after Microsoft acquisition | Bitbucket Blog</a> 대체 사람들은 무엇때문에 이렇게 Microsoft를 부정적인 시각으로 보는것일까요?? 이번 포스팅을 통해 조금이나마 오해를 풀고 Microsoft가 software 시장에서 펼친 긍정적인 부분을 살펴보려고 합니다</p>
+<h1 id="Microsoft의-역사와-수익모델"><a href="#Microsoft의-역사와-수익모델" class="headerlink" title="Microsoft의 역사와 수익모델"></a>Microsoft의 역사와 수익모델</h1><p>Microsoft의 최고의 소프트웨어는 window라고 이야기해도 무방할정도로 컴퓨터의 역사에 있어 가장 중요한 역활을 한 것은 사실입니다. 가정용 컴퓨터의 역사에 있어 애플2와 같은 제품도 중요한 역활을 했지만 애플2는 너무 비쌌습니다. 이에 반해 IBM 의 호환 OS가 된 MS-DOS는 신의 한수가 된 라이센스 정책으로 인해 시장을 장악할 수 있었습니다. MS-DOS는 GUI OS인 윈도우9x에 중요한 기반이 되었고 NT기반으로 넘어오면서 xp나 7 그리고 현재의 10까지 오게 되었습니다. 여기까지 진행되면서 사실상 MS-window는 pc시장에서 90%에 가까운 독점시장을 구축했고 OS에 들어가는 간단한 소프트웨어 만으로도 자체 독점시장을 만들어내는 힘을 가지게 되었습니다(대표적으로 Internet Explorer 브라우저 독점 <a href="http://www.ddaily.co.kr/news/article.html?no=46033" target="_blank" rel="noopener">EU, MS 익스플로러 독점 시정 명령</a>) 독점에 가장 큰 영향을 준 소프트웨어는 MS-Office입니다. Ms-office는 산업, 교육 등등 다양한 분야에서 사용되는 소프트웨어로 대표적으로 사용되는 word, excel, powerpoint가 있습니다. [!<a href="http://www.mobizen.pe.kr/attach/1/1244683640.gif\]" target="_blank" rel="noopener">http://www.mobizen.pe.kr/attach/1/1244683640.gif\]</a>(ms의 수익모델) Microsoft는 sw이외에도 서버군으로도 유명합니다 대표적으로 윈도우 서버는 리눅스와 대표적으로 사용되는 서버os입니다. 윈도우 서버의 장점은 기본적으로 os를 많이 개발한 경험이 있는 microsoft의 수많은 노하우와 경험이 축적되어 있고 개인용pc의 90%가 윈도우이기 때문에 이와 함께 하는 데 있어 호환성을 무시할수 없습니다. 또 우리가 개발을 하는데 있어 기본적으로 제공되야 할것이 개발 툴인데요. Microsoft에서 가장 유명한 개발도구는 visual studio가 되겠습니다. 저는 visual studio6부터 사용을 해봤는데요. Basic, c++와 같은 대표적인 언어를 지원했으며 j++과 같이 자바를 지원하기도 했지만 sun과의 상표권 문제로 현재는 판매하지 않습니다. 현재는 2017버전까지 나와 윈도우 프로그래밍 뿐만 아니라 모바일이나 클라우드 개발까지도 쉽게 할수 있도록 지원하고 있습니다. Microsoft의 개발툴 중에 개인적으로 가장 좋았던 부분은 MSDN인데요. MSDN만 봐도 개발을 할수 있다고 할정도 방대하고 레퍼런스가 아주 잘 되어 있었던 경험이 있습니다. 여기까지는 개발자라면 MS는 찌르는것마다 잘되는 기업으로 인식할수 있지만 망한케이스가 더 많습니다. 이제부터는 망한 케이스를 몇가지 보도록 하겠습니다. 삼성전자에는 바다라는 슬픈 모바일 OS가 있습니다. 바다를 개발하려다 바다로 떠내려간다는 이야기가 있을정도로 처참한 이야기인데요. 이러한 바다보다도 점유율이 떨어지는 OS가 있습니다. 바로 윈도우 모바일인데요. 개인적으로 글쓴이의 인생에서 가장 후회되는게 있다면 바로 모바일 과도기 시절 ios도 아니고 android도 아닌 바로 윈도우 모바일에 걸고 공부를 했었다는점이 후회가 되네요.. 사실 2009년 말부터는 모바일이 시장을 변화시키고 있는 시점이기도 했습니다. 다양한 대기업에서 모바일 시장을 잡는데에 있어 플랫폼을 잡아야 한다고 생각을 했고 구글은 android, 애플의 ios, ms의 window mobile.. 이 세 기업이 모바일 시장을 주도하고 있었습니다. 그 외에도 webOS라고 해서 hp가 밀던것이 있었고 삼성에서는 바다와 타이젠을 현재까지 진행했습니다. 이때까지만 해도 모바일이라는 엄청난 시장에서 ms가 처참하게 발릴?것이라고는 생각하지 못했습니다. 윈도우는 기존에 모바일 시장이 이렇게 성장하기 전부터 임베디드 디바이스에 들어갈 윈도우ce나 포켓pc같은 pda를 위한 os를 가지고 있었습니다. 그렇기 때문에 훨신 기존 모바일 시장을 잘 알고 있었고 그렇기에 가장 선두에 올라갈 것이라고 개인적으로 생각하고 있었습니다. 윈도우 모바일은 개발자에게 아주 큰 메리트가 있었습니다. 기존 닷넷개발자나 vb개발자들이 쉽게 넘어올수 있도록 호환이 잘 되었으며 윈도우 사용자 경험을 그대로 모바일로 옮겨 놨기 때문에 쉽게 사용자가 적응할 수 있을거라고 생각했습니다. 하지만 이것은 반대효과가 났습니다. 기존에 pc window의 사용성은 모바일에 맞지 않았고 실버라이트와 같은 개발 환경은 개발자들에게 메리트를 주지 못하게 되었습니다. 이러한 상태에서 시장은 애플과 구글에게 점유됬고 제조사들은 ms의 os를 선택하지 않게 되면서 개발자들이 넘어오지 않는 이슈가 발생했습니다 (이는 바다, webOS와 같은 다른 플랫폼도 가지고 있던 이슈였습니다) MS는 하드웨어시장에서 윈도우 모바일의 점유를 늘리위해 노키아를 인수하는 선택을 하게 되었는데 이는 구글이 모토롤라를 인수하면서 발생한 효과를 MS도 누려보겠다는 전략으로 진행되게 되었습니다. 인수 금액은 약 54억 4,000만 유로(7조 8,310억 원)에 달하며, 노키아 휴대폰 사업부 인원 약 2만 5,000명은 모두 MS 소속이 되었습니다. 하지만 중국시장의 성장과 안드로이드의 급성장으로 인해 사실상 2015년 ms는 모바일 시장을 포기하게 됩니다. 이는 ms가 노키아 인수를 하면서 최소 9조5천억의 적자를 봤으며, MS의 스마트폰 OS 시장점유율은 2.7%에 그쳤다. 구글(79%)·애플(17.7%)에 한참 못 미치는 실적이 났는데. 단말기 시장에서도 삼성전자·애플이 합계 40% 이상을 차지하고 있고 MS의 점유율은 2.6%에 머무르는 처참한 성적이 ms의 모바일 시정 철수에 한몫을 했습니다. 물론 실패는 했지만 남긴것도 있습니다. Metro UI라고 하는 스타일UI는 현재 윈도우10에 적용되어 있으며 윈도우의 태블릿 시장에 좋은 경험이 되고 있습니다. 윈도우 모바일의 기능들은 대부분 윈도우10에 흡수되었으며 윈도우가 비록 모바일 시장에서는 철수 했지만 랩탑/태블릿 시장에서 좋은 성과를 거두고 있기에 이번에는 좀 달라질수 있나 기대해볼수 있습니다(사고 싶습니다 서피스북~) MS의 수익은 대부분 윈도우 기반 소프트웨어로 이뤄져 있었습니다. 구글의 성장은 MS가 온라인 시장으로 나와야 하는 큰 이유중 하나가 되었으며 특히 진입이 늦었던 ms는 기존 자사가 가지고 있던 MSN이라는 포털을 활용했습니다. MSN은 윈도우의 window live messanger 와 hotmail이라는 대표적인 기능을 가지고 있는 포탈인데 국내에서는 다음과 제휴한적도 있고 중앙일보랑도 뭘 한적이 있긴 하지만 사실상 국내시장에서 msn은 망했다 라고 해도 무방할정도로 공룡 두마리가 독식하고 있고, 해외에서도 부진을 면치 못하고 있습니다. 이때 msn의 검색 서비스를 bing으로 바꾸면서 개편을 노렸는데요. 2017년 야후의 서비스중단과 같은 포털 시장의 큰 변화에도 msn은 그나마 버티고는 있는 상황입니다. 아무래도 ms는 구글을 목표로 개발했기 때문에 구글보다 더 좋다 라는 식으로 홍보도 열심히 하고 있지만 적어도 개발자들끼리 모르는게 있을때 표현을 구글링을 한다고 하지 빙을 한다고는 하지 않는데 다 이유가 있지 않나 싶습니다. 그래도 야후재팬이 있는 일본을 제외한 나머지 시장에서는 2위를 간신히 유지하고 있긴 합니다. ms브라우저의 기본 검색엔진이기도 하고, 맥OS와 시리의 기본 검색엔진이기도 합니다. 하지만 애플같은 경우 2017년 10월부터는 구글로 기본검색 엔진을 교체했기 때문에 상당히 영향을 주지 않았을까 생각합니다. 사실 점유율의 통계가 문제가 되는것은 과거 네이트온을 키면 네이트가 뜨면서 점유율을 늘리는 구조나, 이스트소프트의 제품을 설치하며 zum을 검색엔진으로 바꿔주는 방식으로 점유율을 가져가는 것과 마찬가지였기 때문에 엔진 자체의 기능이나 성능을 비교하는것이 맞겠지만 검색 엔진 이전에 포탈로서 점유율을 많이 가져가고 있지 못하기 때문에 현재는 많이 힘든게 사실입니다. <a href="http://news.einfomax.co.kr/news/articleView.html?idxno=3445399" target="_blank" rel="noopener">구글은 어떻게 검색시장 점유율 90%를 장악하게 됐나 - 연합인포맥스</a> 모바일시장의 실패와 시장의 변화, 그리고 시장에 맞춰 변화하지 못한 결과는 MS의 큰 위기로 돌아왔습니다. 아이폰 이후 찾아온 모바일 시장에서 MS의 소프트웨어는 변화하지 못했고 PC시장은 침체되었습니다. 뒤늦게 MS는 모바일과 태블릿 시장에 변화에 뛰어들었지만, apple과 google이 주는 사용자 경험에 사용자들은 적응되어버렸습니다. 윈도우 vista, 윈도우8의 실패가 컸으며, ‘독점’ 하고 있었던 오피스 시장은 google docs나 iwork가 무료전환에 모바일까지 지원하면서 계속 도전을 받고 있습니다. 또한 독점 시장과 관련하여 받은 소송전쟁은 OS끼워팔기와 같은 부정적이미지로 비춰져 기업 이미지에 큰 타격을 입게 됩니다. 2012년 ms의 주식이 26달러까지 내려가며 성장하는 모습을 보여주지 못했고 스티븐 잡스 이후에도 승승장구하던 애플의 팀쿡과 달리 빌게이츠 이후의 스티븐 발머는 고전을 면치 못하고 사임하게 됩니다. 그리고 등장하는 인물이 사티아 나델라 입니다. 사티아 나델라는 sun에 있다가 1992년 ms로 옮겨와 클라우드/엔터프라이즈 그룹을 이끌며 컴퓨팅 플랫폼, 개발자 도구, 그리고 클라우드 서비스에 대한 업무를 맡았었습니다. 사티아 나델라는 OS에 의존하던 사업모델을 클라우드 모델로 전환하면서 MS을 개편했는데요. 현재 2018년도 기준으로 5년정도의 기간동안 MS는 많은 변화가 일어났습니다. MS의 부정적인 이미지를 가지고 있는 개발자라면 바로 나델라가 오기 이전의 MS를 떠올리기 때문인데요. MS의 패키지 소프트웨어 말고 오픈소스도 많이 하고 있다는 것을 많은 개발자들이 인정해주지 않는 느낌을 많이 받았습니다. MS가 하고 있는 오픈소스들을 살펴 보면서 MS를 보는 시각을 조금은 바꾸고 오해도 푸는 기회가 되었으면 좋겠습니다.</p>
+<h1 id="MS의-대표적인-오픈소스들"><a href="#MS의-대표적인-오픈소스들" class="headerlink" title="MS의 대표적인 오픈소스들"></a>MS의 대표적인 오픈소스들</h1><h2 id="VsCode"><a href="#VsCode" class="headerlink" title="VsCode"></a>VsCode</h2><p>VsCode는 윈도우, Mac, 리눅스에서 동작 가능한 code editor입니다. Electron기반에 모나코라는 ms오픈소스가 합쳐저 만들어졌습니다. <a href="https://insights.stackoverflow.com/survey/2018/" target="_blank" rel="noopener">Stack Overflow Developer Survey 2018</a> 아직 vscode를 사용하지 않는 개발자들은 ms가 만든 오픈소스 에디터일뿐 이라고 치부할수 있겠지만 stack overflow에서 조사한 결과에 따르면 Most Popular Development Environments부분에서 34.9%로 1등을 차지할정도 핫한 툴입니다. 처음에는 웹 기반에 간단한 스크립트 수정을 위한 목적으로 나왔지만 다양한 플러그인들이 나오면서 IDE수준으로 사용할수 있을만큼 성장하였습니다. 자바 개발자로서 vscode를 이용하여 spring개발도 진행할 수 있습니다 <a href="https://code.visualstudio.com/docs/java/java-spring-boot" target="_blank" rel="noopener">Spring Boot support in VS Code</a> 2017년 projects with the most contributors에서 15k로 1등을 할정도로 급성장한 vscode는 크로스플랫폼 개발자에게 큰 메리트를 줄것입니다 <a href="https://octoverse.github.com/" target="_blank" rel="noopener">GitHub Octoverse 2017 | Highlights from the last twelve months</a></p>
+<h2 id="DotNet"><a href="#DotNet" class="headerlink" title="DotNet"></a>DotNet</h2><p>닷넷이 오픈소스라는 사실을 많은 개발자들이 모르고 있습니다. 2014년 11월 MS는 닷넷 코어를 오픈소스로 공개했습니다. 닷넷의 오픈소스 전환은 닷넷이 윈도우를 벗어나 크로스 플랫폼으로 전환하려는 의도와 다양한 생태계 구축을 목표로 하는데 큰 의미가 있습니다. 사실 자바라는 언어가 가지는 효과가 바로 이것인데 윈도우로 개발하고 리눅스로 배포하는 크로스플랫폼의 효과와 다양한 오픈소스들로 이루어진 생태계는 자바가 웹같은 시장에서 큰 자리를 차지하는 이유중 하나로 꼽을 수 있는데요. 그에 반해 닷넷은 윈도우개발자라고 치부될정도로 좁았습니다. 그런데 오픈소스 전환은 리눅스, 맥에서 닷넷을 사용할수 있게 되면서 닷넷의 사용범위가 늘어나는 효과를 누릴수 있게 되었습니다. 더이상 mono나 Xamarin같은 비효율적?인 구조를 가져갈 필요가 없게 되는 것입니다. <a href="http://hijuworld.tistory.com/8" target="_blank" rel="noopener">공돌창고 :: .NET Framework, .NET Core, Xamarin 차이와 공통점</a> 하지만 명확하게 알고가야 하는 개념이 닷넷 프레임워크와 닷넷코어 그리고 쟈마린의 차이입니다 닷넷 코어는 위에 설명과 마찬가지로 크로스 플랫폼을 위해 나온것이라면 닷넷 프레임워크는 윈도우에 특화되어 개발한다고 보시면 될거 같습니다 쟈마린은 모바일 환경에 맞춰 나온 것으로 알면 됩니다 전반적으로 모두 .Net Standard Library 2.0을 지원합니다 이 3개는 standard library 2.0을 지원한다 라는 것을 제외하면 동작하는 프레임워크 모듈이 다릅니다 <a href="https://docs.microsoft.com/ko-kr/dotnet/standard/choosing-core-framework-server" target="_blank" rel="noopener">서버 앱에 대해 .NET Core와 .NET Framework 중에 선택 | Microsoft Docs</a></p>
+<h2 id="Chakra"><a href="#Chakra" class="headerlink" title="Chakra"></a>Chakra</h2><p>Apple에 webkit이 있고 google에 chromium이 있다면 MS에는 Chakra라는 엔진이 있습니다. chakra는 2015년 말에 오픈소스로 공개되었는데요. MS의 브라우저 엣지에 사용되고 있습니다. 차크라 코어는 독립적으로 동작할 수 있는 자바스크립트 가상머신으로서 파서, 인터프리터, 컴파일러 등 자바스크립트를 실행하는 데 필요한 요소는 모두 포함하고 있는데요. 뒤에 나올 타입스크립트의 발전에 따라 표준이 변화하고 브라우저 엔진이 중요한 역활을 하게 될것인데 이때 ms도 이와 함께 브라우저 엔진의 기술을 확보하고 있습니다. chakra로 개발되는 다양한 소프트웨어들은 엣지 브라우저에서 동작시키면서 생태계를 확보하려는 전략도 있는데요. 이렇게 chakra기반으로 개발되는 소프트웨어가 증가하면서 엣지 브라우저의 호환성을 늘리면서 사용자들의 만족도를 확보하려고 합니다. 가장 대표적인 것은 Node.js에서도 chakra엔진을 선택하여 개발을 진행할수 있는데요. 이는 개발자에게 다양한 엔진을 선택할 수 있는 기회를 부여하고 확보하는데 큰 역활을 하고 있습니다</p>
+<h1 id="Java와-웹시장에-미친-영향"><a href="#Java와-웹시장에-미친-영향" class="headerlink" title="Java와 웹시장에 미친 영향"></a>Java와 웹시장에 미친 영향</h1><p>MS가 오픈소스를 하고 있긴 하구나~ 라는것을 대표적인것을 통해 봤지만 내가 개발하는거랑은 전혀 연관이 없다 라고 생각하실 수도 있을거 같습니다. (이 포스팅은 자바 개발자를 위한 포스팅) 우리가 실질적으로 느낄수 있는 영향을 준 MS의 오픈소스는 무엇이 있을까요?</p>
+<h2 id="ReactiveExtension"><a href="#ReactiveExtension" class="headerlink" title="ReactiveExtension"></a>ReactiveExtension</h2><p>아해에서는 2017년 공개세미나에서 제가 ReactiveStream에 대해 발표한 적이 있습니다 <a href="https://ahea.wordpress.com/2017/02/03/reactive-history/" target="_blank" rel="noopener">Reactive History – Ahea Team Study Blog</a> 물론 Reactive에 대한 개념은 MS랑은 별개이지만 자바에서 Reactive라고 하면 표준인 Reactive Streams와 RxJava를 대표적이라고 이야기 할 수 있을거 같습니다. 특히 이번 스프링 5에서는 Reactive를 이용한 개발 방법이 새롭게 제공되면서 관심이 더 많아졌고 넷플릭스의 사례로 본 RxJava와 조금더 발전된 RxAndroid같은 ReactiveExtension은 아주 유명하죠. 이때 ReactiveExtension(줄여서 rx)는 Microsoft에서 공개한 오픈소스 프로젝트입니다. 처음 rx는 오픈소스는 아니였으나 Eric Meijer라는 개발자가 rx.net, rx.js, rx++을 최초로 공개하였고 Netflix의 Jafar Husain이 넷플릭스의 구조를 변경하기 위해 rxJava를 만들면서 java진영에서도 reactive한 개발을 적용하기 쉬워졌습니다. 최근에는 java9에서는 Reactive Stream이라는 표준이 정의되어 interface가 제공되게 되었습니다.</p>
+<h2 id="Azure와-Spring"><a href="#Azure와-Spring" class="headerlink" title="Azure와 Spring"></a>Azure와 Spring</h2><p>사실 Azure는 오픈소스는 아니지만 MS에서 Java개발자를 위해 무난히 애쓰고 있는 것을 좀 알리고자 추가하게 되었습니다. 사실 Azure는 java개발자들에게는 크게 친하지 않은 클라우드 플랫폼입니다. 오히려 aws나 google쪽이랑 친하실거 같은데요. 사실 azure도 굉장히 많이 사용되는 클라우드 플랫폼입니다. <a href="https://www.zdnet.com/article/cloud-providers-ranking-2018-how-aws-microsoft-google-cloud-platform-ibm-cloud-oracle-alibaba-stack/" target="_blank" rel="noopener">Top cloud providers 2018: How AWS, Microsoft, Google Cloud Platform, IBM Cloud, Oracle, Alibaba stack up | ZDNet</a> 조사에 따르면 aws는 2017년 분기별 영업수익이 $20.4 billion인데에 비해 MS는 $21.2 billion으로서 aws보다 앞서고 있으며 Enterprise public cloud시장에서 aws를 ms가 2위로 쫒아가면서 빠르게 쫒아가고 있습니다 (ms의 클라우드 시장에는 office365도 포함이 되어 있습니다) azure 초기부터 웹시장을 장악하고 있던 java플랫폼을 흡수하고 싶어 했는데요. 2010년도 초반에 개인적으로 azure플랫폼 세미나를 간적이 있는데 닷넷만큼이나 지원을 활발하게 하고있던것이 java였습니다. <a href="https://azure.microsoft.com/ko-kr/develop/java/" target="_blank" rel="noopener">https://azure.microsoft.com/ko-kr/develop/java/</a> 애저 홈페이지에 자바 탭을 들어가보면 알수 있는데요. 톰캣, 오라클과 같은 다양한 기술스택을 손쉽게 선택할수 있고(aws보다 쉬운건 더 쉬운거 같습니다) intellij나 이클립스 또는 cli까지도 지원하면서 자세하게 가이드를 제공해주고 있습니다 또 마지막으로 Spring boot를 손쉽게 배포할수 있고 Docker나 Kubernetes를 azure cluster에 쉽게 배포하는법까지도 가이드가 쉽게 제공되기 때문에 한번쯤은 cloud를 적용하려 할때 고려정도? 해보시면 좋을거 같습니다 (꽤 쉽습니다) <a href="https://docs.microsoft.com/ko-kr/java/azure/intellij/azure-toolkit-for-intellij-publish-spring-boot-docker-app?view=azure-java-stable" target="_blank" rel="noopener">IntelliJ용 Azure 도구 키트를 사용하여 Spring Boot 앱을 Docker 컨테이너로 게시 | Microsoft Docs</a></p>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>타입스크립트는 최근 엄청 다양하게 온갓군데에서 사용하고 있습니다. 저같은 경우 최근에는 앵귤러에서 사용했고 node.js나 react, vue.js와 같은 핫한 기술에는 다 적용되고있다고 봐도 무관합니다. 이러한 typescript는 Microsoft에서 2012년도에 발표한 언어입니다(소프트웨어 대기업들 언어 하나정도는 가지고 있죠??) 타입스크립트는 ES6를 지키고 있기 때문에 호환도 좋고 스크립트 오픈소스중에 가장 잘나가고 있는 녀석인거 같습니다. 타입스크립트를 기반으로 한 라이브러리/프레임워크/앱들을 나열해보겠습니다 몇가지나 알고 있는지 체크해보시길 바랍니다 Vscode Angular Ionic React Node Express Babel Asp.net core WeChat nest Web pack Native script 상당히 많이 알고 계시고 또 사용도 하고 계시다면 여러분은 Microsoft의 오픈소스를 활용하고 계신겁니다</p>
+<h1 id="MS가-인수한-기업들"><a href="#MS가-인수한-기업들" class="headerlink" title="MS가 인수한 기업들"></a>MS가 인수한 기업들</h1><p>글쎄요. MS가 여러분의 소프트웨어 개발에 있어 얼마만큼 영향을 주고 있는지는 모르겠습니다. 적어도 윈도우는 쓰시겠죠~ 이번에는 다시 Github의 인수 얘기로 돌아와서 MS가 과거 기업을 인수한 사례들을 살펴보려고합니다. 사실 해외에서는 기업을 인수하는것이 자주 있는 일입니다. 구글이 안드로이드를 만든게 아니라 인수를 했고, 페이스북은 인스타그램, 오큘러스,왓츠앱과 같은 기업을 인수하면서 자사 서비스를 강화했죠. MS도 마찬가지입니다 위에 노키아를 인수한 사례도 있었는데요 몇가지 다른 사례를 보겠습니다</p>
+<h2 id="링크드인"><a href="#링크드인" class="headerlink" title="링크드인"></a>링크드인</h2><p>링크드인은 4억 명이 넘는 사용자를 확보한 세계 최대의 비즈니스 SNS기업입니다. 저같은 경우 저의 개발 프로필을 올리면 헤드헌터나 기업에서 연락이 오고 했는데요. MS는 2016년 링크드인을 62억달러(30조 5천억원)에 인수하게 됩니다. 마이크로소프트와 링크드인의 인수합병은 계약 체결 뒤 마무리까지 6개월이 걸렸다고 하는데요. 유럽연합(EU)이 마이크로소프트가 반독점을 할 수 있다는 이유로 링크트인의 인수를 반대했기 때문이랍니다. 마이크로소프트는 향후 5년 동안 링크드인을 MS오피스, 클라우드컴퓨팅 서비스에 연결하지 않는다는 조건으로 유럽연합의 승인을 받았다고 하네요. MS의 링크드인 인수는 MS에서 인수한 기업중 최대 금액입니다. MS는 왜 링크드인을 인수했을까요? MS는 기업 시장에 집중하는 추세입니다. 기존에 MS proejct나 MS office같은 제품을 가지고 있었고 기업형 sns인 야머, 클라우드 보안업체인 아달롬, 인터넷 전화인 스카이프 인수한것을 보면서 기업의 협업, 생산성 강화를 목표로 하고 있는것을 알수 있습니다. office만 보더라도 단순 문서도구가 아닌 클라우드화를 통해 협업을 강화하려고 하고 있습니다. 이때 링크드인의 합류는 효과를 배로 만들수 있는데요. 기업형 sns인 링크드인은 기업시장을 키우고 있는 MS에게 아주 매력적인 서비스입니다. 과거 노키아 인수 사례를 보면 MS의 제품을 sales하기 위한 인수가 있었다면 링크드인은 그 서비스를 통해 MS의 제품의 영향력을 강화시키는데 큰 목표를 두고 있기에 좋은 성과가 나오지 않을까 생각이 듭니다. 오늘 저녁 집에 가서 링크드인 프로필을 작성해보시는건 어떤가요?</p>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>사실 도커는 인수는 되지 않았고 시도만 있었던 뉴스입니다. 2016년도에 있었던 뉴스인데요. MS가 도커를 40억달러에 인수하려고 했다는 뉴스에 경악을 할 개발자들이 있을지도 모르겠습니다. 도커를 간략하게 설명하면 컨테이너가상화 기술을 이용하여 어플리케이션을 생성, 관리하는 기술입니다. MS는 azure를 이용한 리눅스 가상머신을 이용하여 도커를 쓸수 있도록 지원해 왔는데요. MS의 도커 인수 뉴스는 MS가 지금 하려고 하는 방향이 무엇인가를 단면적으로 보여주는 예가 되지 않나 생각됩니다.</p>
+<h2 id="cycle-computing"><a href="#cycle-computing" class="headerlink" title="cycle computing"></a>cycle computing</h2><p>사이클 컴퓨팅은 클라우드 오케스트레이션 솔루션 업체로서 2017년 하반기에 인수되었습니다. 사이클 클라우드 라는 서비스 개발사로 클라우드 오케스트레이션, 프로비저닝, 데이터 관리 등의 기능을 제공하고 있습니다. 사이클 컴퓨팅은 aws가 대규모 클라우드 기반 슈퍼컴퓨터를 구현하는 것을 지원했을정도로 기술력이 있는 회사입니다. 당시 구현한 5만 1,000코어 슈퍼컴퓨터는 1시간 사용 요금이 5,000달러였다고 합니다 5만 1000 코어요… 이때를 기점으로 아마존, 마이크로소프트, 구글은 사이클 컴퓨팅의 클라우드 오케스트레이션 소프트웨어를 도입했다고 합니다. 이번 인수로 인해 사이클 컴퓨팅은 애저 클라우드 서비스를 중점적으로 지원할것이며 장기적으로는 사이클 컴퓨팅이 애저로 흡수되어 질것으로 보입니다. 이번 인수로 인해 aws나 google보다 한수 높은 기술력을 확보했다는 평가를 받고 있습니다.</p>
+<h1 id="Github으로-본-미래"><a href="#Github으로-본-미래" class="headerlink" title="Github으로 본 미래"></a>Github으로 본 미래</h1><p>MS가 인수한 사례들을 몇개 봤습니다. 많은 부분이 클라우드에 집중되고 있는것을 볼 수 있습니다. 그리고 독점적인 시장을 가진 회사에서 탈바꿈하고 있는 과정입니다. 특히 사티아 나델라가 CEO로 오면서 모든 비즈니스가 클라우드화 되가고 있는 과정입니다. 나델라가 오고 변화한 MS는 2015년 4분기 Microsoft의 매출액의 20%를 Azure로 냈으며, 2017년 3분기는 Azure가 152억달러의 매출을 기록하며 92%의 성장을 이루어냈습니다. 더이상 MS가 오피스 팔아먹고 OS팔아먹는 회사는 아니다 라는것이 조금은 기록으로 나오고 있는거 같습니다. 사실 MS입장에서는 수익으로만 봤을때는 쨉이 되지 않는 것이 Github의 수익은 매년 1억1천억달러정도 밖에 되지 않기 때문에 크게 메리트 있는 부분은 아닙니다. 그렇기 때문에 github인수로 유료화가 되니 딴곳으로 도망가자~ 이런 생각은 너무 앞서간게 아닌가 생각이 드네요 그렇다고 MS가 이번에 개발자들을 위해 크게 한턱 쏩니다 라고 Github을 사들인건 아닐겁니다. MS는 오픈소스를 돕는 비영리단체는 아니니까요.. MS의 오픈소스와 기업인수를 보면 클라우드에 집중하는 것을 볼수 있습니다. 이번 github의 인수도 마찬가지고요. 앞으로 MS의 비즈니스모델이 클라우드로 이동되는 것을 볼수 있지 않을까요. Java 개발자로서 MS와 크게 친하진 않지만 MS는 Java개발자를 위해 많은 일을 하고 있었군요(MS도 많은 일을 하고 나도 많은 일을 하고…) 이번 칼럼을 통해 조금이나마 긍정적인 생각을 가지게 되었으면 좋겠습니다 감사합니다</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/11/08/ms-eb-8f-84-ec-98-a4-ed-94-88-ec-86-8c-ec-8a-a4-ed-95-a9-eb-8b-88-eb-8b-a4/" class="b-link-green">MS도 오픈소스 합니다</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/04/13/너는-사람이냐-봇이냐-Headless-Browser/">
+                    <div class="card-image">
+                        
+                        <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="너는 사람이냐? 봇이냐?(Headless Browser)">
+                        
+                        <span class="card-title">너는 사람이냐? 봇이냐?(Headless Browser)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Web을 통해 다양한 정보를 소비하며 쉽게 접근 할 수 있는 환경에 살고있습니다.이 다양한 정보를 가지고 애플리케이션을 만들어 사용하고 싶은데 Open API를 제공하지 않아 곤란해 하는 경우가 많고 제대로 제공하지</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HeadlessBrowser/" target="_blank">
+                        <span class="chip bg-color">HeadlessBrowser</span>
+                    </a>
+                    
+                    <a href="/tags/Chrome/" target="_blank">
+                        <span class="chip bg-color">Chrome</span>
+                    </a>
+                    
+                    <a href="/tags/headless/" target="_blank">
+                        <span class="chip bg-color">headless</span>
+                    </a>
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/11/08/lego-scrum-ec-a7-84-ed-96-89-ed-8e-b8/">
+                    <div class="card-image">
+                        
+                        <img src="http://www.plays-in-business.com/wp-content/uploads/2015/09/lego-scrum-city-2.jpg" class="responsive-img" alt="Lego scrum-진행편">
+                        
+                        <span class="card-title">Lego scrum-진행편</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Lego Scrum Game(진행편)#Lego #scrum 지난 어떻게 행사를 준비하게 되었는지 기획편이 포스팅되었습니다 이번 진행편에서는 2018년 6월 9일에 진행한 아해 행사를 통해 진행된 Scrum Game행</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/agile/" class="post-category" target="_blank">
+                                    agile
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/lego/" target="_blank">
+                        <span class="chip bg-color">lego</span>
+                    </a>
+                    
+                    <a href="/tags/scrum/" target="_blank">
+                        <span class="chip bg-color">scrum</span>
+                    </a>
+                    
+                    <a href="/tags/agile/" target="_blank">
+                        <span class="chip bg-color">agile</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

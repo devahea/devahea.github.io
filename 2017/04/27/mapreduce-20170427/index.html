@@ -1,0 +1,944 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="MapReduce (20170427), Java, Spring, Reactive">
+    <meta name="description" content="이번 글은 MapReduce에 대해 자세히 공부해볼까합니다. HDFS는 파일을 저장하고, 읽고, 삭제하고, 관리하는 시스템이니 설정 및 서버 환경에 대한 이슈를 제외하면 큰 문제가 되는건 없다고 생각합니다. 하지만,">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>MapReduce (20170427) | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        MapReduce (20170427)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                미분류
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2017-04-27
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>이번 글은 MapReduce에 대해 자세히 공부해볼까합니다. HDFS는 파일을 저장하고, 읽고, 삭제하고, 관리하는 시스템이니 설정 및 서버 환경에 대한 이슈를 제외하면 큰 문제가 되는건 없다고 생각합니다. 하지만, MapReduce는 우리가 직접 개발해야 하는 사항이니, 자세히 알아둘 필요가 있다고 생각합니다. MapReduce가 하는 일은 비교적 간단하다.</p>
+<p>1. 저장된(HDFS) 파일을 key-value 쌍으로 분할하여 Mapper 함수로 전송<br>2. Mapper는 key-value 쌍을 새로운 객체로 합성<br>3. shuffle 과 sort<br>4. Reducer는 key-value 쌍을 최종 결론으로 합성<br>5. 결과를 HDFS에 저장</p>
+<p>더 간단하게 정리하면, 저장된 파일을 파싱하여 key-value로 만들고(Mapper), 만들어진 key-value를 합치는(Reducer) 작업이다. Hadoop을 설치하려면 설정하는데 너무 오랜 시간이 걸리므로 cloudera와 hortonworks에서 가상머신으로 간단하게 실행할수 있도록 해둔 것이 있으니 다운 받아 실행하면 될것 같습니다. 전 hortonworks로 하였습니다( <a href="https://ko.hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">https://ko.hortonworks.com/downloads/#sandbox</a> ) sandbox를 통해 실행한 hadoop의 버전은 다음과 같습니다. [root@sandbox study]# hadoop version Hadoop 2.7.3.2.5.0.0-1245 Subversion <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:hortonworks/hadoop.git -r cb6e514b14fb60e9995e5ad9543315cd404b4e59 Compiled by jenkins on 2016-08-26T00:55Z Compiled with protoc 2.5.0 From source with checksum eba8ae32a1d8bb736a829d9dc18dddc2 This command was run using /usr/hdp/2.5.0.0-1245/hadoop/hadoop-common-2.7.3.2.5.0.0-1245.jar input file <img src="https://ahea.files.wordpress.com/2017/04/hdfs_file01.png" alt="hdfs_file01"><img src="https://ahea.files.wordpress.com/2017/04/hdfs_file02.png" alt="hdfs_file02"> library list</p>
+<p>commons-cli-1.2.jar<br>commons-collections-3.2.2.jar<br>commons-configuration-1.6.jar<br>commons-io-2.4.jar<br>commons-lang-2.6.jar<br>commons-lang3-3.3.2.jar<br>commons-logging-1.1.3.jar<br>guava-11.0.2.jar<br>hadoop-auth-2.7.3.2.5.0.0-1245.jar<br>hadoop-common-2.7.3.2.5.0.0-1245.jar<br>hadoop-hdfs-2.7.3.2.5.0.0-1245.jar<br>hadoop-mapreduce-client-app-2.7.3.2.5.0.0-1245.jar<br>hadoop-mapreduce-client-common-2.7.3.2.5.0.0-1245.jar<br>hadoop-mapreduce-client-core-2.7.3.2.5.0.0-1245.jar<br>hadoop-mapreduce-client-hs-2.7.3.2.5.0.0-1245.jar<br>hadoop-mapreduce-client-jobclient-2.7.3.2.5.0.0-1245.jar<br>hadoop-mapreduce-client-shuffle-2.7.3.2.5.0.0-1245.jar<br>hadoop-yarn-server-tests-2.7.3.2.5.0.0-1245.jar<br>log4j-1.2.17.jar<br>slf4j-api-1.7.21.jar</p>
+<ul>
+<li>import list</li>
+</ul>
+<p><img src="https://ahea.files.wordpress.com/2017/04/import_list.png" alt="import_list"></p>
+<ul>
+<li>Mapper</li>
+</ul>
+<p><img src="https://ahea.files.wordpress.com/2017/04/mapper.png" alt="Mapper"></p>
+<ul>
+<li>Reducer</li>
+</ul>
+<p><img src="https://ahea.files.wordpress.com/2017/04/reducer1.png" alt="Reducer"></p>
+<ul>
+<li>Main</li>
+</ul>
+<p><img src="https://ahea.files.wordpress.com/2017/04/main.png" alt="Main"> 위 코드는 MapReduce의 기본 틀이며, 흔히 MapReduce의 Hello World라고 말하는 WordCount 코드 입니다. 실행은 Hadoop 1.x 버전에선 java -jar 로 실행이 가능했다. 하지만, Hadoop 2.x 버전이 되면서 Yarn 이라는 시스템이 생기면서 MapReduce는 컴퓨팅을 위한 프로그램만 제공하고, YARN에서 클러스터의 리소스 관리, 장애 관리 등을 하게 되었다. 그러므로 실행 방법은 hadoop 명령어를 통해서 MapReduce를 실행 한다. (YRAN 참고 : <a href="http://www.popit.kr/what-is-hadoop-yarn/" target="_blank" rel="noopener">http://www.popit.kr/what-is-hadoop-yarn/</a>)</p>
+<p>hadoop jar ./WordCount.jar input_file_path output_file_path</p>
+<p>이제 출력된 로그로 분석을 해볼까 합니다. 하지만…. 기본 설정에서 실행을 했을때 System.out.println(); 에 대한 출력이 나오지 않습니다.해당 로그를 보는 방법은 총 3가지가 있습니다.</p>
+<ol>
+<li>JobTracker 페이지<ul>
+<li>해당 방법은 yarn이 생기기 전에도 사용하던 방법입니다.</li>
+<li>Hadoop이 정상적으로 설치가 되면 기본적으로 확인하는 페이지는 NameNode UI(기본포트 : 50070)와 JobHistory(기본포트 : 19888) 입니다.</li>
+<li>이 중 JobHistory에서 확인이 가능합니다.</li>
+</ul>
+</li>
+<li>yarn 명령어<ul>
+<li>yarn logs -applicationId application_ID</li>
+<li>이를 통해 로그를 알수 있지만, application id 를 알아야하며 하나의 job에 여러 application id 가 존재하므로 확인하기 힘듭니다.</li>
+</ul>
+</li>
+<li>MapReduce 설정 변경<ul>
+<li>MapReduce의 설정 파일 중 mapred-site.xml을 수정하는 방법입니다.</li>
+<li>mapreduce.framework.name의 기본 값은 yarn 으로 되어 있는데 이를 local 로 변경하게 되면 hadoop jar 명령어를 실행함에 있어 문제 없이 System.out.println 의 출력 값을 볼수 있습니다.</li>
+<li>하지만, 이는 MapReduce의 restart를 의미하며, 그 외에도 yarn과 hive등의 프로세스를 restart해야하는 상황이 되므로 주의해야합니다.</li>
+</ul>
+</li>
+</ol>
+<p>저는 가상 머신으로 실행하고 있고 테스트 및 스터디를 위한 Hadoop이므로 설정을 바꾸는 3번 방법으로 하도록 하겠습니다.</p>
+<h2 id="코드-실행"><a href="#코드-실행" class="headerlink" title="코드 실행"></a>코드 실행</h2><p>이렇게 실행하여 로그를 보면 Map이 실행되기 직전에</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a><img src="https://ahea.files.wordpress.com/2017/04/mr_log11.png" alt="MR_log1.png"></h5><p>이 있습니다.</p>
+<ol>
+<li>mapred.MapTask: Processing split: hdfs://sandbox.hortonworks.com:8020/user/admin/data/input/file02:0+27<ul>
+<li>이 로그는 현재 Mapper 함수에서 읽은 파일입니다.</li>
+<li>MapReduce가 파일을 가장 먼저 읽는 것이 이름 역순인지 가장 최근에 업로드된 파일인지 그냥 궁금해서 알아보니 가장 최근에 업로드된 파일 순으로 읽고 있다는걸 확인했습니다.</li>
+</ul>
+</li>
+<li>mapreduce.task.io.sort.mb: 64<ul>
+<li>map을 거치고 reduce가 구동되는 시점에 data-sorting이 일어나는데 이때 사용될 파일핸들 개수 및 메모리 용량을 설정하는 부분입니다.</li>
+</ul>
+</li>
+</ol>
+<p>이제 코드 상에서 찍은 로그를 보도록 하겠습니다.</p>
+<ol>
+<li><p>Mapper</p>
+<ul>
+<li><h5 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ahea.files.wordpress.com/2017/04/mr_log2.png" alt="MR_log2"></h5></li>
+<li><p>위 로그는 우리가 실제로 HDFS에 업로드한 file02입니다. value는 file의 값을 읽었으니 첫 라인이 들어가는 것은 당연한데, key값이 무엇일지 몰라 로그를 보면서 추측을 해봤습니다.</p>
+<h5 id="mapred-MapTask-bufstart-0-bufvoid-67108864"><a href="#mapred-MapTask-bufstart-0-bufvoid-67108864" class="headerlink" title="mapred.MapTask: bufstart = 0; bufvoid = 67108864"></a>mapred.MapTask: bufstart = 0; bufvoid = 67108864</h5><p>위에 적은 로그 중 이 부분에 bufstart라는 것이 있습니다. 또한, bufvoid가 있으며, Reduce 실행시 bufend가 있습니다. 이에 대한 내용은 찾아도 알수가 없어서 <a href="https://svn.apache.org/repos/asf/hadoop/common/branches/branch-1/src/mapred/org/apache/hadoop/mapred/MapTask.java" target="_blank" rel="noopener">org.apache.hadoop.mapred.MapOutputBuffer</a>를 보니 해당 변수들을 다음과 같이 설명하고 있습니다.</p>
+<p>// k/v accounting<br>private volatile int kvstart = 0;  // marks beginning of spill<br>private volatile int kvend = 0;    // marks beginning of collectable<br>private int kvindex = 0;           // marks end of collected<br>private final int[] kvoffsets;     // indices into kvindices<br>private final int[] kvindices;     // partition, k/v offsets into kvbuffer<br>private volatile int bufstart = 0; // marks beginning of spill<br>private volatile int bufend = 0;   // marks beginning of collectable<br>private volatile int bufvoid = 0;  // marks the point where we should stop</p>
+<pre><code>                                   // reading at the end of the buffer
+</code></pre><p>그러므로 Map에서 key라고 하는건 bufstart가 아닐까 하는 생각이 들었습니다. 아직 확실한 뭔가를 찾진 못했네요…</p>
+</li>
+</ul>
+</li>
+<li><p>Reducer…?</p>
+<ul>
+<li><h5 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ahea.files.wordpress.com/2017/04/mr_log3.png" alt="MR_log3"></h5></li>
+<li><p>아직 파일을 다 읽지 않은 상황에서 Reducer가 실행이 됐습니다.</p>
+</li>
+<li>이는 코드 중 job.setCombinerClass(IntSumReducer.class); 으로 인해 실행되는 Reducer 입니다. 해당 코드를 사용하지 않아도 문제는 정상 처리됩니다.</li>
+<li>하지만 만약, 용량이 크고 많은 수의 파일을 처리하며, Reducer의 key의 수가 많아진다면, Reducer의 부하가 심해지므로 각 Mapper마다 Reducer를 실행하는 것이 효율이 좋습니다.</li>
+<li>이 Reducer에서 발생되는 또 하나의 기능이 있습니다. 바로 Sort &amp; Shuffle 입니다. key가 출력된 순서를 보면 Mapper에서 제일 먼저 만든 “Hello”가 나오지 않고 “Goodbye”가 나오고 있습니다.</li>
+</ul>
+</li>
+<li>2번째 파일(file01)에 해당하는 Mapper &amp; Reducer<ul>
+<li><img src="https://ahea.files.wordpress.com/2017/04/mr_log4.png" alt="MR_log4.png"></li>
+<li>기본적으로 실행되는건 file02때와 같습니다. 맨 마지막에 Reduce task를 기다리는 것으로 Mapper의 일은 모두 끝이 납니다.</li>
+</ul>
+</li>
+<li><p>Reducer</p>
+<ul>
+<li>2번째 파일(file01)까지 위와 같이 처리가 되었다면, 이제 두 Mapper의 결과를 합치는 과정이 남았습니다. 진짜 Reducer입니다.</li>
+<li><h5 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ahea.files.wordpress.com/2017/04/mr_log51.png" alt="MR_log5.png"></h5></li>
+<li><p>Reducer 가 실행 되면서 Mapper의 결과를 가져오게 되는데 그 부분에 해당하는 로그는 위와 같이 나옵니다.</p>
+</li>
+<li><img src="https://ahea.files.wordpress.com/2017/04/mr_log6.png" alt="MR_log6.png"></li>
+<li>setCombinerClass 과 setReduceClass가 같긴 때문에 실행되는것 역시 같습니다.</li>
+</ul>
+</li>
+<li>최종 결과<ul>
+<li><img src="https://ahea.files.wordpress.com/2017/04/mr_log71.png" alt="MR_log7.png"></li>
+<li>맨 마지막으로 최종적인 결과가 정리되어 나오게 되는데 실제 사용할때는 이것만 봐도 충분하다고 생각합니다. Map과 Reduce의 input/output에 대한 라인 수를 포함한 결과가 모두 나와있기 때문입니다.</li>
+<li><img src="https://ahea.files.wordpress.com/2017/04/mr_result.png" alt="MR_result.png"></li>
+</ul>
+</li>
+<li>추가 사항<ul>
+<li>Mapper 와 Reducer에서 Iterable과 Context에 대해 출력해본 결과, key의 수가 몇개든 같은 객체를 사용하고 있다는 것을 알수 있습니다. (Mapper의 확인은 input file 하나에 여러 라인으로 테스트 하면 같은 객체를 사용하고 있다는것을 알수 있습니다.)</li>
+</ul>
+</li>
+</ol>
+<p>최종 정리 <img src="https://ahea.files.wordpress.com/2017/04/wordcount_mapreduce_paradigm.png" alt="WordCount_MapReduce_Paradigm.PNG"> 그림 참고 : <a href="https://wikis.nyu.edu/display/NYUHPC/Big+Data+Tutorial+1%3A+MapReduce" target="_blank" rel="noopener">https://wikis.nyu.edu/display/NYUHPC/Big+Data+Tutorial+1%3A+MapReduce</a> 위 그림은 위키에 올라와 있는 그림입니다. Main 함수에 있는 FileInputFormat.addInputPath( job, new Path(String) ); 를 통해 Mapper에서 처리할 파일을 설정하고, 파일 내용을 라인 별로 ETL 처리 합니다.(코드 실행 1번) 실행된 각 Mapper의 결과를 Sort &amp; Shuffle을 실행하고(코드 실행 2번), Reducer를 통해 최종 결과를 만들어냅니다.(코드 실행 3번) 만들어진 결과는 FileOutputFormat.setOutputPath( job, new Path(String) )에 설정된 HDFS에 저장 됩니다.</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2017/04/27/mapreduce-20170427/" class="b-link-green">MapReduce (20170427)</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2017/05/02/trashed-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="__trashed-2">
+                        
+                        <span class="card-title">__trashed-2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text"></div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-05-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/04/14/hadoop-architecture-20170414/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hadoop architecture (20170414)">
+                        
+                        <span class="card-title">Hadoop architecture (20170414)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Hadoop 이란 HDFS + MapReduce로 구성되어 있습니다. (이전 글  : https://ahea.wordpress.com/2017/03/29/hadoop-eco-system-정리-1-20170329/ )</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-04-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/미분류/" class="post-category" target="_blank">
+                                    미분류
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

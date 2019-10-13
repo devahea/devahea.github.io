@@ -1,0 +1,1059 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Headless Browser란?, Java, Spring, Reactive">
+    <meta name="description" content="Headless Browser란?위키피디아에서 발췌 했습니다.
+
+A headless browser is a web browser without a graphical user interface.
+
+말 그대로 GUI환경">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Headless Browser란? | Ahea Team Study Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo" style="
+    margin-left: 50px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ahea Team Study Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ahea Team Study Blog</div>
+        <div class="logo-desc">
+            
+            Java 개발자들의 정보 공유
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Headless Browser란?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <style>
+    .friends-container {
+        margin-top: -100px;
+    }
+
+    .frind-ship img {
+        border-radius: 10%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 一下是按钮样式 */
+
+    .frind-ship {
+        padding: 10px 20px;
+    }
+
+    .frind-ship .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .frind-ship .title div {
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .frind-ship .title img {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .frind-ship .title h1 {
+        line-height: 0.8rem;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .friend-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: -27px;
+    }
+
+    .friend-button a {
+        border-radius: 40px;
+    }
+
+    .friend-all .tag-post {
+        margin-bottom: 30px;
+    }
+
+    .button-caution {
+        background-color: #FF4351;
+        border-color: #FF4351;
+        color: #FFF;
+    }
+
+    .button {
+        font-weight: 300;
+        font-size: 16px;
+        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 40px;
+        margin: 0;
+        display: inline-block;
+        appearance: none;
+        cursor: pointer;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+
+    .title {
+        margin-bottom: 0rem !important;
+    }
+
+    .card {
+        margin: 3rem 0 1rem 0 !important;
+    }
+
+    .button-glow.button-caution {
+        -webkit-animation-name: glowing-caution;
+        animation-name: glowing-caution;
+    }
+
+    @-webkit-keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    @keyframes glowing-caution {
+        from {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+
+        50% {
+            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+        }
+
+        to {
+            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+        }
+    }
+
+    .button-caution:hover {
+        background-color: #ff7680;
+        border-color: #ff7680;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .frind-card1 {
+        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .frind-card2 {
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .frind-card3 {
+        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    }
+
+    .frind-card4 {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .frind-card5 {
+        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    }
+
+    .frind-card6 {
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    }
+
+    .frind-card7 {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    }
+
+    .frind-card8 {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+
+    .frind-card9 {
+        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+    }
+
+    .frind-card10 {
+        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    }
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HeadlessBrowser/" target="_blank">
+                                <span class="chip bg-color">HeadlessBrowser</span>
+                            </a>
+                        
+                            <a href="/tags/Chrome/" target="_blank">
+                                <span class="chip bg-color">Chrome</span>
+                            </a>
+                        
+                            <a href="/tags/headless/" target="_blank">
+                                <span class="chip bg-color">headless</span>
+                            </a>
+                        
+                            <a href="/tags/javascript/" target="_blank">
+                                <span class="chip bg-color">javascript</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                WEB
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-04-13
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Headless-Browser란"><a href="#Headless-Browser란" class="headerlink" title="Headless Browser란?"></a>Headless Browser란?</h2><p>위키피디아에서 발췌 했습니다.</p>
+<blockquote>
+<p>A headless browser is a web browser without a graphical user interface.</p>
+</blockquote>
+<p>말 그대로 GUI환경이 아닌 브라우저를 뜻 합니다.</p>
+<p><code>CLI(Command Line Interface)</code>에서 동작하는걸 뜻하며, 프로그래밍하기에 용이 해집니다.</p>
+<p>2000년대 까지만 하더라도 Javascript는 Web Page에서 동적으로 보이기 위해 사용 되어졌지만 Web의 성장함으로써 Frontend진영에서 Javascript Framework가 생기고, 이를 활용하여 개발한 SPA(Single Page Application)이 활발하게 되었습니다.</p>
+<p><img src="https://user-images.githubusercontent.com/6037055/56088632-a0bcc100-5ebf-11e9-9ed2-db36b58c6a35.png" alt="react-angular-vue"></p>
+<p>SPA이전엔 HTTP Client(Jsoup, OKHttp)를 활용하여 Web Scraping(또는 Crawling)가능 해졌지만 Javascript를 실행해야지만 Scraping이 가능 해졌습니다.</p>
+<p>Headless Browser의 등장으로 복잡한 인증 및 Javascript 실행으로 인해 실제 사람이 접속 하듯이 Scraping 할 수 있게 되었습니다.</p>
+<h2 id="Http-Client와-Headless-Browser"><a href="#Http-Client와-Headless-Browser" class="headerlink" title="Http Client와 Headless Browser"></a>Http Client와 Headless Browser</h2><p>HTTP Client는 URL입력과 동시에 Html Content를 바로 불러와 속도가 빠릅니다. 그에 비해 <code>Headless Browser는 백그라운드상에서 실제 Browser가 돌기에 상대적으로 속도가 느립</code>니다. 그래도 <code>SPA접근</code>과 <code>복잡한 인증</code>을 <code>쉽게 해결</code> 가능 한데요.<br>Javascript 구동 여부는 Airbnb 페이지에서 확인 해보겠습니다.</p>
+<p>CLI환경에서 에서 둘의 차이점을 확인 할 수 있습니다.</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># curl HttpClient로 에어비앤비 Scraping</span>
+curl https://www.airbnb.co.kr <span class="token operator">></span> curl-Airbnb.html
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/6037055/56453086-2e445900-6377-11e9-8727-dccd79463cf2.png" alt="javascript-NoJavascript"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Chrome 헤드리스 모드로 에어비앤비 Scraping</span>
+chrome --headless --dump-dom --virtual-time-budget<span class="token operator">=</span>3000 https://www.airbnb.co.kr <span class="token operator">></span> headless-Airbnb.html
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/6037055/56453083-297fa500-6377-11e9-9765-361264370b7f.png" alt="javascript-Javascript"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ls</span> -lh
+-rw-r--r--    1 a1004024  staff   241K Apr 13 21:50 httpclient-Airbnb.html
+-rw-r--r--    1 a1004024  staff   327K Apr 13 21:50 headless-Airbnb.html
+</code></pre>
+<p>두개 파일의 용량을 보면 <code>HTTP Client 결과는 241K</code>이며 <code>Headless Browser의 결과는 327K</code> 였습니다.</p>
+<p>두개의 파일을 비교 해도 가져올수 있는 데이터를 확인 할 수있었습니다.</p>
+<table>
+<thead>
+<tr>
+<th>Client</th>
+<th>속도</th>
+<th>인증처리</th>
+<th>Jascript실행여부</th>
+<th>종류</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Http Client</td>
+<td>빠름</td>
+<td>어려움</td>
+<td>X</td>
+<td>curl, wget, 그외 라이브러리들</td>
+</tr>
+<tr>
+<td>Headless Browser</td>
+<td>느림</td>
+<td>쉬움</td>
+<td>O</td>
+<td>Puppeteer, Selenium, PhantomJS 등</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Http Client를 사용가능한곳은 Http Client가 더 나은 선택 일 수 있습니다.</p>
+</blockquote>
+<h2 id="Headless-Browser를-통해-인증과-Scraping-네이버-카페"><a href="#Headless-Browser를-통해-인증과-Scraping-네이버-카페" class="headerlink" title="Headless Browser를 통해 인증과 Scraping(네이버 카페)"></a>Headless Browser를 통해 인증과 Scraping(네이버 카페)</h2><p>개인적으로 좋아하는 Node.js 기반 Headless Browser인 <a href="https://pptr.dev" target="_blank" rel="noopener">Puppeteer</a>를 활용한 예제를 구성 하였습니다. </p>
+<p>실제 네이버 카페를 개설 한 후 비공개 카페의 글을 Scraping 하는 예제 입니다.</p>
+<p>이 에제는 총 5단계의 거쳐 스크래핑을 할 예정 입니다.</p>
+<ol>
+<li>Headless Browser 실행</li>
+<li>네이버 로그인</li>
+<li>네이버 카페 게시판 접근</li>
+<li>게시판의 게시글들의 URL 추출</li>
+<li>추출된 게시글의 내용 추출</li>
+</ol>
+<p>샘플에 사용된 네이버 카페 게시판<br><img src="https://user-images.githubusercontent.com/6037055/56089853-63166300-5ed4-11e9-80c6-3ec21da2e842.png" alt="스크린샷 2019-04-14 오후 4 42 23"></p>
+<p>Scraping 해올 게시글<br><img src="https://user-images.githubusercontent.com/6037055/56089871-95c05b80-5ed4-11e9-973b-0b5f4388b90f.png" alt="noname"></p>
+<h3 id="1-Headless-Browser-실행"><a href="#1-Headless-Browser-실행" class="headerlink" title="1. Headless Browser 실행"></a>1. Headless Browser 실행</h3><p>npm에서 <code>puppeteer</code> 패키지를 다운 받습니다.</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> i puppeteer
+</code></pre>
+<p>다운 받은 패키지를 Node.js 애플리케이션 개발에 불러옵니다.</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// src/naver-cafe.js 파일에 작성</span>
+<span class="token keyword">const</span> puppeteer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'puppeteer'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> browser <span class="token operator">=</span> <span class="token keyword">await</span> puppeteer<span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>headless<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> page <span class="token operator">=</span> <span class="token keyword">await</span> browser<span class="token punctuation">.</span><span class="token function">newPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 2, 3, 4, 5 내용 채울 예정</span>
+
+    <span class="token keyword">await</span> browser<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="2-네이버-로그인"><a href="#2-네이버-로그인" class="headerlink" title="2. 네이버 로그인"></a>2. 네이버 로그인</h3><p>jQuery를 사용할때 쓰던 <code>CSS Selector</code>를 통해 <code>Element에 접근</code>을 하여 원하는 작업을 진행 합니다.</p>
+<pre class=" language-javascript"><code class="language-javascript">    <span class="token comment" spellcheck="true">// 네이버 로그인 페이지 접근</span>
+    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">goto</span><span class="token punctuation">(</span><span class="token string">'https://nid.naver.com/nidlogin.login?svctype=262144&amp;url=http://m.naver.com/aside/'</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 네이버 로그인</span>
+    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">'#id'</span><span class="token punctuation">,</span> <span class="token string">'네이버 아이디'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>delay<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token string">'#pw'</span><span class="token punctuation">,</span> <span class="token string">'네이버 비밀번호'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>delay<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token string">'[type="submit"]'</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">waitForNavigation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="3-네이버-카페-게시판-접근"><a href="#3-네이버-카페-게시판-접근" class="headerlink" title="3. 네이버 카페 게시판 접근"></a>3. 네이버 카페 게시판 접근</h3><p>Scraping을 하고 싶은 네이버 게시판의 URL로 이동 합니다.</p>
+<pre class=" language-javascript"><code class="language-javascript">    <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">goto</span><span class="token punctuation">(</span><span class="token string">'https://m.cafe.naver.com/ArticleList.nhn?search.clubid=29734529&amp;search.menuid=1&amp;search.boardtype=L'</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="4-게시판의-게시글들의-URL-추출"><a href="#4-게시판의-게시글들의-URL-추출" class="headerlink" title="4. 게시판의 게시글들의 URL 추출"></a>4. 게시판의 게시글들의 URL 추출</h3><p><code>Chrome devtools</code>를 이용하여 Scraping 대상을 분석 하고 코드로 작성 하여야 합니다.<br><code>Puppeteer</code>에서 제공하는 <code>Page</code>클래스의 <code>evaluate</code>함수를 이용하면 <code>Chrome devtools console</code>에서 작업하는거와 동일하게 작업이 가능 해집니다.</p>
+<pre class=" language-javascript"><code class="language-javascript">    <span class="token comment" spellcheck="true">// 자유게시판 글 Scraping</span>
+    <span class="token keyword">const</span> articles <span class="token operator">=</span> <span class="token keyword">await</span> page<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span>args <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> articles <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'#articleListArea > ul li'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                <span class="token keyword">const</span> article <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+                article<span class="token punctuation">.</span>title <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.tit'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerText
+                article<span class="token punctuation">.</span>nick <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.nick'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerText
+                article<span class="token punctuation">.</span>href <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'a._articleListItem'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>href
+                articles<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>article<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> articles
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 자유게시판 글들 확인</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>articles<span class="token punctuation">)</span>
+</code></pre>
+<p>위의 작업을 실행한 결과 입니다.</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">[</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'게시글2 입니다.'</span><span class="token punctuation">,</span>
+    nick<span class="token punctuation">:</span> <span class="token string">'페가수스'</span><span class="token punctuation">,</span>
+    href<span class="token punctuation">:</span>
+     <span class="token string">'https://m.cafe.naver.com/ArticleRead.nhn?clubid=29734529&amp;articleid=3&amp;page=1&amp;boardtype=L&amp;menuid=1'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'게시글 1 입니다.'</span><span class="token punctuation">,</span>
+    nick<span class="token punctuation">:</span> <span class="token string">'페가수스'</span><span class="token punctuation">,</span>
+    href<span class="token punctuation">:</span>
+     <span class="token string">'https://m.cafe.naver.com/ArticleRead.nhn?clubid=29734529&amp;articleid=2&amp;page=1&amp;boardtype=L&amp;menuid=1'</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span>
+</code></pre>
+<h3 id="5-추출된-게시글의-내용-추출"><a href="#5-추출된-게시글의-내용-추출" class="headerlink" title="5. 추출된 게시글의 내용 추출"></a>5. 추출된 게시글의 내용 추출</h3><p>추출된 각 게시글의 URL에 방문하여 게시글의 내용을 Scraping 합니다.</p>
+<pre class=" language-javascript"><code class="language-javascript">    <span class="token keyword">const</span> articlePage <span class="token operator">=</span> <span class="token keyword">await</span> browser<span class="token punctuation">.</span><span class="token function">newPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> article <span class="token keyword">of</span> articles<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> articlePage<span class="token punctuation">.</span><span class="token function">goto</span><span class="token punctuation">(</span>article<span class="token punctuation">.</span>href<span class="token punctuation">)</span>
+        <span class="token keyword">const</span> content <span class="token operator">=</span> <span class="token keyword">await</span> articlePage<span class="token punctuation">.</span><span class="token function">$eval</span><span class="token punctuation">(</span><span class="token string">'#postContent'</span><span class="token punctuation">,</span> element <span class="token operator">=</span><span class="token operator">></span> element<span class="token punctuation">.</span>innerText<span class="token punctuation">)</span>
+        article<span class="token punctuation">.</span>content <span class="token operator">=</span> content<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 자유게시판 글들을 내용까지 채움</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>articles<span class="token punctuation">)</span>
+</code></pre>
+<p>브라우저의 새탭을 열어 아까 가져온 게시글 URL에 차례대로 방문하여 내용을 Scraping 해옵니다.</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">[</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'게시글2 입니다.'</span><span class="token punctuation">,</span>
+    nick<span class="token punctuation">:</span> <span class="token string">'페가수스'</span><span class="token punctuation">,</span>
+    href<span class="token punctuation">:</span>
+     <span class="token string">'https://m.cafe.naver.com/ArticleRead.nhn?clubid=29734529&amp;articleid=3&amp;page=1&amp;boardtype=L&amp;menuid=1'</span><span class="token punctuation">,</span>
+    content<span class="token punctuation">:</span> <span class="token string">'게시글2 입니다.\n\nABCDEFGHIJKLMNOPQRSTUVWXYZ'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'게시글 1 입니다.'</span><span class="token punctuation">,</span>
+    nick<span class="token punctuation">:</span> <span class="token string">'페가수스'</span><span class="token punctuation">,</span>
+    href<span class="token punctuation">:</span>
+     <span class="token string">'https://m.cafe.naver.com/ArticleRead.nhn?clubid=29734529&amp;articleid=2&amp;page=1&amp;boardtype=L&amp;menuid=1'</span><span class="token punctuation">,</span>
+    content<span class="token punctuation">:</span> <span class="token string">'게시글1의 내용입니다. \n\n가나다라마바사아자차카타파하'</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span>
+</code></pre>
+<h2 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h2><p>Headless Browser란 Http Client에 비해 Javascript를 구동하여 추가 데이터를 가져 온다고 이해 하시면 좋습니다.</p>
+<p>Node.js기반 Headless Browser인 Puppeteer를 사용한 네이버 카페 Scrping하였고, 이를 활용하면 네이버 로그인 인증도 쉽게 할 수 있고, 게시글을 사람이 직접 가져오는 방법처럼 예제를 구성 하였습니다.</p>
+<p>소개한 예제는 Github에 공유 하겠습니다.<br>다음 순서엔 다른 Headless Browser와의 비교를 소개 하겠습니다.<br><a href="https://github.com/kji6252/study-puppeteer" target="_blank" rel="noopener">https://github.com/kji6252/study-puppeteer</a><br><a href="https://pptr.dev" target="_blank" rel="noopener">https://pptr.dev</a></p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban, wechat"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Reprint please specify:
+                    </span>
+                    <a href="https://devahea.github.io" class="b-link-green">Ahea Team Study Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/04/13/Headless-Browser란/" class="b-link-green">Headless Browser란?</a>
+                </p>
+            </div>
+
+
+                    
+                        
+                        <div class="row tags-posts friend-all">
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <div class=" col s12 m6 l12" data-aos="zoom-in-up">
+                                        <div class="card frind-card3">
+                                            <div class="frind-ship">
+                                                <div class="title">
+                                                    <img src="http://devahea.github.io/friends/image/김종인.jpg" alt="img">
+                                                    <div style="margin-left: 20px;">
+                                                        <h1 class="friend-name" style="font-size: 1.5rem;     margin: 15px 0 22px -5px;">김종인</h1>
+                                                        <p>Java로 생명을 연장하고 있는 개발자 입니다. <br>오픈소스 활용에 관심이 많으며 이것저것 다 해볼려 노력 하고 있습니다.</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </div>
+                    
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/04/14/Docker-ABC/">
+                    <div class="card-image">
+                        
+                        <img src="https://i0.wp.com/blog.docker.com/wp-content/uploads/2013/08/KuDr42X_ITXghJhSInDZekNEF0jLt3NeVxtRye3tqco.png" class="responsive-img" alt="Docker ABC">
+                        
+                        <span class="card-title">Docker ABC</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Docker ABCDocker컨테이너 기반의 오픈소스 가상화 플랫폼이다.Solomon Hykes가 2013년 pycon에서 발표하면서 알려졌고, 2013년 3월 오픈소스로 릴리즈되었다.최초에는 LXC를 이용하여 리눅</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/infra/" class="post-category" target="_blank">
+                                    infra
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/container/" target="_blank">
+                        <span class="chip bg-color">container</span>
+                    </a>
+                    
+                    <a href="/tags/linux/" target="_blank">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/13/너는-사람이냐-봇이냐-Headless-Browser/">
+                    <div class="card-image">
+                        
+                        <img src="https://user-images.githubusercontent.com/6037055/56453226-305be700-637a-11e9-8142-068e4040e871.png" class="responsive-img" alt="너는 사람이냐? 봇이냐?(Headless Browser)">
+                        
+                        <span class="card-title">너는 사람이냐? 봇이냐?(Headless Browser)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">Web을 통해 다양한 정보를 소비하며 쉽게 접근 할 수 있는 환경에 살고있습니다.이 다양한 정보를 가지고 애플리케이션을 만들어 사용하고 싶은데 Open API를 제공하지 않아 곤란해 하는 경우가 많고 제대로 제공하지</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/WEB/" class="post-category" target="_blank">
+                                    WEB
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HeadlessBrowser/" target="_blank">
+                        <span class="chip bg-color">HeadlessBrowser</span>
+                    </a>
+                    
+                    <a href="/tags/Chrome/" target="_blank">
+                        <span class="chip bg-color">Chrome</span>
+                    </a>
+                    
+                    <a href="/tags/headless/" target="_blank">
+                        <span class="chip bg-color">headless</span>
+                    </a>
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/devahea" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<!--
+<a href="mailto:이메일" class="tooltipped" target="_blank" data-tooltip="이메일" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+-->
+<a href="https://www.facebook.com/AheaCommunity/" class="tooltipped" data-tooltip="Facebook" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71515052-3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-71515052-3');
+</script>
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
